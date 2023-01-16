@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class Produto implements Serializable {
-    private Integer codigo;
-    private String nome;
-    private String descricao;
-    private float preco;
+    protected Integer codigo;
+    protected String nome;
+    protected String descricao;
+    protected float preco;
 
     /**
      * Construtor do objeto Produto
