@@ -38,7 +38,7 @@ public interface IProdutos {
      * @throws java.lang.Exception Lança exceção quando não existe produto com o 
      * código informado ou quando a nova quantidade é inválida.
      */
-    public abstract void updateQuantidade(int codigo, float nova) throws Exception;
+    public abstract void updateQuantidade(int codigo, double nova) throws Exception;
     
 	
     /**
@@ -48,7 +48,7 @@ public interface IProdutos {
      * @throws java.lang.Exception Lança exceção quando não existe produto com o 
      * código informado ou quando o novo preço é inválido.
      */
-    public abstract void updatePreco(int codigo, float novo) throws Exception;
+    public abstract void updatePreco(int codigo, double novo) throws Exception;
     
     /**
      * Adiciona a quantidade ao produto com código informado.

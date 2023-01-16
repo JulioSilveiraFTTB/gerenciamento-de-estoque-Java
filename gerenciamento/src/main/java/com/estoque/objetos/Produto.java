@@ -8,8 +8,8 @@ public class Produto implements Serializable {
     protected String nome;
     protected String descricao;
     protected int quantidade;
-    protected float quantidadeKg;
-    protected float preco;
+    protected double quantidadeKg;
+    protected double preco;
 
     /**
      * Construtor do objeto Produto
@@ -93,7 +93,7 @@ public class Produto implements Serializable {
      * 
      * @return
      */
-    public float getQuantidadeKg() {
+    public double getQuantidadeKg() {
         return quantidadeKg;
     }
 
@@ -101,7 +101,7 @@ public class Produto implements Serializable {
      * 
      * @param quantidade
      */
-    public void setQuantidadeKg(float quantidadeKg) {
+    public void setQuantidadeKg(double quantidadeKg) {
         this.quantidadeKg = quantidadeKg;
     }
 
@@ -110,7 +110,7 @@ public class Produto implements Serializable {
      * 
      * @return
      */
-    public float getPreco(){
+    public double getPreco(){
         return preco;
     }
 
@@ -119,7 +119,7 @@ public class Produto implements Serializable {
      * 
      * @param preco
      */
-    public void setPreco(float preco){
+    public void setPreco(double preco){
         this.preco = preco;
     }
 

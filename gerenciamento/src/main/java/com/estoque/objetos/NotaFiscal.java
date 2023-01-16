@@ -2,6 +2,8 @@ package com.estoque.objetos;
 
 import java.io.Serializable;
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -10,7 +12,7 @@ public class NotaFiscal implements Serializable {
 
     private Integer codigo;
     private final LocalDate dataEmissao;
-    private Item relacaoItem;
+    private List<Item> itens;
 
     /**
      * Construtor do objeto Nota Fiscal
@@ -23,7 +25,7 @@ public class NotaFiscal implements Serializable {
 
         this.codigo = random.nextInt(100000);
         this.dataEmissao = LocalDate.now();
-        this.relacaoItem = relacaoItem;
+        this.itens = new ArrayList<Item>();
     }
 
     /**
@@ -46,8 +48,16 @@ public class NotaFiscal implements Serializable {
      * 
      * @return
      */
-    public Item getRelacaoItem(){
-        return relacaoItem;
+    public List<Item> getItens(){
+        return itens;
+    }
+
+    /**
+     * 
+     * @param itens
+     */
+    public void setItens(List<Item> itens){
+        this.itens = itens;
     }
 
     /**
@@ -60,6 +70,6 @@ public class NotaFiscal implements Serializable {
         return "Informações da NF: \n" 
         + "Código: " + codigo + "\n"
         + "Data de emissão: " + dtf.format(dataEmissao) + "\n"
-        + "Relação de items: " + relacaoItem + "\n";
+        + "Relação de items: " + itens + "\n";
     }
 }

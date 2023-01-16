@@ -2,24 +2,29 @@ package com.estoque.listas;
 
 import com.estoque.interfaces.*;
 import com.estoque.objetos.*;
-import com.estoque.objetos.tiposDeProduto.*;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Produtos implements IProdutos, Serializable {
-    private final List<Produto> produtos = new ArrayList();
+    private final List<Produto> produtos = new ArrayList<>();
     
     Scanner entrada = new Scanner(System.in);
 
+    /** 
+     * @param p
+     */
     @Override
     public void addProduto(Produto p) {
          if(p != null) {
             produtos.add(p);
          }
     }
-
+    
+    /** 
+     * @param codigo
+     */
     @Override
     public void removeProduto(int codigo) {
         for(Produto p : produtos) {
@@ -28,7 +33,11 @@ public class Produtos implements IProdutos, Serializable {
             }
         }
     }
-
+    
+    /** 
+     * @param codigo
+     * @return Produto
+     */
     @Override
     public Produto getProduto(int codigo) {
         for(Produto p : produtos) {
@@ -38,20 +47,28 @@ public class Produtos implements IProdutos, Serializable {
         }
         return null;
     }
-
+    
+    /** 
+     * @param codigo
+     * @param nova
+     */
     @Override
-    public void updateQuantidade(int codigo, float nova) {
+    public void updateQuantidade(int codigo, double nova) {
         for(Produto p : produtos) {
             if(p.getCodigo() == codigo) {
                 System.out.println("Digite a quantidade atualizada do produto: ");
-                nova = entrada.nextFloat();
+                nova = entrada.nextDouble();
                 p.setQuantidadeKg(nova);
             }
         }
     }
-
+    
+    /** 
+     * @param codigo
+     * @param novo
+     */
     @Override
-    public void updatePreco(int codigo, float novo) {
+    public void updatePreco(int codigo, double novo) {
         for(Produto p : produtos) {
             if(p.getCodigo() == codigo) {
                 System.out.println("Atualize o preço do produto: ");
@@ -61,6 +78,10 @@ public class Produtos implements IProdutos, Serializable {
         }
     }
 
+    /** 
+     * @param codigo
+     * @param quantidade
+     */
     @Override
     public void addQuantidade(int codigo, int quantidade) {
         for(Produto p : produtos) {
@@ -71,7 +92,11 @@ public class Produtos implements IProdutos, Serializable {
             }
         }
     }
-
+    
+    /** 
+     * @param codigo
+     * @param quantidade
+     */
     @Override
     public void subQuantidade(int codigo, int quantidade) {
         for(Produto p : produtos) {

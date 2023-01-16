@@ -1,15 +1,17 @@
 package com.estoque.objetos;
 
 public class Item {
-    private Produto produto;
+    protected Produto produto;
+    protected double quantidade;
 
     /**
      * Construtor do objeto Item
      * 
      * @param produto
      */
-    public Item(Produto produto){
+    public Item(Produto produto, double quantidade){
         this.produto = produto;
+        this.quantidade = quantidade;
     }
 
     /**
@@ -26,14 +28,22 @@ public class Item {
      * 
      * @param produto
      */
-    public void setProduto(Produto produto){
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
 
+    public double getQuantidade(){
+        return quantidade;
+    }
+
+    public void setQuantidade(double quantidade) {
+        this.quantidade = quantidade;
+    }
     
     @Override
     public String toString(){
         return "Informações do item + \n"
-        + "Produto: " + produto + "\n";
+        + "Produto: " + produto + "\n"
+        + "Quantidade: " + quantidade + "\n";
     }
 }
