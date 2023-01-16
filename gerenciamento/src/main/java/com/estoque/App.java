@@ -1,13 +1,14 @@
 package com.estoque;
 
-/**
- * Hello world!
- *
- */
+import com.estoque.objetos.*;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Produto produto;
+        
+        produto = new Produto("Teste", "Apenas testando...", 10);
+        System.out.println(produto.toString());
     }
 }
