@@ -3,7 +3,7 @@ package com.estoque.objetos.tiposDeProduto;
 import com.estoque.objetos.Produto;
 
 public class ProdutoUnidade extends Produto {
-    private int quantidade;
+    private int quantidadeUnd;
 
     /**
      * Construtor do objeto ProdutoUnidade - produto vendido por unidade
@@ -14,8 +14,8 @@ public class ProdutoUnidade extends Produto {
      * @param quantidade
      */
     public ProdutoUnidade(String nome, String descricao, float preco, int quantidade){
-        super(nome, descricao, preco);
-        this.quantidade = quantidade;
+        super(nome, descricao, quantidade, preco);
+        this.quantidadeUnd = quantidade;
     }
 
     /**
@@ -23,8 +23,9 @@ public class ProdutoUnidade extends Produto {
      * 
      * @return
      */
+    @Override
     public int getQuantidade(){
-        return quantidade;
+        return quantidadeUnd;
     }
 
     /**
@@ -32,8 +33,9 @@ public class ProdutoUnidade extends Produto {
      * 
      * @param quantidade
      */
+    @Override
     public void setQuantidade(int quantidade){
-        this.quantidade = quantidade;
+        this.quantidadeUnd = quantidade;
     }
 
     /**

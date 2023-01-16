@@ -7,6 +7,8 @@ public class Produto implements Serializable {
     protected Integer codigo;
     protected String nome;
     protected String descricao;
+    protected int quantidade;
+    protected float quantidadeKg;
     protected float preco;
 
     /**
@@ -22,6 +24,7 @@ public class Produto implements Serializable {
         this.codigo = random.nextInt(100000);
         this.nome = nome;
         this.descricao = descricao;
+
         this.preco = preco;
     }
 
@@ -68,6 +71,38 @@ public class Produto implements Serializable {
      */
     public void setDescricao(String descricao){
         this.descricao = descricao;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    /**
+     * 
+     * @param quantidade
+     */
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public float getQuantidadeKg() {
+        return quantidadeKg;
+    }
+
+    /**
+     * 
+     * @param quantidade
+     */
+    public void setQuantidadeKg(float quantidadeKg) {
+        this.quantidadeKg = quantidadeKg;
     }
 
     /**

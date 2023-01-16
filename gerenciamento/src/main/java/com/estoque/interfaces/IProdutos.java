@@ -1,4 +1,5 @@
 package com.estoque.interfaces;
+
 import com.estoque.objetos.*;
 
 /**
@@ -37,7 +38,7 @@ public interface IProdutos {
      * @throws java.lang.Exception Lança exceção quando não existe produto com o 
      * código informado ou quando a nova quantidade é inválida.
      */
-    public abstract void updateQuantidade(int codigo, double nova) throws Exception;
+    public abstract void updateQuantidade(int codigo, float nova) throws Exception;
     
 	
     /**
@@ -47,7 +48,7 @@ public interface IProdutos {
      * @throws java.lang.Exception Lança exceção quando não existe produto com o 
      * código informado ou quando o novo preço é inválido.
      */
-    public abstract void updatePreco(int codigo, double novo) throws Exception;
+    public abstract void updatePreco(int codigo, float novo) throws Exception;
     
     /**
      * Adiciona a quantidade ao produto com código informado.
@@ -56,7 +57,7 @@ public interface IProdutos {
      * @throws java.lang.Exception Lança exceção quando não existe produto com o 
      * código informado ou quando a quantidade é inválida.
      */
-    public abstract void addQuantidade(int codigo, double quantidade) throws Exception;
+    public abstract void addQuantidade(int codigo, int quantidade) throws Exception;
 
     /**
      * Subtrai a quantidade do produto com código informado.
@@ -65,6 +66,6 @@ public interface IProdutos {
      * @throws java.lang.Exception Lança exceção quando não existe produto com o 
      * código informado ou quando quantidade informada é inválida.
      */
-    public abstract void subQuantidade(int codigo, double quantidade) throws Exception;
+    public abstract void subQuantidade(int codigo, int quantidade) throws Exception;
 
 }
