@@ -1,6 +1,7 @@
 package com.estoque;
 
 import com.estoque.objetos.*;
+import com.estoque.objetos.enums.*;
 
 public class App 
 {
@@ -9,10 +10,8 @@ public class App
         Produto produto;
         NotaFiscal nf;
         
-        produto = new Produto("Teste", "Apenas testando...", 10);
+        produto = new Produto("Água", "Teste...", 50, TipoQuantidade.KG);
+        produto.setQuantidade(100);
         System.out.println(produto.toString());
-
-        nf = new NotaFiscal(null, null);
-        System.out.println(nf.toString());
     }
 }

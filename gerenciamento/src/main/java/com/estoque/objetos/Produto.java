@@ -1,5 +1,7 @@
 package com.estoque.objetos;
 
+import com.estoque.objetos.enums.*;
+
 import java.io.Serializable;
 import java.util.Random;
 
@@ -8,8 +10,9 @@ public class Produto implements Serializable {
     protected String nome;
     protected String descricao;
     protected double quantidade;
-    protected double quantidadeKg;
+    // protected double quantidadeKg;
     protected double preco;
+    protected TipoQuantidade tipoQuantidade;
 
     // Possivelmente usar ENUM para determinar o tipo de quantidade (unidade ou KG), facilitando a vida na hora de
     // manipular o atributo nas outras classes
@@ -21,13 +24,14 @@ public class Produto implements Serializable {
      * @param descricao
      * @param preco
      */
-    public Produto(String nome, String descricao, float preco) {
+    public Produto(String nome, String descricao, float preco, TipoQuantidade tipoQuantidade) {
         Random random = new Random();
 
         this.codigo = random.nextInt(100000);
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
+        this.tipoQuantidade = tipoQuantidade;
     }
 
     /**
@@ -111,6 +115,10 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
+    public TipoQuantidade getTipoQuantidade() {
+        return tipoQuantidade;
+    }
+
     /**
      * Retorna a string completa do produto
      * 
@@ -122,6 +130,7 @@ public class Produto implements Serializable {
         + "Código: " + codigo + "\n"
         + "Nome: " + nome + "\n"
         + "Descrição: " + descricao + "\n"
-        + "Preço: " + preco + "\n";
+        + "Preço: " + preco + "\n"
+        + "Quantidade " + "(" + getTipoQuantidade() + ")" + ": " + quantidade;
     }
 }
