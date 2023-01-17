@@ -9,7 +9,7 @@ public class Item {
      * 
      * @param produto
      */
-    public Item(Produto produto, double quantidade){
+    public Item(Produto produto, double quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }
@@ -19,7 +19,7 @@ public class Item {
      * 
      * @return
      */
-    public Produto getProduto(){
+    public Produto getProduto() {
         return produto;
     }
 
@@ -31,17 +31,32 @@ public class Item {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
-    public double getQuantidade(){
+    
+    /** 
+     * Retorna a quantidade do produto
+     * 
+     * @return double
+     */
+    public double getQuantidade() {
         return quantidade;
     }
-
+    
+    /** 
+     * Atribui a quantidade do produto
+     * 
+     * @param quantidade
+     */
     public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
     }
     
+    /** 
+     * Retorna a string completa do item
+     * 
+     * @return String
+     */
     @Override
-    public String toString(){
+    public String toString() {
         return "Informações do item + \n"
         + "Produto: " + produto + "\n"
         + "Quantidade: " + quantidade + "\n";

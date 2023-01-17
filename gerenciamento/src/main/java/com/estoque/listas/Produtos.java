@@ -2,6 +2,7 @@ package com.estoque.listas;
 
 import com.estoque.interfaces.*;
 import com.estoque.objetos.*;
+import com.estoque.excecoes.produtos.*;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,21 +17,29 @@ public class Produtos implements IProdutos, Serializable {
      * @param p
      */
     @Override
-    public void addProduto(Produto p) {
-         if(p != null) {
-            produtos.add(p);
-         }
+    public void addProduto(Produto p) throws ProdutoNaoEncontradoException {
+        try {
+            if(p != null) {
+                produtos.add(p);
+             }  
+        } catch (Exception e) {
+            throw new ProdutoNaoEncontradoException();
+        } 
     }
     
     /** 
      * @param codigo
      */
     @Override
-    public void removeProduto(int codigo) {
-        for(Produto p : produtos) {
-            if(p.getCodigo() == codigo) {
-                produtos.remove(p);
-            }
+    public void removeProduto(int codigo) throws ProdutoNaoEncontradoException {
+        try {
+            for(Produto p : produtos) {
+                if(p.getCodigo() == codigo) {
+                    produtos.remove(p);
+                }
+            }   
+        } catch (Exception e) {
+            throw new ProdutoNaoEncontradoException();
         }
     }
     
@@ -39,13 +48,17 @@ public class Produtos implements IProdutos, Serializable {
      * @return Produto
      */
     @Override
-    public Produto getProduto(int codigo) {
-        for(Produto p : produtos) {
-            if(p.getCodigo() == codigo) {
-                return p;
+    public Produto getProduto(int codigo) throws ProdutoNaoEncontradoException {
+        try {
+            for(Produto p : produtos) {
+                if(p.getCodigo() == codigo) {
+                    return p;
+                }
             }
+            return null;   
+        } catch (Exception e) {
+            throw new ProdutoNaoEncontradoException();
         }
-        return null;
     }
     
     /** 
@@ -53,13 +66,21 @@ public class Produtos implements IProdutos, Serializable {
      * @param nova
      */
     @Override
-    public void updateQuantidade(int codigo, double nova) {
-        for(Produto p : produtos) {
-            if(p.getCodigo() == codigo) {
-                System.out.println("Digite a quantidade atualizada do produto: ");
-                nova = entrada.nextDouble();
-                p.setQuantidadeKg(nova);
-            }
+    public void updateQuantidade(int codigo, double nova) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
+        try {
+            for(Produto p : produtos) {
+                if(p.getCodigo() == codigo) {
+                    try {
+                        System.out.println("Digite a quantidade atualizada do produto: ");
+                        nova = entrada.nextDouble();
+                        p.setQuantidade(nova);   
+                    } catch (Exception e) {
+                        throw new QuantidadeInvalidaException();
+                    }
+                }
+            }   
+        } catch (Exception e) {
+            throw new ProdutoNaoEncontradoException();
         }
     }
     
@@ -68,13 +89,21 @@ public class Produtos implements IProdutos, Serializable {
      * @param novo
      */
     @Override
-    public void updatePreco(int codigo, double novo) {
-        for(Produto p : produtos) {
-            if(p.getCodigo() == codigo) {
-                System.out.println("Atualize o preço do produto: ");
-                novo = entrada.nextFloat();
-                p.setPreco(novo);
-            }
+    public void updatePreco(int codigo, double novo) throws ProdutoNaoEncontradoException, PrecoInvalidoException {
+        try {
+            for(Produto p : produtos) {
+                if(p.getCodigo() == codigo) {
+                    try {
+                        System.out.println("Atualize o preço do produto: ");
+                        novo = entrada.nextFloat();
+                        p.setPreco(novo);   
+                    } catch (Exception e) {
+                        throw new PrecoInvalidoException();
+                    }
+                }
+            }   
+        } catch (Exception e) {
+            throw new ProdutoNaoEncontradoException();
         }
     }
 
@@ -83,13 +112,21 @@ public class Produtos implements IProdutos, Serializable {
      * @param quantidade
      */
     @Override
-    public void addQuantidade(int codigo, int quantidade) {
-        for(Produto p : produtos) {
-            if(p.getCodigo() == codigo) {
-                System.out.println("Quantas unidades você deseja adicionar ao produto? ");
-                quantidade = entrada.nextInt();
-                p.setQuantidade(quantidade);
-            }
+    public void addQuantidade(int codigo, int quantidade) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
+        try {
+            for(Produto p : produtos) {
+                if(p.getCodigo() == codigo) {
+                    try {
+                        System.out.println("Quantas unidades você deseja adicionar ao produto? ");
+                        quantidade = entrada.nextInt();
+                        p.setQuantidade(quantidade);   
+                    } catch (Exception e) {
+                        throw new QuantidadeInvalidaException();
+                    }
+                }
+            }   
+        } catch (Exception e) {
+            throw new ProdutoNaoEncontradoException();
         }
     }
     
@@ -98,14 +135,22 @@ public class Produtos implements IProdutos, Serializable {
      * @param quantidade
      */
     @Override
-    public void subQuantidade(int codigo, int quantidade) {
-        for(Produto p : produtos) {
-            if(p.getCodigo() == codigo) {
-                System.out.println("Digite a quantidade que você deseja subtrair: ");
-                quantidade = entrada.nextInt();
-                int novaQuantidade = p.getQuantidade() - quantidade;
-                p.setQuantidade(novaQuantidade);
-            }
+    public void subQuantidade(int codigo, int quantidade) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
+        try {
+            for(Produto p : produtos) {
+                if(p.getCodigo() == codigo) {
+                    try {
+                        System.out.println("Digite a quantidade que você deseja subtrair: ");
+                        quantidade = entrada.nextInt();
+                        double novaQuantidade = p.getQuantidade() - quantidade;
+                        p.setQuantidade(novaQuantidade);
+                    } catch (Exception e) {
+                        throw new QuantidadeInvalidaException();
+                    }
+                }
+            }   
+        } catch (Exception e) {
+            throw new ProdutoNaoEncontradoException();
         }
     }
 }

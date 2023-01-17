@@ -18,9 +18,9 @@ public class NotaFiscal implements Serializable {
      * Construtor do objeto Nota Fiscal
      * 
      * @param dataEmissao
-     * @param relacaoItem
+     * @param itens
      */
-    public NotaFiscal(LocalDate dataEmissao, Item relacaoItem){
+    public NotaFiscal(LocalDate dataEmissao, Item itens) {
         Random random = new Random();
 
         this.codigo = random.nextInt(100000);
@@ -29,34 +29,38 @@ public class NotaFiscal implements Serializable {
     }
 
     /**
+     * Retorna o código da nota fiscal
      * 
      * @return
      */
-    public Integer getCodigo(){
+    public Integer getCodigo() {
         return codigo;
     }
 
     /**
+     * Retorna a data de emissão da nota
      * 
      * @return
      */
-    public LocalDate getDataEmissao(){
+    public LocalDate getDataEmissao() {
         return dataEmissao;
     }
 
     /**
+     * Retorna a lista com os itens da nota
      * 
      * @return
      */
-    public List<Item> getItens(){
+    public List<Item> getItens() {
         return itens;
     }
 
     /**
+     * Atribui os itens da lista
      * 
      * @param itens
      */
-    public void setItens(List<Item> itens){
+    public void setItens(List<Item> itens) {
         this.itens = itens;
     }
 
@@ -66,7 +70,7 @@ public class NotaFiscal implements Serializable {
      * @return
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "Informações da NF: \n" 
         + "Código: " + codigo + "\n"
         + "Data de emissão: " + dtf.format(dataEmissao) + "\n"

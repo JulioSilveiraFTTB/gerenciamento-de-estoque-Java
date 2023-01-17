@@ -23,7 +23,6 @@ public class ProdutoKG extends Produto {
      * 
      * @return
      */
-    @Override
     public double getQuantidadeKg(){
         return quantidadeKg;
     }
@@ -33,7 +32,6 @@ public class ProdutoKG extends Produto {
      * 
      * @param quantidade
      */
-    @Override
     public void setQuantidadeKg(double quantidadeKg){
         this.quantidadeKg = quantidadeKg;
     }

@@ -7,9 +7,12 @@ public class Produto implements Serializable {
     protected Integer codigo;
     protected String nome;
     protected String descricao;
-    protected int quantidade;
+    protected double quantidade;
     protected double quantidadeKg;
     protected double preco;
+
+    // Possivelmente usar ENUM para determinar o tipo de quantidade (unidade ou KG), facilitando a vida na hora de
+    // manipular o atributo nas outras classes
 
     /**
      * Construtor do objeto Produto
@@ -18,13 +21,12 @@ public class Produto implements Serializable {
      * @param descricao
      * @param preco
      */
-    public Produto(String nome, String descricao, float preco){
+    public Produto(String nome, String descricao, float preco) {
         Random random = new Random();
 
         this.codigo = random.nextInt(100000);
         this.nome = nome;
         this.descricao = descricao;
-
         this.preco = preco;
     }
 
@@ -33,7 +35,7 @@ public class Produto implements Serializable {
      * 
      * @return codigo
      */
-    public Integer getCodigo(){
+    public Integer getCodigo() {
         return codigo;
     }
 
@@ -42,7 +44,7 @@ public class Produto implements Serializable {
      * 
      * @return nome
      */
-    public String getNome(){
+    public String getNome() {
         return nome;
     }
 
@@ -51,7 +53,7 @@ public class Produto implements Serializable {
      * 
      * @param nome
      */
-    public void setNome(String nome){
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -60,7 +62,7 @@ public class Produto implements Serializable {
      * 
      * @return descricao
      */
-    public String getDescricao(){
+    public String getDescricao() {
         return descricao;
     }
 
@@ -69,40 +71,26 @@ public class Produto implements Serializable {
      * 
      * @param descricao
      */
-    public void setDescricao(String descricao){
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
     /**
+     * Retona a quantidade do produto em questão
      * 
      * @return
      */
-    public int getQuantidade() {
+    public double getQuantidade() {
         return quantidade;
     }
 
     /**
+     * Atribui a quantidade ao produto
      * 
      * @param quantidade
      */
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public double getQuantidadeKg() {
-        return quantidadeKg;
-    }
-
-    /**
-     * 
-     * @param quantidade
-     */
-    public void setQuantidadeKg(double quantidadeKg) {
-        this.quantidadeKg = quantidadeKg;
     }
 
     /**
@@ -110,7 +98,7 @@ public class Produto implements Serializable {
      * 
      * @return
      */
-    public double getPreco(){
+    public double getPreco() {
         return preco;
     }
 
@@ -119,7 +107,7 @@ public class Produto implements Serializable {
      * 
      * @param preco
      */
-    public void setPreco(double preco){
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
@@ -129,7 +117,7 @@ public class Produto implements Serializable {
      * @return
      */
     @Override
-    public String toString(){
+    public String toString() {
         return "Informações do produto: \n" 
         + "Código: " + codigo + "\n"
         + "Nome: " + nome + "\n"
