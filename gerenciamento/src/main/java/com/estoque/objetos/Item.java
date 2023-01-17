@@ -3,15 +3,17 @@ package com.estoque.objetos;
 public class Item {
     protected Produto produto;
     protected double quantidade;
+    protected double valorTotal;
 
     /**
      * Construtor do objeto Item
      * 
      * @param produto
      */
-    public Item(Produto produto, double quantidade) {
+    public Item(Produto produto, double quantidade, double valorTotal) {
         this.produto = produto;
         this.quantidade = quantidade;
+        this.valorTotal = valorTotal;
     }
 
     /**
@@ -48,6 +50,24 @@ public class Item {
      */
     public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
+    }
+
+    /**
+     * Retorna o valor total (preço) dos produtos selecionados
+     * 
+     * @return
+     */
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    /**
+     * Atribui o valor total (preço) dos produtos
+     * 
+     * @param valorTotal
+     */
+    public void setValorTotal(double valorTotal) {
+        valorTotal = produto.getPreco() * quantidade;
     }
     
     /** 
