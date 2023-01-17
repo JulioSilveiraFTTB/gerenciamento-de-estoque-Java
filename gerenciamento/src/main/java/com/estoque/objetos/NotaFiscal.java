@@ -20,12 +20,12 @@ public class NotaFiscal implements Serializable {
      * @param dataEmissao
      * @param itens
      */
-    public NotaFiscal(LocalDate dataEmissao, Item itens) {
+    public NotaFiscal() {
         Random random = new Random();
 
         this.codigo = random.nextInt(100000);
         this.dataEmissao = LocalDate.now();
-        this.itens = new ArrayList<Item>();
+        this.itens = new ArrayList<>();
     }
 
     /**

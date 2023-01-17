@@ -41,14 +41,12 @@ public class NotasFiscais implements INotasFiscais, Serializable {
 
     @Override
     public double getTotal(int codigo) {
-        Produto produto;
         double soma = 0;
 
         for(NotaFiscal nf : notasFiscais) {
             if(nf.getCodigo() == codigo) {
                 List<Item> listaDeItens = nf.getItens();
                     for (int i = 0; i < listaDeItens.size(); i++) {
-                        soma += 0;
             }
         }
     }
