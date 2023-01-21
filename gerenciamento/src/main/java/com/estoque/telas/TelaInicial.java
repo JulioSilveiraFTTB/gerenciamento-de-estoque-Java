@@ -32,13 +32,13 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        javax.swing.JTextField jTextFieldLogin = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "user-icon", "Nome de usuário");
-        ;
         jPasswordFieldSenha = new com.estoque.telas.icons.JPassWordFieldHint(new JPasswordField(), "padlock", "Senha");
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButtonEntrar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
+        jTextFieldLoginNovo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "user-icon", "Nome de usuário");
+        ;
 
         jTextField1.setText("jTextField1");
 
@@ -69,15 +69,6 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextFieldLogin.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldLogin.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextFieldLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLoginActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 360, 40));
 
         jPasswordFieldSenha.setBackground(new java.awt.Color(255, 255, 255));
         jPasswordFieldSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +145,10 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 250, 40));
 
+        jTextFieldLoginNovo.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldLoginNovo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel1.add(jTextFieldLoginNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 360, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,16 +163,18 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLoginActionPerformed
-
     private void jPasswordFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
-        new Menu().setVisible(true);
+        String user = jTextFieldLoginNovo.getText();
+        String pass = jPasswordFieldSenha.getText();
+        
+        if (user.equals("admin") && pass.equals("pass")) {
+            new Menu().setVisible(true);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
@@ -266,5 +263,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldLoginNovo;
     // End of variables declaration//GEN-END:variables
 }
