@@ -2,8 +2,6 @@ package com.estoque.telas;
 
 import java.awt.Color;
 import java.awt.Point;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 
 // 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
 
@@ -247,7 +245,6 @@ public class Menu extends javax.swing.JFrame {
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         Point p = this.getLocation();
         this.setLocation(p.x + evt.getX() - point.x, p.y + evt.getY() - point.y);
-        
     }//GEN-LAST:event_formMouseDragged
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
@@ -256,25 +253,28 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarActionPerformed
 
     private void jButtonRetornarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMouseExited
-        jButtonRetornar.setBackground(new Color(58,65,84));
+        jButtonRetornar.setBackground(new Color(217,81,51));
         jButtonRetornar.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonRetornarMouseExited
 
     private void jButtonRetornarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMouseEntered
-        jButtonRetornar.setBackground(new Color(235, 235, 235));
-        jButtonRetornar.setForeground(new Color(58,65,84));
+        jButtonRetornar.setBackground(new Color(235,235,235));
+        jButtonRetornar.setForeground(new Color(217,81,51));
     }//GEN-LAST:event_jButtonRetornarMouseEntered
 
     private void jButtonProduto1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProduto1MouseEntered
-        // TODO add your handling code here:
+        jButtonProduto1.setBackground(new Color(235, 235, 235));
+        jButtonProduto1.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonProduto1MouseEntered
 
     private void jButtonProduto1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProduto1MouseExited
-        // TODO add your handling code here:
+        jButtonProduto1.setBackground(new Color(58,65,84));
+        jButtonProduto1.setForeground(new Color(235, 235, 235));
     }//GEN-LAST:event_jButtonProduto1MouseExited
 
     private void jButtonProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProduto1ActionPerformed
-        // TODO add your handling code here:
+        new MenuProdutos().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonProduto1ActionPerformed
 
     private void jButtonSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseEntered
@@ -306,15 +306,18 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSair1ActionPerformed
 
     private void jButtonNF1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNF1MouseEntered
-        // TODO add your handling code here:
+        jButtonNF1.setBackground(new Color(235, 235, 235));
+        jButtonNF1.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonNF1MouseEntered
 
     private void jButtonNF1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNF1MouseExited
-        // TODO add your handling code here:
+        jButtonNF1.setBackground(new Color(58,65,84));
+        jButtonNF1.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonNF1MouseExited
 
     private void jButtonNF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNF1ActionPerformed
-        // TODO add your handling code here:
+        new MenuNotas().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonNF1ActionPerformed
 
     /**

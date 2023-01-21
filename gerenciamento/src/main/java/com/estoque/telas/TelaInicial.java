@@ -217,7 +217,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         Point p = this.getLocation();
         this.setLocation(p.x + evt.getX() - point.x, p.y + evt.getY() - point.y);
-        
     }//GEN-LAST:event_formMouseDragged
 
     /**

@@ -37,10 +37,10 @@ public class MenuProdutos extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButtonRetornar = new javax.swing.JButton();
-        jButtonProduto1 = new javax.swing.JButton();
-        jButtonNF1 = new javax.swing.JButton();
-        jButtonNF2 = new javax.swing.JButton();
-        jButtonNF3 = new javax.swing.JButton();
+        jButtonCadastrarProduto = new javax.swing.JButton();
+        jButtonRemoverProduto = new javax.swing.JButton();
+        jButtonConsultarProduto = new javax.swing.JButton();
+        jButtonEditarProduto = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -158,93 +158,93 @@ public class MenuProdutos extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonRetornar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 250, 40));
 
-        jButtonProduto1.setBackground(new java.awt.Color(58, 65, 84));
-        jButtonProduto1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButtonProduto1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonProduto1.setText("Cadastrar");
-        jButtonProduto1.setToolTipText("");
-        jButtonProduto1.setBorder(null);
-        jButtonProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonProduto1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonCadastrarProduto.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonCadastrarProduto.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonCadastrarProduto.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrarProduto.setText("Cadastrar");
+        jButtonCadastrarProduto.setToolTipText("");
+        jButtonCadastrarProduto.setBorder(null);
+        jButtonCadastrarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCadastrarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonProduto1MouseEntered(evt);
+                jButtonCadastrarProdutoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonProduto1MouseExited(evt);
+                jButtonCadastrarProdutoMouseExited(evt);
             }
         });
-        jButtonProduto1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonProduto1ActionPerformed(evt);
+                jButtonCadastrarProdutoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonProduto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 250, 40));
+        jPanel1.add(jButtonCadastrarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 250, 40));
 
-        jButtonNF1.setBackground(new java.awt.Color(58, 65, 84));
-        jButtonNF1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButtonNF1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNF1.setText("Remover");
-        jButtonNF1.setToolTipText("");
-        jButtonNF1.setBorder(null);
-        jButtonNF1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonNF1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonRemoverProduto.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonRemoverProduto.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonRemoverProduto.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRemoverProduto.setText("Remover");
+        jButtonRemoverProduto.setToolTipText("");
+        jButtonRemoverProduto.setBorder(null);
+        jButtonRemoverProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRemoverProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonNF1MouseEntered(evt);
+                jButtonRemoverProdutoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonNF1MouseExited(evt);
+                jButtonRemoverProdutoMouseExited(evt);
             }
         });
-        jButtonNF1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRemoverProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNF1ActionPerformed(evt);
+                jButtonRemoverProdutoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonNF1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 250, 40));
+        jPanel1.add(jButtonRemoverProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 250, 40));
 
-        jButtonNF2.setBackground(new java.awt.Color(58, 65, 84));
-        jButtonNF2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButtonNF2.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNF2.setText("Consultar");
-        jButtonNF2.setToolTipText("");
-        jButtonNF2.setBorder(null);
-        jButtonNF2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonNF2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonConsultarProduto.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonConsultarProduto.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonConsultarProduto.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonConsultarProduto.setText("Consultar");
+        jButtonConsultarProduto.setToolTipText("");
+        jButtonConsultarProduto.setBorder(null);
+        jButtonConsultarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonConsultarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonNF2MouseEntered(evt);
+                jButtonConsultarProdutoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonNF2MouseExited(evt);
+                jButtonConsultarProdutoMouseExited(evt);
             }
         });
-        jButtonNF2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConsultarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNF2ActionPerformed(evt);
+                jButtonConsultarProdutoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonNF2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 250, 40));
+        jPanel1.add(jButtonConsultarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 250, 40));
 
-        jButtonNF3.setBackground(new java.awt.Color(58, 65, 84));
-        jButtonNF3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButtonNF3.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNF3.setText("Editar");
-        jButtonNF3.setToolTipText("");
-        jButtonNF3.setBorder(null);
-        jButtonNF3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButtonNF3.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonEditarProduto.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonEditarProduto.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonEditarProduto.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEditarProduto.setText("Editar");
+        jButtonEditarProduto.setToolTipText("");
+        jButtonEditarProduto.setBorder(null);
+        jButtonEditarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonEditarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonNF3MouseEntered(evt);
+                jButtonEditarProdutoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonNF3MouseExited(evt);
+                jButtonEditarProdutoMouseExited(evt);
             }
         });
-        jButtonNF3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEditarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNF3ActionPerformed(evt);
+                jButtonEditarProdutoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonNF3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 250, 40));
+        jPanel1.add(jButtonEditarProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 250, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -295,17 +295,17 @@ public class MenuProdutos extends javax.swing.JFrame {
         jButtonRetornar.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonRetornarMouseEntered
 
-    private void jButtonProduto1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProduto1MouseEntered
+    private void jButtonCadastrarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProduto1MouseEntered
+    }//GEN-LAST:event_jButtonCadastrarProdutoMouseEntered
 
-    private void jButtonProduto1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProduto1MouseExited
+    private void jButtonCadastrarProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProduto1MouseExited
+    }//GEN-LAST:event_jButtonCadastrarProdutoMouseExited
 
-    private void jButtonProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProduto1ActionPerformed
+    private void jButtonCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProduto1ActionPerformed
+    }//GEN-LAST:event_jButtonCadastrarProdutoActionPerformed
 
     private void jButtonSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseEntered
         jButtonSair.setBackground(new Color(235,235,235));
@@ -335,41 +335,41 @@ public class MenuProdutos extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButtonSair1ActionPerformed
 
-    private void jButtonNF1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNF1MouseEntered
+    private void jButtonRemoverProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF1MouseEntered
+    }//GEN-LAST:event_jButtonRemoverProdutoMouseEntered
 
-    private void jButtonNF1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNF1MouseExited
+    private void jButtonRemoverProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF1MouseExited
+    }//GEN-LAST:event_jButtonRemoverProdutoMouseExited
 
-    private void jButtonNF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNF1ActionPerformed
+    private void jButtonRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF1ActionPerformed
+    }//GEN-LAST:event_jButtonRemoverProdutoActionPerformed
 
-    private void jButtonNF2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNF2MouseEntered
+    private void jButtonConsultarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF2MouseEntered
+    }//GEN-LAST:event_jButtonConsultarProdutoMouseEntered
 
-    private void jButtonNF2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNF2MouseExited
+    private void jButtonConsultarProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF2MouseExited
+    }//GEN-LAST:event_jButtonConsultarProdutoMouseExited
 
-    private void jButtonNF2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNF2ActionPerformed
+    private void jButtonConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF2ActionPerformed
+    }//GEN-LAST:event_jButtonConsultarProdutoActionPerformed
 
-    private void jButtonNF3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNF3MouseEntered
+    private void jButtonEditarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarProdutoMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF3MouseEntered
+    }//GEN-LAST:event_jButtonEditarProdutoMouseEntered
 
-    private void jButtonNF3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNF3MouseExited
+    private void jButtonEditarProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarProdutoMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF3MouseExited
+    }//GEN-LAST:event_jButtonEditarProdutoMouseExited
 
-    private void jButtonNF3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNF3ActionPerformed
+    private void jButtonEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNF3ActionPerformed
+    }//GEN-LAST:event_jButtonEditarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,10 +410,10 @@ public class MenuProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonNF1;
-    private javax.swing.JButton jButtonNF2;
-    private javax.swing.JButton jButtonNF3;
-    private javax.swing.JButton jButtonProduto1;
+    private javax.swing.JButton jButtonCadastrarProduto;
+    private javax.swing.JButton jButtonConsultarProduto;
+    private javax.swing.JButton jButtonEditarProduto;
+    private javax.swing.JButton jButtonRemoverProduto;
     private javax.swing.JButton jButtonRetornar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSair1;
