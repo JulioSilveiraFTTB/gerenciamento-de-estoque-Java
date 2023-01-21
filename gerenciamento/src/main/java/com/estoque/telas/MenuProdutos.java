@@ -1,9 +1,11 @@
 package com.estoque.telas;
 
+import com.estoque.listas.Produtos;
+import com.estoque.telas.produto.CadastrarProduto;
+import static com.estoque.listas.LeitorDeListas.lerLista;
+
 import java.awt.Color;
 import java.awt.Point;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
 
 // 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
 
@@ -13,11 +15,15 @@ import javax.swing.JPasswordField;
  */
 public class MenuProdutos extends javax.swing.JFrame {
     private final Point point = new Point();
+    
+    private final Produtos p;
 
     /**
      * Creates new form TelaInicial
+     * @param p
      */  
-    public MenuProdutos() {
+    public MenuProdutos(Produtos p) {
+        this.p = lerLista(p);
         initComponents();     
     }
     /**
@@ -281,30 +287,33 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
-        new TelaInicial().setVisible(true);
+        new Menu().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetornarActionPerformed
 
     private void jButtonRetornarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMouseExited
-        jButtonRetornar.setBackground(new Color(58,65,84));
-        jButtonRetornar.setForeground(new Color(235,235,235));
+       jButtonSair.setBackground(new Color(217,81,51));
+        jButtonSair.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonRetornarMouseExited
 
     private void jButtonRetornarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMouseEntered
-        jButtonRetornar.setBackground(new Color(235, 235, 235));
-        jButtonRetornar.setForeground(new Color(58,65,84));
+        jButtonSair.setBackground(new Color(235,235,235));
+        jButtonSair.setForeground(new Color(217,81,51));
     }//GEN-LAST:event_jButtonRetornarMouseEntered
 
     private void jButtonCadastrarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoMouseEntered
-        // TODO add your handling code here:
+        jButtonCadastrarProduto.setBackground(new Color(235, 235, 235));
+        jButtonCadastrarProduto.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonCadastrarProdutoMouseEntered
 
     private void jButtonCadastrarProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoMouseExited
-        // TODO add your handling code here:
+        jButtonCadastrarProduto.setBackground(new Color(58,65,84));
+        jButtonCadastrarProduto.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonCadastrarProdutoMouseExited
 
     private void jButtonCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoActionPerformed
-        // TODO add your handling code here:
+        new CadastrarProduto().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonCadastrarProdutoActionPerformed
 
     private void jButtonSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseEntered
@@ -336,11 +345,13 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSair1ActionPerformed
 
     private void jButtonRemoverProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoMouseEntered
-        // TODO add your handling code here:
+        jButtonRemoverProduto.setBackground(new Color(235, 235, 235));
+        jButtonRemoverProduto.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonRemoverProdutoMouseEntered
 
     private void jButtonRemoverProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoMouseExited
-        // TODO add your handling code here:
+        jButtonRemoverProduto.setBackground(new Color(58,65,84));
+        jButtonRemoverProduto.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonRemoverProdutoMouseExited
 
     private void jButtonRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoActionPerformed
@@ -348,11 +359,13 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverProdutoActionPerformed
 
     private void jButtonConsultarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoMouseEntered
-        // TODO add your handling code here:
+        jButtonConsultarProduto.setBackground(new Color(235, 235, 235));
+        jButtonConsultarProduto.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonConsultarProdutoMouseEntered
 
     private void jButtonConsultarProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoMouseExited
-        // TODO add your handling code here:
+        jButtonConsultarProduto.setBackground(new Color(58,65,84));
+        jButtonConsultarProduto.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonConsultarProdutoMouseExited
 
     private void jButtonConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoActionPerformed
@@ -360,54 +373,56 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConsultarProdutoActionPerformed
 
     private void jButtonEditarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarProdutoMouseEntered
-        // TODO add your handling code here:
+        jButtonEditarProduto.setBackground(new Color(235, 235, 235));
+        jButtonEditarProduto.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonEditarProdutoMouseEntered
 
     private void jButtonEditarProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarProdutoMouseExited
-        // TODO add your handling code here:
+        jButtonEditarProduto.setBackground(new Color(58,65,84));
+        jButtonEditarProduto.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonEditarProdutoMouseExited
 
     private void jButtonEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProdutoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonEditarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    // public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        // try {
+        //    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+        //        if ("".equals(info.getName())) {
+        //            javax.swing.UIManager.setLookAndFeel(info.getClassName());
+        //            break;
+        //        }
+        //    }
+        //} catch (ClassNotFoundException ex) {
+        //    java.util.logging.Logger.getLogger(MenuProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        //} catch (InstantiationException ex) {
+        //    java.util.logging.Logger.getLogger(MenuProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        //} catch (IllegalAccessException ex) {
+        //    java.util.logging.Logger.getLogger(MenuProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        //} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        //    java.util.logging.Logger.getLogger(MenuProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        //}
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuProdutos().setVisible(true);
-            }
-        });
-    }
+    //    java.awt.EventQueue.invokeLater(new Runnable() {
+    //        public void run() {
+    //            new MenuProdutos(this.p).setVisible(true);
+    //        }
+    //    });
+    //}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrarProduto;

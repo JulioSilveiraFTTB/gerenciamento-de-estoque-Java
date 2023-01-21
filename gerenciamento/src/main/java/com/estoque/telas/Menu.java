@@ -1,5 +1,7 @@
 package com.estoque.telas;
 
+import com.estoque.listas.*;
+
 import java.awt.Color;
 import java.awt.Point;
 
@@ -12,10 +14,15 @@ import java.awt.Point;
 public class Menu extends javax.swing.JFrame {
     private final Point point = new Point();
 
+    private Produtos p = new Produtos();
+    private NotasFiscais nf = new NotasFiscais();
+    
     /**
      * Creates new form TelaInicial
      */  
     public Menu() {
+        this.p = LeitorDeListas.lerLista(p);
+        this.nf = LeitorDeListas.lerLista(nf);
         initComponents();     
     }
     /**
@@ -273,7 +280,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonProduto1MouseExited
 
     private void jButtonProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProduto1ActionPerformed
-        new MenuProdutos().setVisible(true);
+        new MenuProdutos(this.p).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonProduto1ActionPerformed
 
@@ -350,6 +357,7 @@ public class Menu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Menu().setVisible(true);
             }

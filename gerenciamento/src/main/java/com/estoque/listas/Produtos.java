@@ -15,6 +15,7 @@ public class Produtos implements IProdutos, Serializable {
 
     /** 
      * @param p
+     * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
      */
     @Override
     public void addProduto(Produto p) throws ProdutoNaoEncontradoException {
