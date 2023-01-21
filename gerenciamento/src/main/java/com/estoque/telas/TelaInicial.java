@@ -1,8 +1,5 @@
 package com.estoque.telas;
 
-import com.estoque.listas.*;
-import static com.estoque.listas.LeitorDeListas.lerLista;
-
 import java.awt.Color;
 import java.awt.Point;
 import javax.swing.JTextField;
@@ -16,16 +13,11 @@ import javax.swing.JPasswordField;
  */
 public class TelaInicial extends javax.swing.JFrame {
     private final Point point = new Point();
-    
-    private Produtos p = new Produtos();
-    private NotasFiscais nf = new NotasFiscais();
 
     /**
      * Creates new form TelaInicial
      */  
     public TelaInicial() {
-        this.p = lerLista(this.p);
-        this.nf = lerLista(this.nf);
         initComponents();     
     }
     /**
@@ -85,7 +77,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 jTextFieldLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 360, 40));
+        jPanel1.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 360, 40));
 
         jPasswordFieldSenha.setBackground(new java.awt.Color(255, 255, 255));
         jPasswordFieldSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +85,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 jPasswordFieldSenhaActionPerformed(evt);
             }
         });
-        jPanel1.add(jPasswordFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 360, 40));
+        jPanel1.add(jPasswordFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 360, 40));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -139,7 +131,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButtonEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 250, 40));
+        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 250, 40));
 
         jButtonSair.setBackground(new java.awt.Color(217, 81, 51));
         jButtonSair.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -160,7 +152,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButtonSairActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 250, 40));
+        jPanel1.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 250, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,7 +168,6 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     private void jTextFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLoginActionPerformed
@@ -186,7 +177,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
-
+        new Menu().setVisible(true);
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
@@ -232,7 +223,6 @@ public class TelaInicial extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formMouseDragged
 
-    
     /**
      * @param args the command line arguments
      */
