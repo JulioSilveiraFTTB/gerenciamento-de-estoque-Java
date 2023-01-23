@@ -4,14 +4,18 @@
  */
 package com.estoque.telas.produto;
 
+import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
+import com.estoque.objetos.Produto;
+import com.estoque.objetos.enums.*;
 import com.estoque.telas.*;
-
 import com.estoque.listas.*;
 import static com.estoque.listas.LeitorDeListas.lerLista;
 import static com.estoque.listas.LeitorDeListas.gravarLista;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,9 +48,12 @@ public class CadastrarProduto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButtonRetornarMenuProduto = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldQuantidade = new javax.swing.JTextField();
-        jTextFieldNome1 = new javax.swing.JTextField();
-        jTextFieldPreco1 = new javax.swing.JTextField();
+        jTextFieldQuantidade = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Quantidade");
+        ;
+        jTextFieldNome = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Nome do produto");
+        ;
+        jTextFieldPreco = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Preço");
+        ;
         jComboBoxTipoQuantidade = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDescricao = new javax.swing.JTextArea();
@@ -96,7 +103,6 @@ public class CadastrarProduto extends javax.swing.JFrame {
         jButtonRetornarMenuProduto.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRetornarMenuProduto.setText("Retornar");
         jButtonRetornarMenuProduto.setToolTipText("");
-        jButtonRetornarMenuProduto.setActionCommand("Retornar");
         jButtonRetornarMenuProduto.setBorder(null);
         jButtonRetornarMenuProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonRetornarMenuProduto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,13 +131,13 @@ public class CadastrarProduto extends javax.swing.JFrame {
         jTextFieldQuantidade.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel1.add(jTextFieldQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 200, 25));
 
-        jTextFieldNome1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldNome1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(jTextFieldNome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, 25));
+        jTextFieldNome.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldNome.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel1.add(jTextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, 25));
 
-        jTextFieldPreco1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldPreco1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(jTextFieldPreco1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 25));
+        jTextFieldPreco.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldPreco.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel1.add(jTextFieldPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 25));
 
         jComboBoxTipoQuantidade.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipoQuantidade.setEditable(true);
@@ -154,6 +160,11 @@ public class CadastrarProduto extends javax.swing.JFrame {
         jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.setBorder(null);
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 250, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,6 +199,39 @@ public class CadastrarProduto extends javax.swing.JFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         //r TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        Produto produto;
+        String nome;
+        String descricao;
+        double preco;
+        double quantidade;
+        TipoQuantidade tipoQuantidade = null;
+        
+        if(jTextFieldNome.getText() != "" && jTextFieldPreco.getText() != "" && jTextFieldQuantidade.getText() != "" && jTextAreaDescricao.getText() != "") {
+            nome = jTextFieldNome.getText();
+            preco = Double.parseDouble(jTextFieldPreco.getText());
+            quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
+            if(jComboBoxTipoQuantidade.equals("KG")){
+                tipoQuantidade = TipoQuantidade.KG;
+            } else if (jComboBoxTipoQuantidade.equals("Unidade")) {
+                tipoQuantidade = TipoQuantidade.UNIDADE;
+            }
+            descricao = jTextAreaDescricao.getText();
+            
+            produto = new Produto(nome, descricao, preco, quantidade, tipoQuantidade);
+            System.out.print(produto.toString());
+            
+            try {
+                this.p.addProduto(produto);
+                JOptionPane.showMessageDialog(null, "Produto cadastrado!");
+            } catch (ProdutoNaoEncontradoException ex) {
+                Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "O produto não foi cadastrado!\n Verifique os dados inseridos.!");     
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,8 +279,8 @@ public class CadastrarProduto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDescricao;
     private javax.swing.JTextField jTextFieldLoginNovo;
-    private javax.swing.JTextField jTextFieldNome1;
-    private javax.swing.JTextField jTextFieldPreco1;
+    private javax.swing.JTextField jTextFieldNome;
+    private javax.swing.JTextField jTextFieldPreco;
     private javax.swing.JTextField jTextFieldQuantidade;
     // End of variables declaration//GEN-END:variables
 }

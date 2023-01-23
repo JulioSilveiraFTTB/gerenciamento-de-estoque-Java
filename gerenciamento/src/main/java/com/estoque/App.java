@@ -9,9 +9,5 @@ public class App
     {
         Produto produto;
         NotaFiscal nf;
-        
-        produto = new Produto("Água", "Teste...", 50, TipoQuantidade.KG);
-        produto.setQuantidade(100);
-        System.out.println(produto.toString());
     }
 }

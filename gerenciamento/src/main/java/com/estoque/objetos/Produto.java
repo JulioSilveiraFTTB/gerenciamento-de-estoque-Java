@@ -24,13 +24,14 @@ public class Produto implements Serializable {
      * @param descricao
      * @param preco
      */
-    public Produto(String nome, String descricao, float preco, TipoQuantidade tipoQuantidade) {
+    public Produto(String nome, String descricao, double preco, double quantidade, TipoQuantidade tipoQuantidade) {
         Random random = new Random();
 
         this.codigo = random.nextInt(100000);
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
+        this.quantidade = quantidade;
         this.tipoQuantidade = tipoQuantidade;
     }
 
