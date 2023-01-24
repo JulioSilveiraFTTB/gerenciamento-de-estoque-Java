@@ -6,7 +6,6 @@ package com.estoque.telas.produto;
 
 import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
 import com.estoque.objetos.Produto;
-import com.estoque.objetos.enums.*;
 import com.estoque.telas.*;
 import com.estoque.listas.*;
 import static com.estoque.listas.LeitorDeListas.lerLista;
@@ -213,7 +212,6 @@ public class CadastrarProduto extends javax.swing.JFrame {
         double preco;
         double quantidade;
         String tipoQuantidade;
-        // TipoQuantidade tipoQuantidade = null;
         
         if(jTextFieldNome.getText() != "" && jTextFieldPreco.getText() != "" && jTextFieldQuantidade.getText() != "" && jTextAreaDescricao.getText() != "") {
             nome = jTextFieldNome.getText();
@@ -227,12 +225,13 @@ public class CadastrarProduto extends javax.swing.JFrame {
             
             try {
                 this.produtos.addProduto(produto);
+                gravarLista(this.produtos);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado!");
             } catch (ProdutoNaoEncontradoException ex) {
                 Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "O produto não foi cadastrado!\n Verifique os dados inseridos.!");     
+            JOptionPane.showMessageDialog(null, "O produto não foi cadastrado!\n Verifique os dados inseridos.");     
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 

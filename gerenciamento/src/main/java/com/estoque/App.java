@@ -1,7 +1,6 @@
 package com.estoque;
 
 import com.estoque.objetos.*;
-import com.estoque.objetos.enums.*;
 
 public class App 
 {

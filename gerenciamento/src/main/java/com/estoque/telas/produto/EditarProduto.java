@@ -6,7 +6,6 @@ package com.estoque.telas.produto;
 
 import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
 import com.estoque.objetos.Produto;
-import com.estoque.objetos.enums.*;
 import com.estoque.telas.*;
 import com.estoque.listas.*;
 import static com.estoque.listas.LeitorDeListas.lerLista;
