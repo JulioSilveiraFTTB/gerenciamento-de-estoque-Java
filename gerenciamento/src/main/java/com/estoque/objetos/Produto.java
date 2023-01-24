@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class Produto implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     protected Integer codigo;
     protected String nome;
     protected String descricao;

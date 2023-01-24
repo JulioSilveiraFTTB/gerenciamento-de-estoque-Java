@@ -9,7 +9,8 @@ import java.time.format.DateTimeFormatter;
 
 public class NotaFiscal implements Serializable {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+    private static final long serialVersionUID = 10L;
+    
     protected Integer codigo;
     protected final LocalDate dataEmissao;
     protected List<Item> itens;

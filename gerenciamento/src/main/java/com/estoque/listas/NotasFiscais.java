@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NotasFiscais implements INotasFiscais, Serializable {
+    private static final long serialVersionUID = 1L;
     private final List<NotaFiscal> notasFiscais = new ArrayList<>();
 
     Scanner entrada = new Scanner(System.in);
