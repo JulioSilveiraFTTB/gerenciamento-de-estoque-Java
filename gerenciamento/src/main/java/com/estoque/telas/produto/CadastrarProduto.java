@@ -133,6 +133,11 @@ public class CadastrarProduto extends javax.swing.JFrame {
 
         jTextFieldNome.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldNome.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomeActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, 25));
 
         jTextFieldPreco.setBackground(new java.awt.Color(255, 255, 255));
@@ -232,6 +237,10 @@ public class CadastrarProduto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "O produto não foi cadastrado!\n Verifique os dados inseridos.!");     
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
     /**
      * @param args the command line arguments

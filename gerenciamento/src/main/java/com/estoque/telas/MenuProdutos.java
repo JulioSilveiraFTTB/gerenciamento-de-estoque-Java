@@ -2,6 +2,10 @@ package com.estoque.telas;
 
 import com.estoque.listas.Produtos;
 import com.estoque.telas.produto.CadastrarProduto;
+import com.estoque.telas.produto.ConsultarProduto;
+import com.estoque.telas.produto.EditarProduto;
+import com.estoque.telas.produto.RemoverProduto;
+
 import static com.estoque.listas.LeitorDeListas.lerLista;
 
 import java.awt.Color;
@@ -355,7 +359,8 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverProdutoMouseExited
 
     private void jButtonRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoActionPerformed
-        // TODO add your handling code here:
+        new RemoverProduto().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonRemoverProdutoActionPerformed
 
     private void jButtonConsultarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoMouseEntered
@@ -369,7 +374,8 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConsultarProdutoMouseExited
 
     private void jButtonConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarProdutoActionPerformed
-        // TODO add your handling code here:
+        new ConsultarProduto().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonConsultarProdutoActionPerformed
 
     private void jButtonEditarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarProdutoMouseEntered
@@ -383,7 +389,8 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarProdutoMouseExited
 
     private void jButtonEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarProdutoActionPerformed
-        
+        new EditarProduto().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonEditarProdutoActionPerformed
 
     /**

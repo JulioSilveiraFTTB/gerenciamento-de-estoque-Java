@@ -4,16 +4,32 @@
  */
 package com.estoque.telas.produto;
 
+import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
+import com.estoque.objetos.Produto;
+import com.estoque.objetos.enums.*;
+import com.estoque.telas.*;
+import com.estoque.listas.*;
+import static com.estoque.listas.LeitorDeListas.lerLista;
+import static com.estoque.listas.LeitorDeListas.gravarLista;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author julio
  */
 public class EditarProduto extends javax.swing.JFrame {
-
+    public Produto produto;
+    private Produtos p;
+    
     /**
      * Creates new form EditarProduto
      */
     public EditarProduto() {
+        this.p = lerLista(p);
         initComponents();
     }
 
@@ -26,21 +42,126 @@ public class EditarProduto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jButtonRetornarMenuProduto = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonSalvar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setMinimumSize(new java.awt.Dimension(600, 400));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("EDITAR PRODUTO");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 90));
+
+        jButtonRetornarMenuProduto.setBackground(new java.awt.Color(217, 81, 51));
+        jButtonRetornarMenuProduto.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonRetornarMenuProduto.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRetornarMenuProduto.setText("Retornar");
+        jButtonRetornarMenuProduto.setToolTipText("");
+        jButtonRetornarMenuProduto.setBorder(null);
+        jButtonRetornarMenuProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRetornarMenuProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonRetornarMenuProdutoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonRetornarMenuProdutoMouseExited(evt);
+            }
+        });
+        jButtonRetornarMenuProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRetornarMenuProdutoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonRetornarMenuProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 250, 40));
+
+        jLabel3.setBackground(new java.awt.Color(204, 0, 0));
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Preencha as informações do produto:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
+
+        jButtonSalvar.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonSalvar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setBorder(null);
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 250, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRetornarMenuProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoMouseEntered
+        jButtonRetornarMenuProduto.setBackground(new Color(235,235,235));
+        jButtonRetornarMenuProduto.setForeground(new Color(217,81,51));
+    }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseEntered
+
+    private void jButtonRetornarMenuProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoMouseExited
+        jButtonRetornarMenuProduto.setBackground(new Color(217,81,51));
+        jButtonRetornarMenuProduto.setForeground(new Color(235,235,235));
+    }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseExited
+
+    private void jButtonRetornarMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoActionPerformed
+        new MenuProdutos(this.p).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+      
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        //r TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +199,11 @@ public class EditarProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRetornarMenuProduto;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
