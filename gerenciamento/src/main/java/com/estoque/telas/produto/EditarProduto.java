@@ -42,12 +42,27 @@ public class EditarProduto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonPesquisar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jButtonRetornarMenuProduto = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
+        jTextFieldCodigo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Código");
+        ;
+        jButtonEditar = new javax.swing.JButton();
+
+        jButtonPesquisar.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonPesquisar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonPesquisar.setText("Remover");
+        jButtonPesquisar.setBorder(null);
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +126,7 @@ public class EditarProduto extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Preencha as informações do produto:");
+        jLabel3.setText("Informe o código do produto:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
 
         jButtonSalvar.setBackground(new java.awt.Color(58, 65, 84));
@@ -125,6 +140,21 @@ public class EditarProduto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 250, 40));
+
+        jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, 25));
+
+        jButtonEditar.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonEditar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonEditar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setBorder(null);
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,28 +170,36 @@ public class EditarProduto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRetornarMenuProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoMouseEntered
-        jButtonRetornarMenuProduto.setBackground(new Color(235,235,235));
-        jButtonRetornarMenuProduto.setForeground(new Color(217,81,51));
-    }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseEntered
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        //r TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jButtonRetornarMenuProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoMouseExited
-        jButtonRetornarMenuProduto.setBackground(new Color(217,81,51));
-        jButtonRetornarMenuProduto.setForeground(new Color(235,235,235));
-    }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseExited
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonRetornarMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoActionPerformed
         new MenuProdutos(this.p).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
-    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-      
-    }//GEN-LAST:event_jButtonSalvarActionPerformed
+    private void jButtonRetornarMenuProdutoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoMouseExited
+        jButtonRetornarMenuProduto.setBackground(new Color(217,81,51));
+        jButtonRetornarMenuProduto.setForeground(new Color(235,235,235));
+    }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseExited
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        //r TODO add your handling code here:
-    }//GEN-LAST:event_jPanel1MouseClicked
+    private void jButtonRetornarMenuProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoMouseEntered
+        jButtonRetornarMenuProduto.setBackground(new Color(235,235,235));
+        jButtonRetornarMenuProduto.setForeground(new Color(217,81,51));
+    }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseEntered
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+       
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        
+    }//GEN-LAST:event_jButtonEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,11 +237,14 @@ public class EditarProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRetornarMenuProduto;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextFieldCodigo;
     // End of variables declaration//GEN-END:variables
 }

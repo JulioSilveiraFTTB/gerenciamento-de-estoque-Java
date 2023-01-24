@@ -177,7 +177,8 @@ public class RemoverProduto extends javax.swing.JFrame {
         int codigo;
 
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
-
+        jButtonPesquisar.setVisible(false);
+        
         if(codigo != 0) {
             try {
                 jLabel1.setText(p.getProduto(codigo).toString());
