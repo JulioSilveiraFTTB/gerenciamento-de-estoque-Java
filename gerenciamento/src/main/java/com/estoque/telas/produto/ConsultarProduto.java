@@ -7,9 +7,11 @@ package com.estoque.telas.produto;
 import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
 import com.estoque.objetos.Produto;
 import com.estoque.telas.*;
-import com.estoque.listas.*;
+import com.estoque.listas.Produtos;
 import static com.estoque.listas.LeitorDeListas.lerLista;
 import static com.estoque.listas.LeitorDeListas.gravarLista;
+import com.estoque.utils.MultiLineLabel;
+import com.estoque.utils.MultiLineLabelUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,14 +23,15 @@ import java.util.logging.Logger;
  * @author julio
  */
 public class ConsultarProduto extends javax.swing.JFrame {
-    public Produto produto;
-    private Produtos p;
+    public Produto p;
+    public Produtos produtos;
     
     /**
      * Creates new form ConsultarProduto
+     * @param produtos
      */
-    public ConsultarProduto() {
-        this.p = lerLista(p);
+    public ConsultarProduto(Produtos produtos) {
+        this.produtos = lerLista(produtos);
         initComponents();
     }
 
@@ -131,9 +134,10 @@ public class ConsultarProduto extends javax.swing.JFrame {
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, 25));
 
-        jLabel1.setText("LABEL");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 200, 250, 140));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 210, 250, 120));
+        jLabel1.setUI(MultiLineLabelUI.labelUI);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,7 +164,7 @@ public class ConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseExited
 
     private void jButtonRetornarMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoActionPerformed
-        new MenuProdutos(this.p).setVisible(true);
+        new MenuProdutos(this.produtos).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
@@ -171,7 +175,7 @@ public class ConsultarProduto extends javax.swing.JFrame {
         
         if(codigo != 0) {
             try {
-                jLabel1.setText(p.getProduto(codigo).toString());
+                jLabel1.setText(produtos.getProduto(codigo).toString());
             } catch (ProdutoNaoEncontradoException ex) {
                 Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -184,40 +188,40 @@ public class ConsultarProduto extends javax.swing.JFrame {
         //r TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultarProduto().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ConsultarProduto().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonPesquisar;
