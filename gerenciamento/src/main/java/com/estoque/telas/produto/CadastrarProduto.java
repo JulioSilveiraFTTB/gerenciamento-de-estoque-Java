@@ -22,13 +22,14 @@ import java.util.logging.Logger;
  * @author julio
  */
 public class CadastrarProduto extends javax.swing.JFrame {
-    public Produtos p;
+    public Produtos produtos;
     
     /**
      * Creates new form CadastrarProduto
+     * @param produtos
      */
-    public CadastrarProduto() {
-        this.p = lerLista(p);
+    public CadastrarProduto(Produtos produtos) {
+        this.produtos = lerLista(produtos);
         initComponents();
     }
 
@@ -197,7 +198,7 @@ public class CadastrarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseExited
 
     private void jButtonRetornarMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoActionPerformed
-        new MenuProdutos(this.p).setVisible(true);
+        new MenuProdutos(this.produtos).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
@@ -211,24 +212,21 @@ public class CadastrarProduto extends javax.swing.JFrame {
         String descricao;
         double preco;
         double quantidade;
-        TipoQuantidade tipoQuantidade = null;
+        String tipoQuantidade;
+        // TipoQuantidade tipoQuantidade = null;
         
         if(jTextFieldNome.getText() != "" && jTextFieldPreco.getText() != "" && jTextFieldQuantidade.getText() != "" && jTextAreaDescricao.getText() != "") {
             nome = jTextFieldNome.getText();
             preco = Double.parseDouble(jTextFieldPreco.getText());
             quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
-            if(jComboBoxTipoQuantidade.equals("KG")){
-                tipoQuantidade = TipoQuantidade.KG;
-            } else if (jComboBoxTipoQuantidade.equals("Unidade")) {
-                tipoQuantidade = TipoQuantidade.UNIDADE;
-            }
+            tipoQuantidade = (String) jComboBoxTipoQuantidade.getSelectedItem();
             descricao = jTextAreaDescricao.getText();
-            
+ 
             produto = new Produto(nome, descricao, preco, quantidade, tipoQuantidade);
             System.out.print(produto.toString());
             
             try {
-                this.p.addProduto(produto);
+                this.produtos.addProduto(produto);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado!");
             } catch (ProdutoNaoEncontradoException ex) {
                 Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -242,40 +240,41 @@ public class CadastrarProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastrarProduto().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(CadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(CadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(CadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(CadastrarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new CadastrarProduto().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRetornarMenuProduto;

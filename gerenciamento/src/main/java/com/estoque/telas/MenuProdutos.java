@@ -20,14 +20,14 @@ import java.awt.Point;
 public class MenuProdutos extends javax.swing.JFrame {
     private final Point point = new Point();
     
-    private final Produtos p;
+    private Produtos produtos = new Produtos();
 
     /**
      * Creates new form TelaInicial
-     * @param p
+     * @param produtos
      */  
-    public MenuProdutos(Produtos p) {
-        this.p = lerLista(p);
+    public MenuProdutos(Produtos produtos) {
+        this.produtos = lerLista(this.produtos);
         initComponents();     
     }
     /**
@@ -316,7 +316,7 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastrarProdutoMouseExited
 
     private void jButtonCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarProdutoActionPerformed
-        new CadastrarProduto().setVisible(true);
+        new CadastrarProduto(this.produtos).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCadastrarProdutoActionPerformed
 

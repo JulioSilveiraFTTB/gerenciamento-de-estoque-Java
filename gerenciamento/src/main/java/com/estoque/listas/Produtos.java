@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Produtos implements IProdutos, Serializable {
     private static final long serialVersionUID = 1L;
     private final List<Produto> produtos = new ArrayList<>();
@@ -31,6 +32,7 @@ public class Produtos implements IProdutos, Serializable {
     
     /** 
      * @param codigo
+     * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
      */
     @Override
     public void removeProduto(int codigo) throws ProdutoNaoEncontradoException {
