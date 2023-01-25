@@ -132,4 +132,10 @@ public class Produto implements Serializable {
         + "Preço: " + preco + "\n"
         + "Quantidade " + "(" + getTipoQuantidade() + ")" + ": " + quantidade;
     }
+    
+    public String toStringRemover() {
+        return "Código: " + codigo + "\n"
+        + "Nome: " + nome + "\n"
+        + "Quantidade " + "(" + getTipoQuantidade() + ")" + ": " + quantidade;
+    }
 }

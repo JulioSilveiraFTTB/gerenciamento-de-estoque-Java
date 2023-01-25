@@ -32,19 +32,22 @@ public class Produtos implements IProdutos, Serializable {
     
     /** 
      * @param codigo
+     * @return 
      * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
      */
     @Override
-    public void removeProduto(int codigo) throws ProdutoNaoEncontradoException {
+    public boolean removeProduto(int codigo) throws ProdutoNaoEncontradoException {
         try {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
                     produtos.remove(p);
+                    return true;
                 }
             }   
         } catch (Exception e) {
             throw new ProdutoNaoEncontradoException();
         }
+        return false;
     }
     
     /** 

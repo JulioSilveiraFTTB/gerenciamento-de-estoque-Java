@@ -8,9 +8,8 @@ import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
 import com.estoque.objetos.Produto;
 import com.estoque.telas.*;
 import com.estoque.listas.*;
-import static com.estoque.listas.LeitorDeListas.lerLista;
 import static com.estoque.listas.LeitorDeListas.gravarLista;
-import com.estoque.utils.MultiLineLabel;
+import static com.estoque.listas.LeitorDeListas.lerLista;
 import com.estoque.utils.MultiLineLabelUI;
 
 import javax.swing.*;
@@ -24,14 +23,16 @@ import java.util.logging.Logger;
  */
 public class RemoverProduto extends javax.swing.JFrame {
     public Produto p;
-    private Produtos produtos;
+    public Produtos produtos;
     
     /**
      * Creates new form RemoverProduto
+     * @param produtos
      */
     public RemoverProduto(Produtos produtos) {
         this.produtos = lerLista(produtos);
         initComponents();
+        jButtonRemover.setVisible(false);
     }
 
     /**
@@ -51,8 +52,10 @@ public class RemoverProduto extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextFieldCodigo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Código");
         ;
-        jButtonPesquisar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jButtonPesquisar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel1.setText("LABEL");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -125,6 +128,23 @@ public class RemoverProduto extends javax.swing.JFrame {
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 125, 200, 30));
 
+        jButtonRemover.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonRemover.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonRemover.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRemover.setText("Remover produto");
+        jButtonRemover.setBorder(null);
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 140, 30));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 250, 90));
+        jLabel4.setUI(MultiLineLabelUI.labelUI);
+
         jButtonPesquisar.setBackground(new java.awt.Color(58, 65, 84));
         jButtonPesquisar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButtonPesquisar.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,10 +157,10 @@ public class RemoverProduto extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, 30));
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 250, 120));
-        jLabel4.setUI(MultiLineLabelUI.labelUI);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 210, 250, 90));
+        jLabel1.setUI(MultiLineLabelUI.labelUI);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,15 +195,38 @@ public class RemoverProduto extends javax.swing.JFrame {
         //r TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
 
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        int codigo;
+        
+        codigo = Integer.parseInt(jTextFieldCodigo.getText());
+        
+        if(!"".equals(jTextFieldCodigo.getText())) {
+         if(codigo != 0) {
+            try {
+                this.produtos.removeProduto(codigo);
+                JOptionPane.showMessageDialog(null, "Produto removido!");
+                gravarLista(this.produtos);
+            } catch (ProdutoNaoEncontradoException ex) {
+                Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            jLabel1.setText("O produto não está cadastrado no sistema!");
+        }
+        
+        } else {
+            JOptionPane.showMessageDialog(null, "O produto não foi removido!\n Verifique o código inserido.");     
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         int codigo;
 
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
-        jButtonPesquisar.setVisible(false);
         
         if(codigo != 0) {
             try {
-                jLabel1.setText(produtos.getProduto(codigo).toString());
+                jLabel1.setText(this.produtos.getProduto(codigo).toStringRemover());
+                jButtonRemover.setVisible(true);
             } catch (ProdutoNaoEncontradoException ex) {
                 Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -229,11 +272,13 @@ public class RemoverProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonPesquisar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonRetornarMenuProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
