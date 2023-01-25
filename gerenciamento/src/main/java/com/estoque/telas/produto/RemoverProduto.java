@@ -10,6 +10,8 @@ import com.estoque.telas.*;
 import com.estoque.listas.*;
 import static com.estoque.listas.LeitorDeListas.lerLista;
 import static com.estoque.listas.LeitorDeListas.gravarLista;
+import com.estoque.utils.MultiLineLabel;
+import com.estoque.utils.MultiLineLabelUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,14 +23,14 @@ import java.util.logging.Logger;
  * @author julio
  */
 public class RemoverProduto extends javax.swing.JFrame {
-    public Produto produto;
-    private Produtos p;
+    public Produto p;
+    private Produtos produtos;
     
     /**
      * Creates new form RemoverProduto
      */
-    public RemoverProduto() {
-        this.p = lerLista(p);
+    public RemoverProduto(Produtos produtos) {
+        this.produtos = lerLista(produtos);
         initComponents();
     }
 
@@ -121,12 +123,12 @@ public class RemoverProduto extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
 
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, 25));
+        jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 125, 200, 30));
 
         jButtonPesquisar.setBackground(new java.awt.Color(58, 65, 84));
         jButtonPesquisar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButtonPesquisar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonPesquisar.setText("Remover");
+        jButtonPesquisar.setText("Pesquisar");
         jButtonPesquisar.setBorder(null);
         jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,9 +137,10 @@ public class RemoverProduto extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, 30));
 
-        jLabel4.setText("LABEL");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 200, 250, 140));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 250, 120));
+        jLabel4.setUI(MultiLineLabelUI.labelUI);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,7 +167,7 @@ public class RemoverProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarMenuProdutoMouseExited
 
     private void jButtonRetornarMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoActionPerformed
-        new MenuProdutos(this.p).setVisible(true);
+        new MenuProdutos(this.produtos).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
@@ -180,7 +183,7 @@ public class RemoverProduto extends javax.swing.JFrame {
         
         if(codigo != 0) {
             try {
-                jLabel1.setText(p.getProduto(codigo).toString());
+                jLabel1.setText(produtos.getProduto(codigo).toString());
             } catch (ProdutoNaoEncontradoException ex) {
                 Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -189,40 +192,40 @@ public class RemoverProduto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RemoverProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RemoverProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RemoverProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RemoverProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RemoverProduto().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(RemoverProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(RemoverProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(RemoverProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(RemoverProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new RemoverProduto().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonPesquisar;

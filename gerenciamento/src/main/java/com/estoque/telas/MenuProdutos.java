@@ -359,7 +359,7 @@ public class MenuProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRemoverProdutoMouseExited
 
     private void jButtonRemoverProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverProdutoActionPerformed
-        new RemoverProduto().setVisible(true);
+        new RemoverProduto(this.produtos).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRemoverProdutoActionPerformed
 

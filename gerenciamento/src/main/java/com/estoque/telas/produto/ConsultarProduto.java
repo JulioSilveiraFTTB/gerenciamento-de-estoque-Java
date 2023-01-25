@@ -132,7 +132,7 @@ public class ConsultarProduto extends javax.swing.JFrame {
         jPanel1.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, 30));
 
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, 25));
+        jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 125, 200, 30));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
