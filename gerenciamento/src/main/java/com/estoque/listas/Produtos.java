@@ -78,8 +78,6 @@ public class Produtos implements IProdutos, Serializable {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
                     try {
-                        System.out.println("Digite a quantidade atualizada do produto: ");
-                        nova = entrada.nextDouble();
                         p.setQuantidade(nova);   
                     } catch (Exception e) {
                         throw new QuantidadeInvalidaException();
@@ -101,8 +99,6 @@ public class Produtos implements IProdutos, Serializable {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
                     try {
-                        System.out.println("Atualize o preço do produto: ");
-                        novo = entrada.nextFloat();
                         p.setPreco(novo);   
                     } catch (Exception e) {
                         throw new PrecoInvalidoException();
@@ -119,13 +115,12 @@ public class Produtos implements IProdutos, Serializable {
      * @param quantidade
      */
     @Override
-    public void addQuantidade(int codigo, int quantidade) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
+    public void addQuantidade(int codigo, double quantidade) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
         try {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
                     try {
-                        System.out.println("Quantas unidades você deseja adicionar ao produto? ");
-                        quantidade = entrada.nextInt();
+                        quantidade = p.getQuantidade() + quantidade;
                         p.setQuantidade(quantidade);   
                     } catch (Exception e) {
                         throw new QuantidadeInvalidaException();
@@ -142,15 +137,13 @@ public class Produtos implements IProdutos, Serializable {
      * @param quantidade
      */
     @Override
-    public void subQuantidade(int codigo, int quantidade) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
+    public void subQuantidade(int codigo, double quantidade) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
         try {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
                     try {
-                        System.out.println("Digite a quantidade que você deseja subtrair: ");
-                        quantidade = entrada.nextInt();
-                        double novaQuantidade = p.getQuantidade() - quantidade;
-                        p.setQuantidade(novaQuantidade);
+                        quantidade = p.getQuantidade() - quantidade;
+                        p.setQuantidade(quantidade);
                     } catch (Exception e) {
                         throw new QuantidadeInvalidaException();
                     }

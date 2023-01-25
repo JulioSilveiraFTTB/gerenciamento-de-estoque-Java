@@ -142,7 +142,7 @@ public class RemoverProduto extends javax.swing.JFrame {
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 250, 90));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 250, 100));
         jLabel4.setUI(MultiLineLabelUI.labelUI);
 
         jButtonPesquisar.setBackground(new java.awt.Color(58, 65, 84));
@@ -205,12 +205,14 @@ public class RemoverProduto extends javax.swing.JFrame {
             try {
                 this.produtos.removeProduto(codigo);
                 JOptionPane.showMessageDialog(null, "Produto removido!");
+                jTextFieldCodigo.setText("");
+                jLabel4.setText("");
                 gravarLista(this.produtos);
             } catch (ProdutoNaoEncontradoException ex) {
                 Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            jLabel1.setText("O produto não está cadastrado no sistema!");
+            jLabel4.setText("O produto não está cadastrado no sistema!");
         }
         
         } else {
@@ -225,13 +227,13 @@ public class RemoverProduto extends javax.swing.JFrame {
         
         if(codigo != 0) {
             try {
-                jLabel1.setText(this.produtos.getProduto(codigo).toStringRemover());
+                jLabel4.setText(this.produtos.getProduto(codigo).toStringRemover());
                 jButtonRemover.setVisible(true);
             } catch (ProdutoNaoEncontradoException ex) {
                 Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            jLabel1.setText("O produto não está cadastrado no sistema!");
+            jLabel4.setText("O produto não está cadastrado no sistema!");
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 

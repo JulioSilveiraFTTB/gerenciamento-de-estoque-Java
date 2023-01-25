@@ -57,7 +57,7 @@ public interface IProdutos {
      * @throws java.lang.Exception Lança exceção quando não existe produto com o 
      * código informado ou quando a quantidade é inválida.
      */
-    public abstract void addQuantidade(int codigo, int quantidade) throws Exception;
+    public abstract void addQuantidade(int codigo, double quantidade) throws Exception;
 
     /**
      * Subtrai a quantidade do produto com código informado.
@@ -66,6 +66,6 @@ public interface IProdutos {
      * @throws java.lang.Exception Lança exceção quando não existe produto com o 
      * código informado ou quando quantidade informada é inválida.
      */
-    public abstract void subQuantidade(int codigo, int quantidade) throws Exception;
+    public abstract void subQuantidade(int codigo, double quantidade) throws Exception;
 
 }

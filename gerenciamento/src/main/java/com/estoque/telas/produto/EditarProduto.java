@@ -22,13 +22,13 @@ import java.util.logging.Logger;
  */
 public class EditarProduto extends javax.swing.JFrame {
     public Produto produto;
-    private Produtos p;
+    private Produtos produtos;
     
     /**
      * Creates new form EditarProduto
      */
-    public EditarProduto() {
-        this.p = lerLista(p);
+    public EditarProduto(Produtos produtos) {
+        this.produtos = lerLista(produtos);
         initComponents();
     }
 
