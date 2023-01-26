@@ -248,6 +248,32 @@ public class EditarProduto extends javax.swing.JFrame {
         jComboBoxTipoQuantidade.setVisible(true);
         jTextFieldDescricao.setVisible(true);
         jLabel3.setVisible(true);
+        
+        int codigo;
+        
+        codigo = Integer.parseInt(jTextFieldCodigo.getText());
+        
+        if(codigo != 0) {
+            try {
+                String nome = produtos.getProduto(codigo).getNome();
+                String tipoQuantidade = produtos.getProduto(codigo).getTipoQuantidade();
+                String descricao = produtos.getProduto(codigo).getDescricao();
+                double preco = produtos.getProduto(codigo).getPreco();
+                double quantidade = produtos.getProduto(codigo).getQuantidade();
+                
+                jTextFieldNome.setText(nome);
+                jTextFieldPreco.setText(Double.toString(preco));
+                jTextFieldQuantidade.setText(Double.toString(quantidade));
+                if(tipoQuantidade == "KG") {
+                    jComboBoxTipoQuantidade.setSelectedItem("KG");   
+                } else {
+                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");
+                }
+                jTextFieldDescricao.setText(descricao);
+            } catch (ProdutoNaoEncontradoException ex) {
+                Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
 //    /**
