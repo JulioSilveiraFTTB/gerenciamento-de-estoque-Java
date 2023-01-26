@@ -2,8 +2,15 @@ package com.estoque.telas;
 
 import java.awt.Color;
 import java.awt.Point;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+
+import com.estoque.excecoes.produtos.LoginInvalidoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // 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
 
@@ -14,11 +21,13 @@ import javax.swing.JPasswordField;
 public class TelaInicial extends javax.swing.JFrame {
     private final Point point = new Point();
 
+    private static final String MENSAGEM = "O usuário está incorreto!";
+            
     /**
      * Creates new form TelaInicial
      */  
     public TelaInicial() {
-        initComponents();     
+        initComponents();             
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,13 +39,14 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jTextFieldLoginNovo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "user-icon", "Nome de usuário");
         jPasswordFieldSenha = new com.estoque.telas.icons.JPassWordFieldHint(new JPasswordField(), "padlock", "Senha");
-        jPanel2 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jButtonEntrar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jTextFieldLoginNovo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "user-icon", "Nome de usuário");
         ;
 
         jTextField1.setText("jTextField1");
@@ -75,31 +85,31 @@ public class TelaInicial extends javax.swing.JFrame {
                 jPasswordFieldSenhaActionPerformed(evt);
             }
         });
-        jPanel1.add(jPasswordFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 360, 40));
+        jPanel1.add(jPasswordFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 360, 40));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel6.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("GERENCIAMENTO DE ESTOQUE");
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("GERENCIAMENTO DE ESTOQUE");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 130));
 
         jButtonEntrar.setBackground(new java.awt.Color(58, 65, 84));
         jButtonEntrar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -121,7 +131,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButtonEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, 250, 40));
+        jPanel1.add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 250, 40));
 
         jButtonSair.setBackground(new java.awt.Color(217, 81, 51));
         jButtonSair.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -142,11 +152,11 @@ public class TelaInicial extends javax.swing.JFrame {
                 jButtonSairActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 250, 40));
+        jPanel1.add(jButtonSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 250, 40));
 
         jTextFieldLoginNovo.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldLoginNovo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(jTextFieldLoginNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 360, 40));
+        jPanel1.add(jTextFieldLoginNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 360, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,7 +183,12 @@ public class TelaInicial extends javax.swing.JFrame {
         if (user.equals("admin") && pass.equals("pass")) {
             new Menu().setVisible(true);
             this.setVisible(false);
-        }
+            JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
+        } else if (user != "admin" || pass != "pass") {
+            JOptionPane.showMessageDialog(null, "Usuário e/ou senha estão incorretos.");
+            jTextFieldLoginNovo.setText("");
+            jPasswordFieldSenha.setText("");
+        }    
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
@@ -256,9 +271,9 @@ public class TelaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEntrar;
     private javax.swing.JButton jButtonSair;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldLoginNovo;
