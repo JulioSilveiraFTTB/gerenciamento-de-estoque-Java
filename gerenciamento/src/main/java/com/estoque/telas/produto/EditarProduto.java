@@ -4,7 +4,9 @@
  */
 package com.estoque.telas.produto;
 
+import com.estoque.excecoes.produtos.PrecoInvalidoException;
 import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
+import com.estoque.excecoes.produtos.QuantidadeInvalidaException;
 import com.estoque.objetos.Produto;
 import com.estoque.telas.*;
 import com.estoque.listas.*;
@@ -31,6 +33,7 @@ public class EditarProduto extends javax.swing.JFrame {
         this.produtos = lerLista(produtos);
         initComponents();
         jLabel3.setVisible(false);
+        jTextFieldCodigoNovo.setVisible(false);
         jTextFieldNome.setVisible(false);
         jTextFieldPreco.setVisible(false);
         jTextFieldQuantidade.setVisible(false);
@@ -67,6 +70,7 @@ public class EditarProduto extends javax.swing.JFrame {
         ;
         jComboBoxTipoQuantidade = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        jTextFieldCodigoNovo = new javax.swing.JTextField();
 
         jButtonPesquisar.setBackground(new java.awt.Color(58, 65, 84));
         jButtonPesquisar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -197,6 +201,9 @@ public class EditarProduto extends javax.swing.JFrame {
         jLabel4.setText("Informe o código do produto:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
 
+        jTextFieldCodigoNovo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jTextFieldCodigoNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 25));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -216,7 +223,39 @@ public class EditarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
+        try {
+            int codigo = Integer.parseInt(jTextFieldCodigoNovo.getText());
+            String novoNome = jTextFieldNome.getText();
+            double novoPreco = Double.parseDouble(jTextFieldPreco.getText());
+            double novaQuantidade = Double.parseDouble(jTextFieldQuantidade.getText());
+            String novoTipoQuantidade = (String) jComboBoxTipoQuantidade.getSelectedItem();
+            String novaDescricao = jTextFieldDescricao.getText();
+            
+            if (codigo != 0 && novoPreco != 0) {
+                try {
+                    produtos.updatePreco(codigo, novoPreco);
+                } catch (ProdutoNaoEncontradoException | PrecoInvalidoException ex) {
+                    Logger.getLogger(EditarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            if(codigo != 0 && novaQuantidade != 0) {
+                try {
+                    produtos.addQuantidade(codigo, novaQuantidade);
+                } catch (ProdutoNaoEncontradoException | QuantidadeInvalidaException ex) {
+                    Logger.getLogger(EditarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            produtos.getProduto(codigo).setNome(novoNome);
+            produtos.getProduto(codigo).setPreco(novoPreco);
+            produtos.getProduto(codigo).setDescricao(novaDescricao);
+            produtos.getProduto(codigo).setTipoQuantidade(novoTipoQuantidade);
+            gravarLista(produtos);
+            JOptionPane.showMessageDialog(null, "Produto editado!");
+        } catch (ProdutoNaoEncontradoException ex) {
+            Logger.getLogger(EditarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonRetornarMenuProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarMenuProdutoActionPerformed
@@ -250,24 +289,25 @@ public class EditarProduto extends javax.swing.JFrame {
         jLabel3.setVisible(true);
         
         int codigo;
-        
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
         
         if(codigo != 0) {
             try {
+                codigo = produtos.getProduto(codigo).getCodigo();
                 String nome = produtos.getProduto(codigo).getNome();
                 String tipoQuantidade = produtos.getProduto(codigo).getTipoQuantidade();
                 String descricao = produtos.getProduto(codigo).getDescricao();
-                double preco = produtos.getProduto(codigo).getPreco();
-                double quantidade = produtos.getProduto(codigo).getQuantidade();
+                double preco = 0;
+                double quantidade = 0;
                 
+                jTextFieldCodigoNovo.setText(Integer.toString(codigo));
                 jTextFieldNome.setText(nome);
                 jTextFieldPreco.setText(Double.toString(preco));
                 jTextFieldQuantidade.setText(Double.toString(quantidade));
                 if(tipoQuantidade == "KG") {
-                    jComboBoxTipoQuantidade.setSelectedItem("KG");   
+                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");   
                 } else {
-                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");
+                    jComboBoxTipoQuantidade.setSelectedItem("KG");
                 }
                 jTextFieldDescricao.setText(descricao);
             } catch (ProdutoNaoEncontradoException ex) {
@@ -323,6 +363,7 @@ public class EditarProduto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldCodigoNovo;
     private javax.swing.JTextField jTextFieldDescricao;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldPreco;
