@@ -30,14 +30,13 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
+        jTextFieldLoginNovo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "user-icon", "Nome de usuário");
         jPasswordFieldSenha = new com.estoque.telas.icons.JPassWordFieldHint(new JPasswordField(), "padlock", "Senha");
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jButtonEntrar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
-        jTextFieldLoginNovo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "user-icon", "Nome de usuário");
+        jLabel1 = new javax.swing.JLabel();
         ;
 
         jTextField1.setText("jTextField1");
