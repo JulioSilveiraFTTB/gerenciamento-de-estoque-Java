@@ -323,7 +323,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNF1MouseExited
 
     private void jButtonNF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNF1ActionPerformed
-        new MenuNotas(this.notasFiscais).setVisible(true);
+        new MenuNotas().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonNF1ActionPerformed
 

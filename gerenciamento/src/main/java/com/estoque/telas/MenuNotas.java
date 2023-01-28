@@ -2,6 +2,7 @@ package com.estoque.telas;
 
 import static com.estoque.listas.LeitorDeListas.lerLista;
 import com.estoque.listas.NotasFiscais;
+import com.estoque.telas.notas.*;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -21,7 +22,7 @@ public class MenuNotas extends javax.swing.JFrame {
      * Creates new form TelaInicial
      * @param notasFiscais
      */  
-    public MenuNotas(NotasFiscais notasFiscais) {
+    public MenuNotas() {
         this.notasFiscais = lerLista(this.notasFiscais);
         initComponents();     
     }
@@ -268,25 +269,28 @@ public class MenuNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarActionPerformed
 
     private void jButtonRetornarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMouseExited
-        jButtonRetornar.setBackground(new Color(58,65,84));
+        jButtonRetornar.setBackground(new Color(217,81,51));
         jButtonRetornar.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonRetornarMouseExited
 
     private void jButtonRetornarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRetornarMouseEntered
-        jButtonRetornar.setBackground(new Color(235, 235, 235));
-        jButtonRetornar.setForeground(new Color(58,65,84));
+        jButtonRetornar.setBackground(new Color(235,235,235));
+        jButtonRetornar.setForeground(new Color(217,81,51));
     }//GEN-LAST:event_jButtonRetornarMouseEntered
 
     private void jButtonCriarNFMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCriarNFMouseEntered
-        // TODO add your handling code here:
+        jButtonCriarNF.setBackground(new Color(235, 235, 235));
+        jButtonCriarNF.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonCriarNFMouseEntered
 
     private void jButtonCriarNFMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCriarNFMouseExited
-        // TODO add your handling code here:
+        jButtonCriarNF.setBackground(new Color(58,65,84));
+        jButtonCriarNF.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonCriarNFMouseExited
 
     private void jButtonCriarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarNFActionPerformed
-        // TODO add your handling code here:
+        new CriarNota().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonCriarNFActionPerformed
 
     private void jButtonSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSairMouseEntered
@@ -318,27 +322,33 @@ public class MenuNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSair1ActionPerformed
 
     private void jButtonConsultarNFMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConsultarNFMouseEntered
-        // TODO add your handling code here:
+        jButtonConsultarNF.setBackground(new Color(235, 235, 235));
+        jButtonConsultarNF.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonConsultarNFMouseEntered
 
     private void jButtonConsultarNFMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonConsultarNFMouseExited
-        // TODO add your handling code here:
+        jButtonConsultarNF.setBackground(new Color(58,65,84));
+        jButtonConsultarNF.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonConsultarNFMouseExited
 
     private void jButtonConsultarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarNFActionPerformed
-        // TODO add your handling code here:
+        new ConsultarNota(this.notasFiscais).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonConsultarNFActionPerformed
 
     private void jButtonEditarNFMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarNFMouseEntered
-        // TODO add your handling code here:
+        jButtonEditarNF.setBackground(new Color(235, 235, 235));
+        jButtonEditarNF.setForeground(new Color(58,65,84));
     }//GEN-LAST:event_jButtonEditarNFMouseEntered
 
     private void jButtonEditarNFMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEditarNFMouseExited
-        // TODO add your handling code here:
+        jButtonEditarNF.setBackground(new Color(58,65,84));
+        jButtonEditarNF.setForeground(new Color(235,235,235));
     }//GEN-LAST:event_jButtonEditarNFMouseExited
 
     private void jButtonEditarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarNFActionPerformed
-        // TODO add your handling code here:
+        new EditarNota().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButtonEditarNFActionPerformed
 
 //    /**
