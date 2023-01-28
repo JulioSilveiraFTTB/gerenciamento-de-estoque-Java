@@ -20,8 +20,6 @@ import java.util.logging.Logger;
  */
 public class TelaInicial extends javax.swing.JFrame {
     private final Point point = new Point();
-
-    private static final String MENSAGEM = "O usuário está incorreto!";
             
     /**
      * Creates new form TelaInicial

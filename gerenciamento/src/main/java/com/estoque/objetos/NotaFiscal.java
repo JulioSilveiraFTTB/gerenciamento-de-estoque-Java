@@ -18,8 +18,6 @@ public class NotaFiscal implements Serializable {
     /**
      * Construtor do objeto Nota Fiscal
      * 
-     * @param dataEmissao
-     * @param itens
      */
     public NotaFiscal() {
         Random random = new Random();
@@ -72,8 +70,7 @@ public class NotaFiscal implements Serializable {
      */
     @Override
     public String toString() {
-        return "Informações da NF: \n" 
-        + "Código: " + codigo + "\n"
+        return "Código: " + codigo + "\n"
         + "Data de emissão: " + dtf.format(dataEmissao) + "\n"
         + "Relação de items: " + itens + "\n";
     }

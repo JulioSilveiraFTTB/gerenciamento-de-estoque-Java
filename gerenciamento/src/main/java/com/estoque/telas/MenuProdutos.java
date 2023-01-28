@@ -20,7 +20,7 @@ import java.awt.Point;
 public class MenuProdutos extends javax.swing.JFrame {
     private final Point point = new Point();
     
-    private Produtos produtos = new Produtos();
+    public Produtos produtos = new Produtos();
 
     /**
      * Creates new form TelaInicial

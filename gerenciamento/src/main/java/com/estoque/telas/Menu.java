@@ -14,15 +14,15 @@ import java.awt.Point;
 public class Menu extends javax.swing.JFrame {
     private final Point point = new Point();
 
-    private Produtos p = new Produtos();
-    private NotasFiscais nf = new NotasFiscais();
+    private Produtos produtos = new Produtos();
+    private NotasFiscais notasFiscais = new NotasFiscais();
     
     /**
      * Creates new form TelaInicial
      */  
     public Menu() {
-        this.p = LeitorDeListas.lerLista(p);
-        this.nf = LeitorDeListas.lerLista(nf);
+        this.produtos = LeitorDeListas.lerLista(produtos);
+        this.notasFiscais = LeitorDeListas.lerLista(notasFiscais);
         initComponents();     
     }
     /**
@@ -280,7 +280,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonProduto1MouseExited
 
     private void jButtonProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProduto1ActionPerformed
-        new MenuProdutos(this.p).setVisible(true);
+        new MenuProdutos(this.produtos).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonProduto1ActionPerformed
 
@@ -323,7 +323,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNF1MouseExited
 
     private void jButtonNF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNF1ActionPerformed
-        new MenuNotas().setVisible(true);
+        new MenuNotas(this.notasFiscais).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonNF1ActionPerformed
 
