@@ -14,7 +14,7 @@ public class NotasFiscais implements INotasFiscais, Serializable {
     
     private Produto produto;
 
-    Scanner entrada = new Scanner(System.in);
+    transient Scanner entrada = new Scanner(System.in);
 
     @Override
     public void addNotaFiscal(NotaFiscal nf) {
