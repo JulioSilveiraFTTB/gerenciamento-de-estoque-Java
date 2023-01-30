@@ -20,13 +20,9 @@ public class Produtos implements IProdutos, Serializable {
      * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
      */
     @Override
-    public void addProduto(Produto p) throws ProdutoNaoEncontradoException {
-        try {
-            if(p != null) {
-                produtos.add(p);
-             }  
-        } catch (Exception e) {
-            throw new ProdutoNaoEncontradoException();
+    public void addProduto(Produto p) {
+        if(p != null) {
+            produtos.add(p);
         } 
     }
     
@@ -36,18 +32,13 @@ public class Produtos implements IProdutos, Serializable {
      * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
      */
     @Override
-    public boolean removeProduto(int codigo) throws ProdutoNaoEncontradoException {
-        try {
+    public boolean removeProduto(int codigo) {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
                     produtos.remove(p);
                     return true;
-                }
-            }   
-        } catch (Exception e) {
-            throw new ProdutoNaoEncontradoException();
-        }
-        return false;
+                } 
+            } return false;
     }
     
     /** 
@@ -56,16 +47,11 @@ public class Produtos implements IProdutos, Serializable {
      */
     @Override
     public Produto getProduto(int codigo) throws ProdutoNaoEncontradoException {
-        try {
-            for(Produto p : produtos) {
-                if(p.getCodigo() == codigo) {
-                    return p;
-                }
+        for(Produto p : produtos) {
+            if(p.getCodigo() == codigo) {
+                return p;
             }
-            return null;   
-        } catch (Exception e) {
-            throw new ProdutoNaoEncontradoException();
-        }
+        } throw new ProdutoNaoEncontradoException();
     }
     
     /** 

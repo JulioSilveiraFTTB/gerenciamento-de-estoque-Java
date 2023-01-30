@@ -200,24 +200,20 @@ public class RemoverProduto extends javax.swing.JFrame {
         
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
         
-        if(!"".equals(jTextFieldCodigo.getText())) {
          if(codigo != 0) {
             try {
+                this.produtos.getProduto(codigo);
                 this.produtos.removeProduto(codigo);
+                gravarLista(this.produtos);
                 JOptionPane.showMessageDialog(null, "Produto removido!");
                 jTextFieldCodigo.setText("");
                 jLabel4.setText("");
-                gravarLista(this.produtos);
             } catch (ProdutoNaoEncontradoException ex) {
-                Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RemoverProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             jLabel4.setText("O produto não está cadastrado no sistema!");
-        }
-        
-        } else {
-            JOptionPane.showMessageDialog(null, "O produto não foi removido!\n Verifique o código inserido.");     
-        }
+        }  
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
@@ -225,15 +221,16 @@ public class RemoverProduto extends javax.swing.JFrame {
 
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
         
-        if(codigo != 0) {
-            try {
+        try {
+            if(this.produtos.getProduto(codigo) != null) {
                 jLabel4.setText(this.produtos.getProduto(codigo).toStringRemover());
                 jButtonRemover.setVisible(true);
-            } catch (ProdutoNaoEncontradoException ex) {
-                Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            jLabel4.setText("O produto não está cadastrado no sistema!");
+                JOptionPane.showMessageDialog(null, "Produto encontrado!");
+            } ;//else {
+                //jLabel4.setText("O produto não está cadastrado no sistema!");
+            //}
+        } catch (ProdutoNaoEncontradoException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 

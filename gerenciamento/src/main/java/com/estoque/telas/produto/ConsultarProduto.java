@@ -177,10 +177,8 @@ public class ConsultarProduto extends javax.swing.JFrame {
             try {
                 jLabel1.setText(produtos.getProduto(codigo).toString());
             } catch (ProdutoNaoEncontradoException ex) {
-                Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-        } else {
-            jLabel1.setText("O produto não está cadastrado no sistema!");
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 

@@ -225,7 +225,6 @@ public class CadastrarProduto extends javax.swing.JFrame {
                 jTextFieldPreco.setText("");
                 jTextFieldQuantidade.setText("");
                 jTextFieldDescricao.setText("");
-                        
             } catch (ProdutoNaoEncontradoException ex) {
                 Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
             }
