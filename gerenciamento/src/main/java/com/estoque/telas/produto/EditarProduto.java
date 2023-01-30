@@ -305,13 +305,23 @@ public class EditarProduto extends javax.swing.JFrame {
                 jTextFieldPreco.setText(Double.toString(preco));
                 jTextFieldQuantidade.setText(Double.toString(quantidade));
                 if(tipoQuantidade == "KG") {
-                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");   
+                    jComboBoxTipoQuantidade.setSelectedItem("KG");   
                 } else {
-                    jComboBoxTipoQuantidade.setSelectedItem("KG");
+                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");
                 }
                 jTextFieldDescricao.setText(descricao);
             } catch (ProdutoNaoEncontradoException ex) {
-                Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+                jButtonEditar.setVisible(true);
+                jTextFieldCodigo.setVisible(true);
+                jTextFieldCodigo.setText("");
+                jLabel4.setVisible(true);
+                jTextFieldNome.setVisible(false);
+                jTextFieldPreco.setVisible(false);
+                jTextFieldQuantidade.setVisible(false);
+                jComboBoxTipoQuantidade.setVisible(false);
+                jTextFieldDescricao.setVisible(false);
+                jLabel3.setVisible(false);
             }
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
