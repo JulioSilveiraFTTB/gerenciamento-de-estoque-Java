@@ -3,9 +3,8 @@ package com.estoque.objetos;
 import java.io.Serializable;
 
 public class Item implements Serializable {
-    private static final long serialVersionUID =100L;
+    private static final long serialVersionUID = 100L;
     protected Produto produto;
-    protected double quantidade;
     protected double valorTotal;
 
     /**
@@ -13,9 +12,8 @@ public class Item implements Serializable {
      * 
      * @param produto
      */
-    public Item(Produto produto, double quantidade, double valorTotal) {
+    public Item(Produto produto, double valorTotal) {
         this.produto = produto;
-        this.quantidade = quantidade;
         this.valorTotal = valorTotal;
     }
 
@@ -37,24 +35,6 @@ public class Item implements Serializable {
         this.produto = produto;
     }
     
-    /** 
-     * Retorna a quantidade do produto
-     * 
-     * @return double
-     */
-    public double getQuantidade() {
-        return quantidade;
-    }
-    
-    /** 
-     * Atribui a quantidade do produto
-     * 
-     * @param quantidade
-     */
-    public void setQuantidade(double quantidade) {
-        this.quantidade = quantidade;
-    }
-
     /**
      * Retorna o valor total (preço) dos produtos selecionados
      * 
@@ -69,7 +49,7 @@ public class Item implements Serializable {
      * 
      * @param valorTotal
      */
-    public void setValorTotal(double valorTotal) {
+    public void setValorTotal(double valorTotal, double quantidade) {
         valorTotal = produto.getPreco() * quantidade;
     }
     
@@ -80,8 +60,6 @@ public class Item implements Serializable {
      */
     @Override
     public String toString() {
-        return "Informações do item + \n"
-        + "Produto: " + produto + "\n"
-        + "Quantidade: " + quantidade + "\n";
+        return "Produto: " + produto + "\n";
     }
 }

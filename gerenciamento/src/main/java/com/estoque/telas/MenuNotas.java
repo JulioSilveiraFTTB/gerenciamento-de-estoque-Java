@@ -289,7 +289,7 @@ public class MenuNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCriarNFMouseExited
 
     private void jButtonCriarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCriarNFActionPerformed
-        new CriarNota().setVisible(true);
+        new CriarNota(this.notasFiscais).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCriarNFActionPerformed
 

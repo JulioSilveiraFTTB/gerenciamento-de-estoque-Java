@@ -13,6 +13,7 @@ public class NotaFiscal implements Serializable {
     
     protected Integer codigo;
     protected final LocalDate dataEmissao;
+    protected double valorFinal;
     protected List<Item> itens;
 
     /**
@@ -25,6 +26,7 @@ public class NotaFiscal implements Serializable {
         this.codigo = random.nextInt(100000);
         this.dataEmissao = LocalDate.now();
         this.itens = new ArrayList<>();
+        this.valorFinal = valorFinal;
     }
 
     /**
@@ -62,6 +64,14 @@ public class NotaFiscal implements Serializable {
     public void setItens(List<Item> itens) {
         this.itens = itens;
     }
+    
+    public double getValorFinal() {
+        return valorFinal;
+    }
+    
+    public void setValorFinal(double valorFinal) {
+        
+    }
 
     /**
      * Retorna a string completa do produto
@@ -72,6 +82,7 @@ public class NotaFiscal implements Serializable {
     public String toString() {
         return "Código: " + codigo + "\n"
         + "Data de emissão: " + dtf.format(dataEmissao) + "\n"
-        + "Relação de items: " + itens + "\n";
+        + "Relação de items: " + itens.toString() + "\n";
+        
     }
 }
