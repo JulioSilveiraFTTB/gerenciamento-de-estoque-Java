@@ -13,20 +13,21 @@ public class NotaFiscal implements Serializable {
     
     protected Integer codigo;
     protected final LocalDate dataEmissao;
-    protected double valorFinal;
     protected List<Item> itens;
 
     /**
      * Construtor do objeto Nota Fiscal
      * 
+     * @param codigo
+     * @param dataEmissao
+     * @param <error>
      */
-    public NotaFiscal() {
+    public NotaFiscal(LocalDate dataEmissao) {
         Random random = new Random();
 
         this.codigo = random.nextInt(100000);
         this.dataEmissao = LocalDate.now();
         this.itens = new ArrayList<>();
-        this.valorFinal = valorFinal;
     }
 
     /**
@@ -63,14 +64,6 @@ public class NotaFiscal implements Serializable {
      */
     public void setItens(List<Item> itens) {
         this.itens = itens;
-    }
-    
-    public double getValorFinal() {
-        return valorFinal;
-    }
-    
-    public void setValorFinal(double valorFinal) {
-        
     }
 
     /**

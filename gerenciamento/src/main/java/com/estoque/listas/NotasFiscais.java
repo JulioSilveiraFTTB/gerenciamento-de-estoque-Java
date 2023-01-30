@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class NotasFiscais implements INotasFiscais, Serializable {
     private static final long serialVersionUID = 1L;
     private final List<NotaFiscal> notasFiscais = new ArrayList<>();
+    
+    private Produto produto;
 
     Scanner entrada = new Scanner(System.in);
 
@@ -48,6 +50,11 @@ public class NotasFiscais implements INotasFiscais, Serializable {
             if(nf.getCodigo() == codigo) {
                 List<Item> listaDeItens = nf.getItens();
                     for (int i = 0; i < listaDeItens.size(); i++) {
+                        double preco = produto.getPreco();
+                        double quantidade = produto.getQuantidade();
+                        soma += quantidade * preco;
+                        
+                        return soma;
             }
         }
     }

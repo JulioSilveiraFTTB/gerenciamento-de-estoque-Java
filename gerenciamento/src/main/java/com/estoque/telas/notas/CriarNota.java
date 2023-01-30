@@ -26,13 +26,16 @@ public class CriarNota extends javax.swing.JFrame {
     
     /**
      * Creates new form CriarNota
+     * @param notasFiscais
      */
     public CriarNota(NotasFiscais notasFiscais) {
         this.notasFiscais = LeitorDeListas.lerLista(notasFiscais);
         initComponents();
+
+        LocalDate dataEmissao = LocalDate.now();
         
-        nf = new NotaFiscal();
-        LocalDate dataEmissao = nf.getDataEmissao();
+        nf = new NotaFiscal(dataEmissao);
+        dataEmissao = nf.getDataEmissao();
         jTextFieldCodigo.setText(Integer.toString(nf.getCodigo()));
         jTextFieldData.setText(dtf.format(dataEmissao));
     }
@@ -186,7 +189,22 @@ public class CriarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        int codigo;
+        LocalDate dataDeEmissao;
+        int codigoProduto;
+        double valorTotal;
         
+        if (jTextFieldCodigo.getText() != "" && jTextFieldData.getText() != "" && jTextFieldItens.getText() != "") {
+            codigo = Integer.parseInt(jTextFieldCodigo.getText());
+            dataDeEmissao = LocalDate.now();
+            codigoProduto = Integer.parseInt(jTextFieldItens.getText());
+            
+            System.out.println(nf.toString());
+            
+            this.notasFiscais.addNotaFiscal(nf);
+            LeitorDeListas.gravarLista(notasFiscais);
+        }
+ 
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
