@@ -225,10 +225,7 @@ public class RemoverProduto extends javax.swing.JFrame {
             if(this.produtos.getProduto(codigo) != null) {
                 jLabel4.setText(this.produtos.getProduto(codigo).toStringRemover());
                 jButtonRemover.setVisible(true);
-                JOptionPane.showMessageDialog(null, "Produto encontrado!");
-            } ;//else {
-                //jLabel4.setText("O produto não está cadastrado no sistema!");
-            //}
+            }
         } catch (ProdutoNaoEncontradoException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
         }
