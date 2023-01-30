@@ -234,16 +234,16 @@ public class EditarProduto extends javax.swing.JFrame {
             if (codigo != 0 && novoPreco != 0) {
                 try {
                     produtos.updatePreco(codigo, novoPreco);
-                } catch (ProdutoNaoEncontradoException | PrecoInvalidoException ex) {
-                    Logger.getLogger(EditarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Insira um preço válido!");
                 }
             }
             
             if(codigo != 0 && novaQuantidade != 0) {
                 try {
                     produtos.addQuantidade(codigo, novaQuantidade);
-                } catch (ProdutoNaoEncontradoException | QuantidadeInvalidaException ex) {
-                    Logger.getLogger(EditarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Insira uma quantidade válida");
                 }
             }
             
@@ -254,7 +254,7 @@ public class EditarProduto extends javax.swing.JFrame {
             gravarLista(produtos);
             JOptionPane.showMessageDialog(null, "Produto editado!");
         } catch (ProdutoNaoEncontradoException ex) {
-            Logger.getLogger(EditarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -305,9 +305,9 @@ public class EditarProduto extends javax.swing.JFrame {
                 jTextFieldPreco.setText(Double.toString(preco));
                 jTextFieldQuantidade.setText(Double.toString(quantidade));
                 if(tipoQuantidade == "KG") {
-                    jComboBoxTipoQuantidade.setSelectedItem("KG");   
+                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");   
                 } else {
-                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");
+                    jComboBoxTipoQuantidade.setSelectedItem("KG");
                 }
                 jTextFieldDescricao.setText(descricao);
             } catch (ProdutoNaoEncontradoException ex) {

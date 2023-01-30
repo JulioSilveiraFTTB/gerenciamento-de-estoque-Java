@@ -217,16 +217,14 @@ public class CadastrarProduto extends javax.swing.JFrame {
             produto = new Produto(nome, descricao, preco, quantidade, tipoQuantidade);
             System.out.print(produto.toString());
             
-            try {
-                this.produtos.addProduto(produto);
+            if(produto != null) {
+             this.produtos.addProduto(produto);
                 gravarLista(this.produtos);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado! \n" + "O código do produto é " + produto.getCodigo());
                 jTextFieldNome.setText("");
                 jTextFieldPreco.setText("");
                 jTextFieldQuantidade.setText("");
-                jTextFieldDescricao.setText("");
-            } catch (ProdutoNaoEncontradoException ex) {
-                Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                jTextFieldDescricao.setText(""); 
             }
         } else {
             JOptionPane.showMessageDialog(null, "O produto não foi cadastrado!\n Verifique os dados inseridos.");     

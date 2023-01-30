@@ -59,63 +59,39 @@ public class Produtos implements IProdutos, Serializable {
      * @param nova
      */
     @Override
-    public void updateQuantidade(int codigo, double nova) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
-        try {
+    public void updateQuantidade(int codigo, double nova) throws NumberFormatException {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
-                    try {
-                        p.setQuantidade(nova);   
-                    } catch (Exception e) {
-                        throw new QuantidadeInvalidaException();
-                    }
+                    p.setQuantidade(nova);   
                 }
-            }   
-        } catch (Exception e) {
-            throw new ProdutoNaoEncontradoException();
-        }
-    }
+            } throw new NumberFormatException();
+    }   
     
     /** 
      * @param codigo
      * @param novo
      */
     @Override
-    public void updatePreco(int codigo, double novo) throws ProdutoNaoEncontradoException, PrecoInvalidoException {
-        try {
+    public void updatePreco(int codigo, double novo) throws NumberFormatException {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
-                    try {
                         p.setPreco(novo);   
-                    } catch (Exception e) {
-                        throw new PrecoInvalidoException();
                     }
-                }
-            }   
-        } catch (Exception e) {
-            throw new ProdutoNaoEncontradoException();
-        }
-    }
+            } throw new NumberFormatException();
+    } 
 
     /** 
      * @param codigo
      * @param quantidade
      */
     @Override
-    public void addQuantidade(int codigo, double quantidade) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
-        try {
+    public void addQuantidade(int codigo, double quantidade) throws NumberFormatException {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
-                    try {
                         quantidade = p.getQuantidade() + quantidade;
                         p.setQuantidade(quantidade);   
-                    } catch (Exception e) {
-                        throw new QuantidadeInvalidaException();
                     }
-                }
-            }   
-        } catch (Exception e) {
-            throw new ProdutoNaoEncontradoException();
-        }
+                } throw new NumberFormatException();
     }
     
     /** 
