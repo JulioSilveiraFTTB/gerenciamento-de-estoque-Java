@@ -239,24 +239,29 @@ public class EditarProduto extends javax.swing.JFrame {
         try {
             int codigo = Integer.parseInt(jTextFieldCodigoNovo.getText());
             String novoNome = jTextFieldNome.getText();
-            double novoPreco = Double.parseDouble(jTextFieldPreco.getText());
-            double novaQuantidade = Double.parseDouble(jTextFieldQuantidade.getText());
             String novoTipoQuantidade = (String) jComboBoxTipoQuantidade.getSelectedItem();
             String novaDescricao = jTextFieldDescricao.getText();
+            double novoPreco = Double.parseDouble(jTextFieldPreco.getText());
+            double novaQuantidade = Double.parseDouble(jTextFieldQuantidade.getText());
             
-            if (codigo != 0 && novoPreco != 0) {
+            
+            if (novoPreco <= 0 || novoPreco >= 100000) {
                 try {
                     produtos.updatePreco(codigo, novoPreco);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Insira um preço válido!");
+                    jTextFieldPreco.setText("");
+                    return;
                 }
             }
             
-            if(codigo != 0 && novaQuantidade != 0) {
+            if(novaQuantidade <= 0 || novaQuantidade >= 100000) {
                 try {
                     produtos.addQuantidade(codigo, novaQuantidade);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Insira uma quantidade válida");
+                    jTextFieldQuantidade.setText("");
+                    return;
                 }
             }
             
@@ -310,8 +315,8 @@ public class EditarProduto extends javax.swing.JFrame {
                 String nome = produtos.getProduto(codigo).getNome();
                 String tipoQuantidade = produtos.getProduto(codigo).getTipoQuantidade();
                 String descricao = produtos.getProduto(codigo).getDescricao();
-                double preco = 0;
-                double quantidade = 0;
+                double preco = produtos.getProduto(codigo).getPreco();
+                double quantidade =produtos.getProduto(codigo).getQuantidade();
                 
                 jTextFieldCodigoNovo.setText(Integer.toString(codigo));
                 jTextFieldNome.setText(nome);
