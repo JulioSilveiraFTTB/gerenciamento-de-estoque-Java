@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Produtos implements IProdutos, Serializable {
     private static final long serialVersionUID = -2030569513222902039L;
-    private final List<Produto> produtos = new ArrayList<>();
+    private final ArrayList<Produto> produtos = new ArrayList<>();
     
     transient Scanner entrada = new Scanner(System.in);
 

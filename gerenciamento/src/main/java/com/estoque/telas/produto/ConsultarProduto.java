@@ -34,7 +34,6 @@ public class ConsultarProduto extends javax.swing.JFrame {
     public ConsultarProduto(Produtos produtos) {
         this.produtos = lerLista(produtos);
         initComponents();
-        jTableProdutos.setVisible(false);
     }
     
     
@@ -171,30 +170,10 @@ public class ConsultarProduto extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonListarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 120, 30));
 
-        jTableProdutos.setVisible(false);
         jTableProdutos.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Quantidade", "Tipo Quantidade", "Preço"
@@ -235,17 +214,29 @@ public class ConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        DefaultTableModel dtmProduto = (DefaultTableModel) jTableProdutos.getModel();
+       
         int codigo;
-        
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
         
         if(codigo != 0) {
             try {
-                jLabel1.setText(produtos.getProduto(codigo).toString());
+                produtos.getProduto(codigo);
+                
+                codigo = produtos.getProduto(codigo).getCodigo();
+                String nome = produtos.getProduto(codigo).getNome();
+                String descricao = produtos.getProduto(codigo).getDescricao();
+                String tipoQuantidade = produtos.getProduto(codigo).getTipoQuantidade();
+                double quantidade = produtos.getProduto(codigo).getQuantidade();
+                double preco = produtos.getProduto(codigo).getPreco();
+                
+                Object [] data = {codigo, nome, descricao, quantidade, tipoQuantidade, preco};
+                dtmProduto.addRow(data);
             } catch (ProdutoNaoEncontradoException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
+        jTextFieldCodigo.setText("");
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -253,10 +244,8 @@ public class ConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarTodosActionPerformed
-        jLabel1.setVisible(false);
-        jTableProdutos.setVisible(true);
-        
         DefaultTableModel dtmProduto = (DefaultTableModel) jTableProdutos.getModel();
+        dtmProduto.setRowCount(0);
         
         try {
             for (int i = 0; i <= produtos.size(); i++){
@@ -266,6 +255,7 @@ public class ConsultarProduto extends javax.swing.JFrame {
                 double quantidade = produtos.getProdutos().get(i).getQuantidade();
                 double preco = produtos.getProdutos().get(i).getPreco();
                 String tipoQuantidade = produtos.getProdutos().get(i).getTipoQuantidade();
+                
                 Object [] data = {codigo, nome, descricao, quantidade, tipoQuantidade, preco};
                 dtmProduto.addRow(data);
             }
