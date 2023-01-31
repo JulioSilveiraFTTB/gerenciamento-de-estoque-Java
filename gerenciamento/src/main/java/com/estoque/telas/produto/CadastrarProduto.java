@@ -4,6 +4,7 @@
  */
 package com.estoque.telas.produto;
 
+import com.estoque.excecoes.produtos.PrecoInvalidoException;
 import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
 import com.estoque.objetos.Produto;
 import com.estoque.telas.*;
@@ -216,14 +217,28 @@ public class CadastrarProduto extends javax.swing.JFrame {
         Produto produto;
         String nome;
         String descricao;
-        double preco;
-        double quantidade;
+        double preco = 0;
+        double quantidade = 0;
         String tipoQuantidade;
         
         if(jTextFieldNome.getText() != "" && jTextFieldPreco.getText() != "" && jTextFieldQuantidade.getText() != "" && jTextFieldDescricao.getText() != "") {
             nome = jTextFieldNome.getText();
-            preco = Double.parseDouble(jTextFieldPreco.getText());
-            quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
+            
+            if(preco <= 0 || preco >= 100000) {
+                try {
+                    preco = Double.parseDouble(jTextFieldPreco.getText());
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Insira um preço válido!");
+                }
+            }
+            
+            if(quantidade <= 0 || quantidade >= 1000000)
+                try {
+                    quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
+            } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Insira uma quantidade válida");
+            }
+            
             tipoQuantidade = (String) jComboBoxTipoQuantidade.getSelectedItem();
             descricao = jTextFieldDescricao.getText();
  
@@ -231,7 +246,7 @@ public class CadastrarProduto extends javax.swing.JFrame {
             System.out.print(produto.toString());
             
             if(produto != null) {
-             this.produtos.addProduto(produto);
+                this.produtos.addProduto(produto);
                 gravarLista(this.produtos);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado! \n" + "O código do produto é " + produto.getCodigo());
                 jTextFieldNome.setText("");

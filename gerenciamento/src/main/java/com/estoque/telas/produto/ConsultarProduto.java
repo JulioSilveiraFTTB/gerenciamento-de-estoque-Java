@@ -17,6 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,7 +34,10 @@ public class ConsultarProduto extends javax.swing.JFrame {
     public ConsultarProduto(Produtos produtos) {
         this.produtos = lerLista(produtos);
         initComponents();
+        jTableProdutos.setVisible(false);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,6 +58,9 @@ public class ConsultarProduto extends javax.swing.JFrame {
         jTextFieldCodigo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Código");
         ;
         jLabel1 = new javax.swing.JLabel();
+        jButtonListarTodos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableProdutos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,15 +149,61 @@ public class ConsultarProduto extends javax.swing.JFrame {
                 jButtonPesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, 30));
+        jPanel1.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 120, 30));
 
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 125, 200, 30));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 210, 250, 120));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 250, 120));
         jLabel1.setUI(MultiLineLabelUI.labelUI);
+
+        jButtonListarTodos.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonListarTodos.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonListarTodos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonListarTodos.setText("Listar todos");
+        jButtonListarTodos.setBorder(null);
+        jButtonListarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarTodosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonListarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 120, 30));
+
+        jTableProdutos.setVisible(false);
+        jTableProdutos.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nome", "Quantidade", "Tipo Quantidade", "Preço"
+            }
+        ));
+        jTableProdutos.setRowHeight(25);
+        jScrollPane1.setViewportView(jTableProdutos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 550, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,6 +252,28 @@ public class ConsultarProduto extends javax.swing.JFrame {
         //r TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
 
+    private void jButtonListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarTodosActionPerformed
+        jLabel1.setVisible(false);
+        jTableProdutos.setVisible(true);
+        
+        DefaultTableModel dtmProduto = (DefaultTableModel) jTableProdutos.getModel();
+        
+        try {
+            for (int i = 0; i <= produtos.size(); i++){
+                int codigo = produtos.getProdutos().get(i).getCodigo();
+                String nome = produtos.getProdutos().get(i).getNome();
+                String descricao = produtos.getProdutos().get(i).getDescricao();
+                double quantidade = produtos.getProdutos().get(i).getQuantidade();
+                double preco = produtos.getProdutos().get(i).getPreco();
+                String tipoQuantidade = produtos.getProdutos().get(i).getTipoQuantidade();
+                Object [] data = {codigo, nome, descricao, quantidade, tipoQuantidade, preco};
+                dtmProduto.addRow(data);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jButtonListarTodosActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -235,6 +310,7 @@ public class ConsultarProduto extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonListarTodos;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRetornarMenuProduto;
     private javax.swing.JLabel jLabel1;
@@ -243,6 +319,8 @@ public class ConsultarProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField jTextFieldCodigo;
     // End of variables declaration//GEN-END:variables
 }

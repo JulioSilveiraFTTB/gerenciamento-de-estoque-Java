@@ -115,4 +115,15 @@ public class Produtos implements IProdutos, Serializable {
             throw new ProdutoNaoEncontradoException();
         }
     }
+    
+    public int size() throws Exception {
+        if(produtos.size() == 0) {
+            throw new Exception("Lista vazia!");
+        }
+        return this.produtos.size();
+    }
+    
+    public List<Produto> getProdutos(){
+        return produtos;
+    }
 }
