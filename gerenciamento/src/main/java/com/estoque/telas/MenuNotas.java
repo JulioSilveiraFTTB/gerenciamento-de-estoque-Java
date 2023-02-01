@@ -264,7 +264,7 @@ public class MenuNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void jButtonRetornarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRetornarActionPerformed
-        new TelaInicial().setVisible(true);
+        new Menu().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetornarActionPerformed
 

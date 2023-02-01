@@ -4,6 +4,7 @@
  */
 package com.estoque.telas.notas;
 
+import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
 import com.estoque.objetos.*;
 import com.estoque.listas.LeitorDeListas;
 import com.estoque.listas.NotasFiscais;
@@ -14,6 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,9 +24,11 @@ import java.util.logging.Logger;
  * @author julio
  */
 public class CriarNota extends javax.swing.JFrame {
-    public NotaFiscal nf;
-    public NotasFiscais notasFiscais;
+    private NotaFiscal nf;
+    private NotasFiscais notasFiscais;
+    private Produto p;
     private Produtos produtos;
+    private Item item;
     
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
@@ -44,11 +48,14 @@ public class CriarNota extends javax.swing.JFrame {
         dataEmissao = nf.getDataEmissao();
         jTextFieldCodigo.setText(Integer.toString(nf.getCodigo()));
         jTextFieldData.setText(dtf.format(dataEmissao));
+        ArrayList<Item> itens;
+        itens = nf.getItens();
         
         DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
 
         try {
             for (int i = 0; i < produtos.size(); i++) {
+                // dcbm.addElement(produtos.getCodigoENome());
                 dcbm.addElement(produtos.getProdutos().get(i).getNome());
             }
         } catch (Exception ex) {
@@ -78,6 +85,7 @@ public class CriarNota extends javax.swing.JFrame {
         ;
         jButtonSalvar = new javax.swing.JButton();
         jComboBoxProdutos = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,6 +182,18 @@ public class CriarNota extends javax.swing.JFrame {
         jComboBoxProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(jComboBoxProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 200, 30));
 
+        jButton1.setBackground(new java.awt.Color(58, 65, 84));
+        jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Adicionar");
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 90, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,6 +231,7 @@ public class CriarNota extends javax.swing.JFrame {
         int codigo;
         LocalDate dataDeEmissao;
         int codigoProduto;
+        Item itens;
         double valorTotal;
         
         if (jTextFieldCodigo.getText() != "" && jTextFieldData.getText() != "") {
@@ -228,6 +249,36 @@ public class CriarNota extends javax.swing.JFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         //r TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        double valor = 0;
+        double valorTotal = 0;
+        ArrayList<Item> itens = nf.getItens();
+        
+        try {
+            // pegar o selectedItem
+            String nome = jComboBoxProdutos.getItemAt(jComboBoxProdutos.getSelectedIndex());
+            
+            for (int i = 0; i < produtos.size(); i++) {
+                if (produtos.getProdutos().get(i).getNome().equals(nome)) {
+                    p = produtos.get(nome);
+                    valor = produtos.getProdutos().get(i).getPreco() * produtos.getProdutos().get(i).getQuantidade();
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+          valorTotal = valorTotal + valor;
+          item = new Item(p, valorTotal);
+        
+          if (jTextFieldCodigo.getText() != "") {
+            int codigoNota = Integer.parseInt(jTextFieldCodigo.getText());
+            // notasFiscais.addItem(codigoNota, item);
+            itens.add(item);
+          }
+        // pegar o codigo da nota
+        // add o objeto item criado na arraylist via codigo
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -265,6 +316,7 @@ public class CriarNota extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonRetornarMenuProduto;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBoxProdutos;

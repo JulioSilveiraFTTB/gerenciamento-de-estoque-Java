@@ -126,4 +126,20 @@ public class Produtos implements IProdutos, Serializable {
     public List<Produto> getProdutos(){
         return produtos;
     }
+    
+    public String getCodigoENome() throws ProdutoNaoEncontradoException {
+        for(Produto p : produtos) {
+                return p.getCodigo() + " | " + p.getNome();
+        } throw new ProdutoNaoEncontradoException();
+    }
+    
+    public Produto get(String nome) throws ProdutoNaoEncontradoException {
+        for(Produto p : produtos) {
+            if(p.getNome().equals(nome)){
+               return p;
+            }
+        } throw new ProdutoNaoEncontradoException();
+    }
+    
+    
 }

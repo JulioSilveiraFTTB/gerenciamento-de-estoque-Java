@@ -62,11 +62,11 @@ public class NotasFiscais implements INotasFiscais, Serializable {
 }
 
     @Override
-    public void addItem(int codigo) {
+    public void addItem(int codigo, Item item) {
         for(NotaFiscal nf : notasFiscais) {
             if(nf.getCodigo() == codigo) {
                 List<Item> listaDeItens = nf.getItens();
-                    for (Item item : listaDeItens) {
+                    if (item != null) {
                         listaDeItens.add(item);
                     }
             }
@@ -79,7 +79,7 @@ public class NotasFiscais implements INotasFiscais, Serializable {
             if(nf.getCodigo() == codigo) {
                 List<Item> listaDeItens = nf.getItens();
                     for (Item item : listaDeItens) {
-                        listaDeItens.add(item);
+                        listaDeItens.remove(item);
                     }
             }
         }
