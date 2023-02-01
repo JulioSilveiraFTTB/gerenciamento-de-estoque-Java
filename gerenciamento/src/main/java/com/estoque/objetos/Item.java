@@ -60,6 +60,6 @@ public class Item implements Serializable {
      */
     @Override
     public String toString() {
-        return "Produto: " + produto + "\n";
+        return produto.toStringItem();
     }
 }

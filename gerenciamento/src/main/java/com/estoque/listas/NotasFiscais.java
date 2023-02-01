@@ -49,13 +49,13 @@ public class NotasFiscais implements INotasFiscais, Serializable {
         for(NotaFiscal nf : notasFiscais) {
             if(nf.getCodigo() == codigo) {
                 List<Item> listaDeItens = nf.getItens();
-                    for (int i = 0; i < listaDeItens.size(); i++) {
-                        double preco = produto.getPreco();
-                        double quantidade = produto.getQuantidade();
-                        soma += quantidade * preco;
-                        
-                        return soma;
-            }
+                for (Item item : listaDeItens) {
+                    double preco = produto.getPreco();
+                    double quantidade = produto.getQuantidade();
+                    soma += quantidade * preco;
+                    
+                    return soma;
+                }
         }
     }
         return soma;

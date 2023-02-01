@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class Produto implements Serializable {
+    private static final long serialVersionUID = -3483101606110045706L;
     
     protected Integer codigo;
     protected String nome;
@@ -137,5 +138,9 @@ public class Produto implements Serializable {
         return "Código: " + codigo + "\n"
         + "Nome: " + nome + "\n"
         + "Quantidade " + "(" + getTipoQuantidade() + ")" + ": " + quantidade;
+    }
+    
+    public String toStringItem() {
+        return getNome() + " ("+getQuantidade()+")";
     }
 }

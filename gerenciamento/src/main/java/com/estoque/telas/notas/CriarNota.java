@@ -86,6 +86,8 @@ public class CriarNota extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
         jComboBoxProdutos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jTextFieldValor = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Valor da nota");
+        ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,6 +196,15 @@ public class CriarNota extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 90, 30));
 
+        jTextFieldValor.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldValor.setAutoscrolls(false);
+        jTextFieldValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldValorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextFieldValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 200, 25));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,7 +267,6 @@ public class CriarNota extends javax.swing.JFrame {
         ArrayList<Item> itens = nf.getItens();
         
         try {
-            // pegar o selectedItem
             String nome = jComboBoxProdutos.getItemAt(jComboBoxProdutos.getSelectedIndex());
             
             for (int i = 0; i < produtos.size(); i++) {
@@ -268,17 +278,25 @@ public class CriarNota extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-          valorTotal = valorTotal + valor;
-          item = new Item(p, valorTotal);
+        valorTotal = valorTotal + valor;
+        item = new Item(p, valorTotal);
         
-          if (jTextFieldCodigo.getText() != "") {
+        // notasFiscais.addItem(codigoNota, item);
+        itens.add(item);
+        
+        if(jTextFieldCodigo.getText() != "") {
             int codigoNota = Integer.parseInt(jTextFieldCodigo.getText());
-            // notasFiscais.addItem(codigoNota, item);
-            itens.add(item);
-          }
-        // pegar o codigo da nota
-        // add o objeto item criado na arraylist via codigo
+            double valorNota = notasFiscais.getTotal(codigoNota);
+            notasFiscais.getTotal(codigoNota);
+            
+            jTextFieldValor.setText(Double.toString(valorNota));
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextFieldValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldValorActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -326,5 +344,6 @@ public class CriarNota extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldData;
+    private javax.swing.JTextField jTextFieldValor;
     // End of variables declaration//GEN-END:variables
 }
