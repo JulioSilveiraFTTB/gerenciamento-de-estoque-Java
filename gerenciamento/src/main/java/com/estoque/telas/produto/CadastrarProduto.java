@@ -5,6 +5,7 @@
 package com.estoque.telas.produto;
 
 import com.estoque.excecoes.produtos.PrecoInvalidoException;
+import com.estoque.excecoes.produtos.ProdutoNaoAdicionadoException;
 import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
 import com.estoque.objetos.Produto;
 import com.estoque.telas.*;
@@ -219,44 +220,42 @@ public class CadastrarProduto extends javax.swing.JFrame {
         String descricao;
         double preco = 0;
         double quantidade = 0;
-        String tipoQuantidade;
+        String tipoQuantidade; 
         
         if(jTextFieldNome.getText() != "" && jTextFieldPreco.getText() != "" && jTextFieldQuantidade.getText() != "" && jTextFieldDescricao.getText() != "") {
             nome = jTextFieldNome.getText();
             
-            if(preco <= 0 || preco >= 100000) {
-                try {
-                    preco = Double.parseDouble(jTextFieldPreco.getText());
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Insira um preço válido!");
-                }
+            try {
+                preco = Double.parseDouble(jTextFieldPreco.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Insira um preço válido!");
+                return;
             }
             
-            if(quantidade <= 0 || quantidade >= 1000000)
-                try {
-                    quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
+            try {
+                quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
             } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Insira uma quantidade válida");
+                JOptionPane.showMessageDialog(null, "Insira uma quantidade válida");
+                return;
             }
             
             tipoQuantidade = (String) jComboBoxTipoQuantidade.getSelectedItem();
             descricao = jTextFieldDescricao.getText();
  
             produto = new Produto(nome, descricao, preco, quantidade, tipoQuantidade);
-            System.out.print(produto.toString());
+            System.out.print(produto.toString());           
             
-            if(produto != null) {
+            if (produto != null) {
                 this.produtos.addProduto(produto);
                 gravarLista(this.produtos);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado! \n" + "O código do produto é " + produto.getCodigo());
-                jTextFieldNome.setText("");
-                jTextFieldPreco.setText("");
-                jTextFieldQuantidade.setText("");
-                jTextFieldDescricao.setText(""); 
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "O produto não foi cadastrado!\n Verifique os dados inseridos.");     
-        }
+            
+            jTextFieldNome.setText("");
+            jTextFieldPreco.setText("");
+            jTextFieldQuantidade.setText("");
+            jTextFieldDescricao.setText(""); 
+            }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed

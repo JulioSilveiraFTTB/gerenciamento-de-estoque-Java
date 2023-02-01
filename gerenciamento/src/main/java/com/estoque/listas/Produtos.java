@@ -17,33 +17,37 @@ public class Produtos implements IProdutos, Serializable {
 
     /** 
      * @param p
-     * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
      */
     @Override
     public void addProduto(Produto p) {
         if(p != null) {
             produtos.add(p);
-        } 
+        }
     }
     
     /** 
      * @param codigo
-     * @return 
+     * @return
      * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
      */
     @Override
-    public boolean removeProduto(int codigo) {
+    public boolean removeProduto(int codigo) throws ProdutoNaoEncontradoException {
+        try {
             for(Produto p : produtos) {
                 if(p.getCodigo() == codigo) {
                     produtos.remove(p);
                     return true;
                 } 
             } return false;
+        } catch (Exception ex) {
+            throw new ProdutoNaoEncontradoException();
+        }   
     }
     
     /** 
      * @param codigo
      * @return Produto
+     * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
      */
     @Override
     public Produto getProduto(int codigo) throws ProdutoNaoEncontradoException {
@@ -97,6 +101,8 @@ public class Produtos implements IProdutos, Serializable {
     /** 
      * @param codigo
      * @param quantidade
+     * @throws com.estoque.excecoes.produtos.ProdutoNaoEncontradoException
+     * @throws com.estoque.excecoes.produtos.QuantidadeInvalidaException
      */
     @Override
     public void subQuantidade(int codigo, double quantidade) throws ProdutoNaoEncontradoException, QuantidadeInvalidaException {
@@ -111,13 +117,13 @@ public class Produtos implements IProdutos, Serializable {
                     }
                 }
             }   
-        } catch (Exception e) {
+        } catch (Exception ex) {
             throw new ProdutoNaoEncontradoException();
         }
     }
     
     public int size() throws Exception {
-        if(produtos.size() == 0) {
+        if(produtos.isEmpty()) {
             throw new Exception("Lista vazia!");
         }
         return this.produtos.size();

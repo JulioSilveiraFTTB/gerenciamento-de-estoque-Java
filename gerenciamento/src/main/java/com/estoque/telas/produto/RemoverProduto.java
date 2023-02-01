@@ -151,7 +151,7 @@ public class RemoverProduto extends javax.swing.JFrame {
                 jButtonRemoverActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 140, 30));
+        jPanel1.add(jButtonRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 140, 30));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

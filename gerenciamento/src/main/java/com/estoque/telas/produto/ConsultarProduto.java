@@ -176,7 +176,7 @@ public class ConsultarProduto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Quantidade", "Tipo Quantidade", "Preço"
+                "Código", "Nome", "Descrição", "Quantidade", "Tipo Quantidade", "Preço"
             }
         ));
         jTableProdutos.setRowHeight(25);
