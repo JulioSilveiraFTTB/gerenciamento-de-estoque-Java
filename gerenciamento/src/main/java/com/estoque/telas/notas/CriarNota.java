@@ -7,12 +7,15 @@ package com.estoque.telas.notas;
 import com.estoque.objetos.*;
 import com.estoque.listas.LeitorDeListas;
 import com.estoque.listas.NotasFiscais;
+import com.estoque.listas.Produtos;
 import com.estoque.telas.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 public class CriarNota extends javax.swing.JFrame {
     public NotaFiscal nf;
     public NotasFiscais notasFiscais;
+    private Produtos produtos;
     
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
@@ -30,14 +34,28 @@ public class CriarNota extends javax.swing.JFrame {
      */
     public CriarNota(NotasFiscais notasFiscais) {
         this.notasFiscais = LeitorDeListas.lerLista(notasFiscais);
+        this.produtos = LeitorDeListas.lerLista(produtos);
         initComponents();
 
         LocalDate dataEmissao = LocalDate.now();
         
         nf = new NotaFiscal(dataEmissao);
+        
         dataEmissao = nf.getDataEmissao();
         jTextFieldCodigo.setText(Integer.toString(nf.getCodigo()));
         jTextFieldData.setText(dtf.format(dataEmissao));
+        
+        DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
+
+        try {
+            for (int i = 0; i < produtos.size(); i++) {
+                dcbm.addElement(produtos.getProdutos().get(i).getNome());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        jComboBoxProdutos.setModel(dcbm);
     }
 
     /**
@@ -59,8 +77,7 @@ public class CriarNota extends javax.swing.JFrame {
         jTextFieldData = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Data de emissão");
         ;
         jButtonSalvar = new javax.swing.JButton();
-        jTextFieldItens = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Itens");
-        ;
+        jComboBoxProdutos = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,7 +142,7 @@ public class CriarNota extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Preencha as informações da nota:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 600, 40));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 600, 40));
 
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldCodigo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -134,11 +151,11 @@ public class CriarNota extends javax.swing.JFrame {
                 jTextFieldCodigoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 200, 25));
+        jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 200, 25));
 
         jTextFieldData.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldData.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(jTextFieldData, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 200, 25));
+        jPanel1.add(jTextFieldData, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 200, 25));
 
         jButtonSalvar.setBackground(new java.awt.Color(58, 65, 84));
         jButtonSalvar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -152,8 +169,10 @@ public class CriarNota extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 250, 40));
 
-        jTextFieldItens.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jTextFieldItens, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 250, 60));
+        jComboBoxProdutos.setBackground(new java.awt.Color(235, 235, 235));
+        jComboBoxProdutos.setForeground(new java.awt.Color(60, 63, 65));
+        jComboBoxProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBoxProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 200, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,10 +213,9 @@ public class CriarNota extends javax.swing.JFrame {
         int codigoProduto;
         double valorTotal;
         
-        if (jTextFieldCodigo.getText() != "" && jTextFieldData.getText() != "" && jTextFieldItens.getText() != "") {
+        if (jTextFieldCodigo.getText() != "" && jTextFieldData.getText() != "") {
             codigo = Integer.parseInt(jTextFieldCodigo.getText());
             dataDeEmissao = LocalDate.now();
-            codigoProduto = Integer.parseInt(jTextFieldItens.getText());
             
             System.out.println(nf.toString());
             
@@ -249,12 +267,12 @@ public class CriarNota extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRetornarMenuProduto;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JComboBox<String> jComboBoxProdutos;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldData;
-    private javax.swing.JTextField jTextFieldItens;
     // End of variables declaration//GEN-END:variables
 }
