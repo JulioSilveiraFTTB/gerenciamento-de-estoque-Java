@@ -24,8 +24,8 @@ import javax.swing.table.DefaultTableModel;
  * @author julio
  */
 public class ConsultarProduto extends javax.swing.JFrame {
-    public Produto p;
-    public Produtos produtos;
+    private Produto p;
+    private Produtos produtos;
     
     /**
      * Creates new form ConsultarProduto

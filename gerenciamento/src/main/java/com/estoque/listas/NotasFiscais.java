@@ -12,7 +12,8 @@ public class NotasFiscais implements INotasFiscais, Serializable {
     private static final long serialVersionUID = 1L;
     private final List<NotaFiscal> notasFiscais = new ArrayList<>();
     
-    private Produto produto;
+    private Produto p;
+    private Produtos produtos;
 
     transient Scanner entrada = new Scanner(System.in);
 
@@ -44,21 +45,24 @@ public class NotasFiscais implements INotasFiscais, Serializable {
 
     @Override
     public double getTotal(int codigo) {
+        double valorProduto = 0;
         double soma = 0;
 
         for(NotaFiscal nf : notasFiscais) {
             if(nf.getCodigo() == codigo) {
                 List<Item> listaDeItens = nf.getItens();
-                for (Item item : listaDeItens) {
-                    double preco = produto.getPreco();
-                    double quantidade = produto.getQuantidade();
-                    soma += quantidade * preco;
+                for (int i = 0; i < listaDeItens.size(); i++) {
+                    double preco = produtos.getProdutos().get(i).getPreco();
+                    double quantidade = produtos.getProdutos().get(i).getQuantidade();
+                    valorProduto += quantidade * preco;
+                    
+                    soma = valorProduto + soma;
                     
                     return soma;
                 }
         }
     }
-        return soma;
+        return 0;
 }
 
     @Override
