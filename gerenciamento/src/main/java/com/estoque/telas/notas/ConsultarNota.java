@@ -9,21 +9,26 @@ import com.estoque.objetos.NotaFiscal;
 import com.estoque.listas.NotasFiscais;
 
 import static com.estoque.listas.LeitorDeListas.lerLista;
+import com.estoque.objetos.Item;
 import com.estoque.telas.MenuNotas;
 import com.estoque.utils.MultiLineLabelUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author julio
  */
 public class ConsultarNota extends javax.swing.JFrame {
-    public NotaFiscal nf;
-    public NotasFiscais notasFiscais;
+    private NotaFiscal nf;
+    private NotasFiscais notasFiscais;
+    private Item item;
     
     /**
      * Creates new form ConsultarNota
@@ -53,7 +58,11 @@ public class ConsultarNota extends javax.swing.JFrame {
         jButtonPesquisar = new javax.swing.JButton();
         jTextFieldCodigo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Código");
         ;
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableNota = new javax.swing.JTable();
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -67,6 +76,9 @@ public class ConsultarNota extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
+
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\julio\\Downloads\\icone.png")); // NOI18N
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -147,10 +159,19 @@ public class ConsultarNota extends javax.swing.JFrame {
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 125, 200, 30));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 210, 250, 120));
-        jLabel1.setUI(MultiLineLabelUI.labelUI);
+        jTableNota.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTableNota.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Data de emissão", "Produtos", "Valor"
+            }
+        ));
+        jTableNota.setRowHeight(25);
+        jScrollPane1.setViewportView(jTableNota);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 550, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,14 +203,23 @@ public class ConsultarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        DefaultTableModel dtmNota = (DefaultTableModel) jTableNota.getModel();
+        
         int codigo;
-
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
 
         if(codigo != 0) {
-            jLabel1.setText(notasFiscais.getNotaFiscal(codigo).toString());
-        } else {
-            jLabel1.setText("A NF não está cadastrado no sistema!");
+            try {
+                notasFiscais.getNotaFiscal(codigo);
+                codigo = notasFiscais.getNotaFiscal(codigo).getCodigo();
+                LocalDate dataEmissao = notasFiscais.getNotaFiscal(codigo).getDataEmissao();
+                ArrayList<Item> itens = notasFiscais.getNotaFiscal(codigo).getItens();
+                double valor = notasFiscais.getTotal(codigo);
+                
+                Object [] data = {codigo, dataEmissao, itens, valor};
+                dtmNota.addRow(data);
+            } catch (Exception e) {
+            }    
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
@@ -235,7 +265,6 @@ public class ConsultarNota extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRetornarMenuProduto;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -243,6 +272,8 @@ public class ConsultarNota extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableNota;
     private javax.swing.JTextField jTextFieldCodigo;
     // End of variables declaration//GEN-END:variables
 }

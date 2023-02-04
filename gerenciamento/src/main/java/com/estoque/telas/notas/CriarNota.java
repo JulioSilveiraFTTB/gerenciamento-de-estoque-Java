@@ -265,10 +265,17 @@ public class CriarNota extends javax.swing.JFrame {
             
             System.out.println(nf.toString());
             
-            this.notasFiscais.addNotaFiscal(nf);
-            LeitorDeListas.gravarLista(notasFiscais);
+            if (nf != null) {
+                this.notasFiscais.addNotaFiscal(nf);
+                LeitorDeListas.gravarLista(notasFiscais);
+                JOptionPane.showMessageDialog(null, "Nota fiscal criada!");   
+            }
         }
- 
+        
+        NotaFiscal nf1 = new NotaFiscal(dataDeEmissao = LocalDate.now());
+        jTextFieldCodigo.setText(Integer.toString(nf1.getCodigo()));    
+        jTextFieldData.setText(dtf.format(dataDeEmissao));
+        jTextFieldValor.setText("");
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
