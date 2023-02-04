@@ -91,8 +91,6 @@ public class CriarNota extends javax.swing.JFrame {
         jTextFieldValor = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Valor da nota");
         ;
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
