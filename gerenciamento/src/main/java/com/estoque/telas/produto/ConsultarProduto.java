@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConsultarProduto extends javax.swing.JFrame {
     private Produto p;
-    private Produtos produtos;
+    private final Produtos produtos;
     
     /**
      * Creates new form ConsultarProduto

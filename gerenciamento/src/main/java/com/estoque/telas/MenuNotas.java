@@ -343,7 +343,7 @@ public class MenuNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConsultarNFMouseExited
 
     private void jButtonConsultarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarNFActionPerformed
-        new ConsultarNota(this.notasFiscais).setVisible(true);
+        new TesteConsultar(this.notasFiscais).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonConsultarNFActionPerformed
 

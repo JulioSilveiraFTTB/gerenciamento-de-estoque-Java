@@ -88,8 +88,8 @@ public class CriarNota extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
         jComboBoxProdutos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jTextFieldValor = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Valor da nota");
-        ;
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,15 +209,6 @@ public class CriarNota extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 90, 30));
 
-        jTextFieldValor.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldValor.setAutoscrolls(false);
-        jTextFieldValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldValorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextFieldValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 200, 25));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,26 +247,29 @@ public class CriarNota extends javax.swing.JFrame {
         LocalDate dataDeEmissao;
         int codigoProduto;
         Item itens;
-        double valorTotal;
+        double valorTotal = 0;
         
         if (jTextFieldCodigo.getText() != "" && jTextFieldData.getText() != "") {
             codigo = Integer.parseInt(jTextFieldCodigo.getText());
             dataDeEmissao = LocalDate.now();
-            valorTotal = notasFiscais.getTotal(codigo);
             
             System.out.println(nf.toString());
             
             if (nf != null) {
                 this.notasFiscais.addNotaFiscal(nf);
+                try {
+                    valorTotal = notasFiscais.getTotal(codigo);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
                 LeitorDeListas.gravarLista(notasFiscais);
-                JOptionPane.showMessageDialog(null, "Nota fiscal criada!");   
+                JOptionPane.showMessageDialog(null, "Nota fiscal criada! \n" + "O valor total é: " + valorTotal);   
             }
         }
         
         NotaFiscal nf1 = new NotaFiscal(dataDeEmissao = LocalDate.now());
         jTextFieldCodigo.setText(Integer.toString(nf1.getCodigo()));    
         jTextFieldData.setText(dtf.format(dataDeEmissao));
-        jTextFieldValor.setText("");
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -304,20 +298,8 @@ public class CriarNota extends javax.swing.JFrame {
         
         // notasFiscais.addItem(codigoNota, item);
         itens.add(item);
-        
-        if(jTextFieldCodigo.getText() != "") {
-            int codigoNota = Integer.parseInt(jTextFieldCodigo.getText());
-            double valorNota = notasFiscais.getTotal(codigoNota);
-            notasFiscais.getTotal(codigoNota);
-            
-            jTextFieldValor.setText(Double.toString(valorNota));
-        }
-        
+        JOptionPane.showMessageDialog(rootPane, "Item adicionado com sucesso!");
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextFieldValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldValorActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -367,6 +349,5 @@ public class CriarNota extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
     private javax.swing.JTextField jTextFieldData;
-    private javax.swing.JTextField jTextFieldValor;
     // End of variables declaration//GEN-END:variables
 }

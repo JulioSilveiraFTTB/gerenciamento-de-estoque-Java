@@ -44,26 +44,18 @@ public class NotasFiscais implements INotasFiscais, Serializable {
     }
 
     @Override
-    public double getTotal(int codigo) {
-        double valorProduto = 0;
-        double soma = 0;
-
-        for(NotaFiscal nf : notasFiscais) {
-            if(nf.getCodigo() == codigo) {
-                List<Item> listaDeItens = nf.getItens();
-                for (int i = 0; i < listaDeItens.size(); i++) {
-                    double preco = produtos.getProdutos().get(i).getPreco();
-                    double quantidade = produtos.getProdutos().get(i).getQuantidade();
-                    valorProduto += quantidade * preco;
-                    
-                    soma = valorProduto + soma;
-                    
-                    return soma;
+    public double getTotal(int codigo) throws Exception {
+        for (NotaFiscal notaFiscal : notasFiscais) {
+            if (notaFiscal.getCodigo() == codigo) {
+            double total = 0.0;
+                for (Item item : notaFiscal.getItens()) {
+                    total += item.getValor();
                 }
+                return total;
+            }
         }
+        throw new Exception("Não existe nota fiscal com o código informado");
     }
-        return 0;
-}
 
     @Override
     public void addItem(int codigo, Item item) {

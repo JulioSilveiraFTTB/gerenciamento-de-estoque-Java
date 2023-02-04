@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
     private static final long serialVersionUID = 100L;
     protected Produto produto;
-    protected double valorTotal;
+    protected double valor;
 
     /**
      * Construtor do objeto Item
@@ -14,7 +14,7 @@ public class Item implements Serializable {
      */
     public Item(Produto produto, double valorTotal) {
         this.produto = produto;
-        this.valorTotal = valorTotal;
+        this.valor = valor;
     }
 
     /**
@@ -40,17 +40,8 @@ public class Item implements Serializable {
      * 
      * @return
      */
-    public double getValorTotal() {
-        return valorTotal;
-    }
-
-    /**
-     * Atribui o valor total (preço) dos produtos
-     * 
-     * @param valorTotal
-     */
-    public void setValorTotal(double valorTotal, double quantidade) {
-        valorTotal = produto.getPreco() * quantidade;
+    public double getValor() {
+        return valor = getProduto().getPreco();
     }
     
     /** 
