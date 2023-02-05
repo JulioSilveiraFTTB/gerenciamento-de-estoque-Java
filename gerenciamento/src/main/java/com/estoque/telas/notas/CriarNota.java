@@ -82,7 +82,6 @@ public class CriarNota extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -96,8 +95,6 @@ public class CriarNota extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTextFieldData = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Data de emissão");
         ;
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
