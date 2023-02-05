@@ -73,8 +73,6 @@ public class CriarNota extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -88,8 +86,6 @@ public class CriarNota extends javax.swing.JFrame {
         jButtonSalvar = new javax.swing.JButton();
         jComboBoxProdutos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResourceAsStream("/com/estoque/telas/notas/icone.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -356,7 +352,6 @@ public class CriarNota extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxProdutos;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
