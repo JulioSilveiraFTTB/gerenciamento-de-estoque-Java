@@ -2,13 +2,17 @@ package com.estoque.objetos;
 
 import java.io.Serializable;
 
+/**
+ *
+ * @author julio
+ */
 public class Item implements Serializable {
     private static final long serialVersionUID = 100L;
     protected Produto produto;
     protected double valor;
 
     /**
-     * Construtor do objeto Item
+     * Construtor do objeto Item.
      * 
      * @param produto
      */
@@ -18,7 +22,7 @@ public class Item implements Serializable {
     }
 
     /**
-     * Retorna o produto que foi vendido
+     * Retorna o produto que foi vendido.
      * 
      * @return
      */
@@ -27,7 +31,7 @@ public class Item implements Serializable {
     }
 
     /**
-     * Atribui um produto para o objeto Item
+     * Atribui um produto para o objeto Item.
      * 
      * @param produto
      */
@@ -36,7 +40,7 @@ public class Item implements Serializable {
     }
     
     /**
-     * Retorna o valor total (preço) dos produtos selecionados
+     * Retorna o valor total (preço) dos produtos selecionados.
      * 
      * @return
      */
@@ -45,7 +49,7 @@ public class Item implements Serializable {
     }
     
     /** 
-     * Retorna a string completa do item
+     * Retorna a string completa do item.
      * 
      * @return String
      */

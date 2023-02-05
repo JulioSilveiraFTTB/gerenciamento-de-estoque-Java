@@ -11,6 +11,13 @@ import com.estoque.utils.*;
  * @author julio
  */
 public class LeitorDeListas {
+
+    /**
+     * Método para realizar a leitura do arquivo listaDeProdutos.bin e recuperar todos os produtos registrados no arquivo.
+     *
+     * @param p
+     * @throws java.lang.Exception Lança exceção quando o arquivo não existe/não foi encontrado.
+     */
     public static Produtos lerLista(Produtos p) {
         try {
             Object obj;
@@ -21,7 +28,13 @@ public class LeitorDeListas {
         }
         return p;
     }
-    
+
+    /**
+     * Método para gravar novos produtos no arquivo listaDeProdutos.
+     *
+     * @param p
+     * @throws java.lang.Exception Lança exceção quando não é possível salvar o arquivo.
+     */
     public static void gravarLista(Produtos p) {
         try {
             Arquivo.gravar(p, "listaDeProdutos");
@@ -30,6 +43,12 @@ public class LeitorDeListas {
         }
     }
 
+    /**
+     * Método para realizar a leitura do arquivo listaDeNotasF e recuperar as notas fiscais criadas.
+     *
+     * @param nf
+     * @throws java.lang.Exception Lança exceção quando o arquivo não existe/não foi encontrado.
+     */
     public static NotasFiscais lerLista(NotasFiscais nf) {
         try {
             Object obj;
@@ -40,7 +59,13 @@ public class LeitorDeListas {
         }
         return nf;
     }
-    
+
+    /**
+     * Método para gravar novas notas fiscais no arquivo listaDeNotas.
+     *
+     * @param nf
+     * @throws java.lang.Exception Lança exceção quando não é possível salvar o arquivo.
+     */
     public static void gravarLista(NotasFiscais nf) {
         try {
             Arquivo.gravar(nf, "listaDeNotasF");

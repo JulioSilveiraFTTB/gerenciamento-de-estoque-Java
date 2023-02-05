@@ -32,6 +32,9 @@ public class EditarProduto extends javax.swing.JFrame {
     public EditarProduto(Produtos produtos) {
         this.produtos = lerLista(produtos);
         initComponents();
+
+        // seta a visibilidade de vários itens da tela como false para que só apareçam em outro momento,
+        // quando forem necessários
         jLabel3.setVisible(false);
         jTextFieldCodigoNovo.setVisible(false);
         jTextFieldNome.setVisible(false);
@@ -236,7 +239,10 @@ public class EditarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // try-catch para confirmar se o produto existe ou não
         try {
+            // atribui o valor dos parâmetros abaixo de acordo com o conteúdo recuperado em cada uma
+            // das caixas de texto e do combobox
             int codigo = Integer.parseInt(jTextFieldCodigoNovo.getText());
             String novoNome = jTextFieldNome.getText();
             String novoTipoQuantidade = (String) jComboBoxTipoQuantidade.getSelectedItem();
@@ -244,31 +250,40 @@ public class EditarProduto extends javax.swing.JFrame {
             double novoPreco = Double.parseDouble(jTextFieldPreco.getText());
             double novaQuantidade = Double.parseDouble(jTextFieldQuantidade.getText());
             
-            
+            // se o novoPreco for um valor válido, entra no if
             if (novoPreco <= 0 || novoPreco >= 100000) {
+                // try-catch para confirmar que o valor inserido é válido
                 try {
+                    // chama o método updatePreco da lista de produtos para atualizar o preço
                     produtos.updatePreco(codigo, novoPreco);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Insira um preço válido!");
+                    // se o programa lançar a exceção, limpa o campo e retorna
                     jTextFieldPreco.setText("");
                     return;
                 }
             }
-            
+
+            // se o valor inserido for válido de acordo com a regra, entra no if
             if(novaQuantidade <= 0 || novaQuantidade >= 100000) {
+                // try-catch para confirmar que o numero inserido é válido
                 try {
+                    // chama o método addQuantidade para adicionar o número inserido a quantidade existente
                     produtos.addQuantidade(codigo, novaQuantidade);
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Insira uma quantidade válida");
+                    // se o programa lançar a exceção, limpa o campo e retorna
                     jTextFieldQuantidade.setText("");
                     return;
                 }
             }
-            
+
+            // atribui os novos valores, caso tenham sido modificados, para o produto usando os setters
             produtos.getProduto(codigo).setNome(novoNome);
             produtos.getProduto(codigo).setPreco(novoPreco);
             produtos.getProduto(codigo).setDescricao(novaDescricao);
             produtos.getProduto(codigo).setTipoQuantidade(novoTipoQuantidade);
+            // grava a lista de produtos com o produto editado
             gravarLista(produtos);
             JOptionPane.showMessageDialog(null, "Produto editado!");
         } catch (ProdutoNaoEncontradoException ex) {
@@ -296,6 +311,7 @@ public class EditarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // atualiza a visibilidade de vários itens da tela
         jButtonEditar.setVisible(false);
         jTextFieldCodigo.setVisible(false);
         jLabel4.setVisible(false);
@@ -305,23 +321,30 @@ public class EditarProduto extends javax.swing.JFrame {
         jComboBoxTipoQuantidade.setVisible(true);
         jTextFieldDescricao.setVisible(true);
         jLabel3.setVisible(true);
-        
+
         int codigo;
+        // determina que o valor de código é o valor informado no campo jTextFieldCodigo
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
-        
+
+        // se o código não for igual a 0, entra no if
         if(codigo != 0) {
+            // try-catch para confirmar se o produto com o código informado existe
             try {
+                // recupera o produto e seta os parâmetros a seguir com os valores do produto
                 codigo = produtos.getProduto(codigo).getCodigo();
                 String nome = produtos.getProduto(codigo).getNome();
                 String tipoQuantidade = produtos.getProduto(codigo).getTipoQuantidade();
                 String descricao = produtos.getProduto(codigo).getDescricao();
                 double preco = produtos.getProduto(codigo).getPreco();
                 double quantidade =produtos.getProduto(codigo).getQuantidade();
-                
+
+                // atribui os valores recuperados do produto em questão nos campos da tela para que sejam
+                // editados de acordo com a intenção do usuário
                 jTextFieldCodigoNovo.setText(Integer.toString(codigo));
                 jTextFieldNome.setText(nome);
                 jTextFieldPreco.setText(Double.toString(preco));
                 jTextFieldQuantidade.setText(Double.toString(quantidade));
+                // if para recuperar o tipo de quantidade selecionado no ComboBox
                 if(tipoQuantidade == "KG") {
                     jComboBoxTipoQuantidade.setSelectedItem("Unidade");   
                 } else {
@@ -330,6 +353,8 @@ public class EditarProduto extends javax.swing.JFrame {
                 jTextFieldDescricao.setText(descricao);
             } catch (ProdutoNaoEncontradoException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
+
+                // atualiza a visibilidade dos itens do painel novamente
                 jButtonEditar.setVisible(true);
                 jTextFieldCodigo.setVisible(true);
                 jTextFieldCodigo.setText("");

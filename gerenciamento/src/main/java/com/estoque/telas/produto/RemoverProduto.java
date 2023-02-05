@@ -210,32 +210,42 @@ public class RemoverProduto extends javax.swing.JFrame {
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         int codigo;
-        
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
-        
+
+        // se o código não for 0, entra no if
          if(codigo != 0) {
+             // try-catch para confirmar que se o produto (código) informado existe
             try {
+                // recupera o produto de acordo com o código
                 this.produtos.getProduto(codigo);
+                // remove o produto da lista
                 this.produtos.removeProduto(codigo);
+                // grava a lista de produtos para atualizar a mesma já sem o produto removido
                 gravarLista(this.produtos);
                 JOptionPane.showMessageDialog(null, "Produto removido!");
+
+                // limpa o campo do código e o painel com as infos para repetir o processo caso seja a opção do usuário
                 jTextFieldCodigo.setText("");
                 jLabel4.setText("");
             } catch (ProdutoNaoEncontradoException ex) {
-                Logger.getLogger(RemoverProduto.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } else {
-            jLabel4.setText("O produto não está cadastrado no sistema!");
+             // se o código informado for igual a 0, apresenta uma mensagem de erro no painel
+            jLabel4.setText("O código informado é inválido");
         }  
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         int codigo;
-
+        // recupera o codigo informado no campo jTextFieldCodigo
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
-        
+
+        // try-catch para confirmar se o produto existe mesmo
         try {
+            // se o codigo informado não for nulo, entra no if
             if(this.produtos.getProduto(codigo) != null) {
+                // recupera o toStringRemover() do produto do código informado e apresenta as infos no painel
                 jLabel4.setText(this.produtos.getProduto(codigo).toStringRemover());
                 jButtonRemover.setVisible(true);
             }

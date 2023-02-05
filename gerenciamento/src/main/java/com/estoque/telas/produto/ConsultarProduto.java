@@ -35,8 +35,6 @@ public class ConsultarProduto extends javax.swing.JFrame {
         this.produtos = lerLista(produtos);
         initComponents();
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -214,28 +212,37 @@ public class ConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        // cria um novo modelo de tabela utilizando o jTable adicionado na tela
         DefaultTableModel dtmProduto = (DefaultTableModel) jTableProdutos.getModel();
        
         int codigo;
+        // recupera o codigo inserido no campo jTextFieldCodigo
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
-        
+
+        // se o codigo inserido não for igual a 0, entra no if
         if(codigo != 0) {
+            // try-catch para verificar se o produto com o código informado existe
             try {
+                // recupera o produto de acordo com o código informado
                 produtos.getProduto(codigo);
-                
+
+                // instancia os atributos do produto e atribui os seus valores de acordo com os getters do produto
                 codigo = produtos.getProduto(codigo).getCodigo();
                 String nome = produtos.getProduto(codigo).getNome();
                 String descricao = produtos.getProduto(codigo).getDescricao();
                 String tipoQuantidade = produtos.getProduto(codigo).getTipoQuantidade();
                 double quantidade = produtos.getProduto(codigo).getQuantidade();
                 double preco = produtos.getProduto(codigo).getPreco();
-                
+
+                // cria um novo objeto 'data' para popular a tabela com as infos do produto
                 Object [] data = {codigo, nome, descricao, quantidade, tipoQuantidade, preco};
+                // adiciona o objeto 'data' nas linhas da tabela
                 dtmProduto.addRow(data);
             } catch (ProdutoNaoEncontradoException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
+        // limpa o campo do código
         jTextFieldCodigo.setText("");
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
@@ -244,19 +251,26 @@ public class ConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarTodosActionPerformed
+        // cria um modelo de tabela
         DefaultTableModel dtmProduto = (DefaultTableModel) jTableProdutos.getModel();
         dtmProduto.setRowCount(0);
-        
+
+        // try-catch para pegar exceção caso não exista nenhum produto cadastrado
         try {
-            for (int i = 0; i <= produtos.size(); i++){
+            // laço for para percorrer a lista inteira de produtos e recuperar as informações de todos
+            // repete o processo até carregar todos os produtos registrados na lista
+            for (int i = 0; i <= produtos.size(); i++) {
+                // recupera os atributos do produto de acordo com o valor de i
                 int codigo = produtos.getProdutos().get(i).getCodigo();
                 String nome = produtos.getProdutos().get(i).getNome();
                 String descricao = produtos.getProdutos().get(i).getDescricao();
                 double quantidade = produtos.getProdutos().get(i).getQuantidade();
                 double preco = produtos.getProdutos().get(i).getPreco();
                 String tipoQuantidade = produtos.getProdutos().get(i).getTipoQuantidade();
-                
+
+                // cria um objeto 'data' com as informações do produto
                 Object [] data = {codigo, nome, descricao, quantidade, tipoQuantidade, preco};
+                // adiciona o objeto 'data' em uma linha com todas as informações do produto
                 dtmProduto.addRow(data);
             }
         } catch (Exception ex) {

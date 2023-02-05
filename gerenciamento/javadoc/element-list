@@ -1,0 +1,11 @@
+com.estoque
+com.estoque.excecoes.notas
+com.estoque.excecoes.produtos
+com.estoque.interfaces
+com.estoque.listas
+com.estoque.objetos
+com.estoque.telas
+com.estoque.telas.icons
+com.estoque.telas.notas
+com.estoque.telas.produto
+com.estoque.utils

@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ *
+ * @author julio
+ */
 public class NotaFiscal implements Serializable {
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final long serialVersionUID = 10L;
-    
     protected Integer codigo;
     protected final LocalDate dataEmissao;
     protected ArrayList<Item> itens = new ArrayList<>();

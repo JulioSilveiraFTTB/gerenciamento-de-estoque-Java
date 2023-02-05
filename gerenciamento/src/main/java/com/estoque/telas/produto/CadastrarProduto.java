@@ -215,42 +215,53 @@ public class CadastrarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // instancia um produto e seus atributos
         Produto produto;
         String nome;
         String descricao;
         double preco = 0;
         double quantidade = 0;
         String tipoQuantidade; 
-        
+
+        // se os campos estiverem vazios, entra no if para executar o código
         if(jTextFieldNome.getText() != "" && jTextFieldPreco.getText() != "" && jTextFieldQuantidade.getText() != "" && jTextFieldDescricao.getText() != "") {
             nome = jTextFieldNome.getText();
-            
+
+            // try-catch para garantir que o preço seja válido
             try {
+                // atribui o valor digitado no campo jTextFieldPreco como o preço do produto
                 preco = Double.parseDouble(jTextFieldPreco.getText());
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Insira um preço válido!");
                 return;
             }
-            
+
+            // try-catch pra garantir que a quantidade é válida
             try {
+                // atribui o valor do campo jTextFieldQuantidade como a quantidade do produto
                 quantidade = Double.parseDouble(jTextFieldQuantidade.getText());
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Insira uma quantidade válida");
                 return;
             }
-            
+
+            // atribui o tipoQuantidade como o item selecionado no ComboBox
             tipoQuantidade = (String) jComboBoxTipoQuantidade.getSelectedItem();
+            // atribui a descrição como a string inserida no campo jTextFieldDescricao
             descricao = jTextFieldDescricao.getText();
- 
+
+            // cria um novo produto com as informações inseridas
             produto = new Produto(nome, descricao, preco, quantidade, tipoQuantidade);
             System.out.print(produto.toString());           
-            
+
+            // se o produto não for nulo, adiciona ele à lista de produtos e grava a mesma para salvar as infos
             if (produto != null) {
                 this.produtos.addProduto(produto);
                 gravarLista(this.produtos);
                 JOptionPane.showMessageDialog(null, "Produto cadastrado! \n" + "O código do produto é " + produto.getCodigo());
             }
-            
+
+            // limpa todos os campos
             jTextFieldNome.setText("");
             jTextFieldPreco.setText("");
             jTextFieldQuantidade.setText("");

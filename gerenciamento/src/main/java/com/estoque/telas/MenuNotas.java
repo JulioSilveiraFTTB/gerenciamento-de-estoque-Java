@@ -19,7 +19,7 @@ public class MenuNotas extends javax.swing.JFrame {
     public NotasFiscais notasFiscais = new NotasFiscais();
 
     /**
-     * Creates new form TelaInicial
+     * Cria um novo fomr MenuNotas
      */  
     public MenuNotas() {
         this.notasFiscais = lerLista(this.notasFiscais);

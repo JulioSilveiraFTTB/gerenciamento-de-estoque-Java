@@ -41,27 +41,37 @@ public class CriarNota extends javax.swing.JFrame {
         this.produtos = LeitorDeListas.lerLista(produtos);
         initComponents();
 
+        // seta a dataEmissao como a data local do momento em que está sendo criada a nota
         LocalDate dataEmissao = LocalDate.now();
-        
+        // instancia uma nova NotaFiscal
         nf = new NotaFiscal(dataEmissao);
-        
         dataEmissao = nf.getDataEmissao();
+
+        // seta os campos do código e da data com os valores recuperados do objeto NotaFiscal que foi criado
         jTextFieldCodigo.setText(Integer.toString(nf.getCodigo()));
         jTextFieldData.setText(dtf.format(dataEmissao));
+        // instancia uma nova ArrayList de itens da nota
         ArrayList<Item> itens;
+        // atribui os itens usando o método getItens da nota (nesse ponto, a lista está vazia
         itens = nf.getItens();
-        
+
+        // cria um novo modelo de ComboBox
         DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
 
+        // try-catch para confirmar se a lista de produtos possui registros ou não
         try {
+            // laço for para percorrer a lista de produtos inteira e adicionar os objetos da lista no modelo
+            // do ComboBox
             for (int i = 0; i < produtos.size(); i++) {
                 // dcbm.addElement(produtos.getCodigoENome());
+                // recupera o nome dos produtos da lista e adiciona no ComboBox
                 dcbm.addElement(produtos.getProdutos().get(i).getNome());
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        
+
+        // adiciona o modelo de ComboBox criado no ComboBox inseirod na tela
         jComboBoxProdutos.setModel(dcbm);
     }
 
@@ -244,29 +254,40 @@ public class CriarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // cria os atributos necessários para as operações de salvar a nf
         int codigo;
         LocalDate dataDeEmissao;
         Item itens;
         double valorTotal = 0;
-        
+
+        // se os campos estiverem vazios, entra no if
         if (jTextFieldCodigo.getText() != "" && jTextFieldData.getText() != "") {
+            // seta o codigo e a dataDeEmissao com os valores recuperados dos campos
             codigo = Integer.parseInt(jTextFieldCodigo.getText());
             dataDeEmissao = LocalDate.now();
             
             System.out.println(nf.toString());
-            
+
+            // se a nf não for nula, entra no if
             if (nf != null) {
+                // adiciona a nf criada na lista de notas
                 this.notasFiscais.addNotaFiscal(nf);
+                // try-catch para confirmar que a nf existe (de acordo com o código)
                 try {
+                    // atribui o valorTotal utilizando o método getTotal que soma o preço de todos os
+                    // itens inseridos na arraylist de itens da nota
                     valorTotal = notasFiscais.getTotal(codigo);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
+                // grava a lista de notas no arquivo .bin, salvando a nota criada
                 LeitorDeListas.gravarLista(notasFiscais);
                 JOptionPane.showMessageDialog(null, "Nota fiscal criada! \n" + "O valor total é: " + valorTotal);   
             }
         }
-        
+
+        // cria uma nova nota e já atribui o seu código e data nos campos para, caso seja da vontade do usuário,
+        // já adicionar outra nota
         NotaFiscal nf1 = new NotaFiscal(dataDeEmissao = LocalDate.now());
         jTextFieldCodigo.setText(Integer.toString(nf1.getCodigo()));    
         jTextFieldData.setText(dtf.format(dataDeEmissao));
@@ -277,33 +298,44 @@ public class CriarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // atributos necessários para salvar o item em questão na arraylist
         double valor = 0;
         double valorTotal = 0;
         ArrayList<Item> itens = nf.getItens();
-        
+
+        // try-catch para confirmar que o produto selecionado no ComboBox existe
         try {
+            // atribui um nome de acordo com a opção selecionada no ComboBox
             String nome = jComboBoxProdutos.getItemAt(jComboBoxProdutos.getSelectedIndex());
-            
+
+            // laço for que percorre a lista completa de produtos
             for (int i = 0; i < produtos.size(); i++) {
+                // se o nome do produto selecionado no ComboBox for igual ao nome de um objeto produto
+                // registrado na lista de produtos, retorna o mesmo e o seu valor
                 if (produtos.getProdutos().get(i).getNome().equals(nome)) {
+                    // recupera o produto de acordo com nome
                     p = produtos.get(nome);
+                    // atribui o preço do produto no atributo 'valor'
                     valor = produtos.getProdutos().get(i).getPreco() * produtos.getProdutos().get(i).getQuantidade();
                 }
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        // calcula o valorTotal da nota ao somar o valorTotal = 0 + o valor do produto em questão
+        // repete o processo para todos os produtos adicionados
         valorTotal = valorTotal + valor;
+        // instância um novo item usando como parâmetro o produto p e o valorTotal
         item = new Item(p, valorTotal);
-        
-        // notasFiscais.addItem(codigoNota, item);
+
+        // try-catch para confirmar se o item foi adicionado na lista
         try {
+            // adiciona o novo item na lista de itens da nota
             itens.add(item);
             JOptionPane.showMessageDialog(rootPane, "Item adicionado com sucesso!");    
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "O item não foi adicionado!");
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProdutosActionPerformed

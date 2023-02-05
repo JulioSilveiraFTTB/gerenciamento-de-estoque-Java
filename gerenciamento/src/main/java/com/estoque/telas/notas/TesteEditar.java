@@ -250,16 +250,17 @@ public class TesteEditar extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         double valorTotal = 0;
-        
         int codigo;
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
-        
+
+        // try-catch para confirmar que a nota fiscal do código informado existe
         try {
+            // recupera o novo valorTotal da nota
             valorTotal = notasFiscais.getTotal(codigo);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        
+        // salva a lista de notas já com a nota atualizada
         LeitorDeListas.gravarLista(notasFiscais);
         JOptionPane.showMessageDialog(null, "Nota fiscal editada! \n" + "O valor total agora é: " + valorTotal);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -269,6 +270,7 @@ public class TesteEditar extends javax.swing.JFrame {
         double valorTotal = 0;
         int codigo = Integer.parseInt(jTextFieldCodigo.getText());
         ArrayList<Item> itens = null;
+
         try {
             itens = notasFiscais.getNotaFiscal(codigo).getItens();
         } catch (NotaFiscalInvalidaException ex) {

@@ -3,6 +3,10 @@ package com.estoque.objetos;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ *
+ * @author julio
+ */
 public class Produto implements Serializable {
     private static final long serialVersionUID = -3483101606110045706L;
     
@@ -79,7 +83,7 @@ public class Produto implements Serializable {
     /**
      * Retona a quantidade do produto em questão
      * 
-     * @return
+     * @return quantidade
      */
     public double getQuantidade() {
         return quantidade;
@@ -97,7 +101,7 @@ public class Produto implements Serializable {
     /**
      * Retorna o valor (preço) do produto
      * 
-     * @return
+     * @return preco
      */
     public double getPreco() {
         return preco;
@@ -112,10 +116,20 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
+    /**
+     * Retorna o tipo (string) de quantidade do produto (KG ou unidade)
+     *
+     * @return tipoQuantidade
+     */
     public String getTipoQuantidade() {
         return tipoQuantidade;
     }
-    
+
+    /**
+     * Atribui o tipo (string) de quantidade do produto (KG ou unidade)
+     *
+     * @param tipoQuantidade
+     */
     public void setTipoQuantidade(String tipoQuantidade) {
         this.tipoQuantidade = tipoQuantidade;
     }
@@ -123,7 +137,7 @@ public class Produto implements Serializable {
     /**
      * Retorna a string completa do produto
      * 
-     * @return
+     * @return string completa do objeto
      */
     @Override
     public String toString() {
@@ -133,13 +147,23 @@ public class Produto implements Serializable {
         + "Preço: " + preco + "\n"
         + "Quantidade " + "(" + getTipoQuantidade() + ")" + ": " + quantidade;
     }
-    
+
+    /**
+     * Retorna uma string resumida (código, nome e quantidade) do produto
+     *
+     * @return string resumida
+     */
     public String toStringRemover() {
         return "Código: " + codigo + "\n"
         + "Nome: " + nome + "\n"
         + "Quantidade " + "(" + getTipoQuantidade() + ")" + ": " + quantidade;
     }
-    
+
+    /**
+     * Retorna uma string resumida (nome e quantidade) para ser utilizada no objeto Item
+     *
+     * @return string resumida
+     */
     public String toStringItem() {
         return getNome() + " ("+getQuantidade()+")";
     }

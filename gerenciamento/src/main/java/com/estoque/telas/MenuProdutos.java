@@ -23,7 +23,7 @@ public class MenuProdutos extends javax.swing.JFrame {
     public Produtos produtos = new Produtos();
 
     /**
-     * Creates new form TelaInicial
+     * Cria um novo form MenuProdutos
      * @param produtos
      */  
     public MenuProdutos(Produtos produtos) {

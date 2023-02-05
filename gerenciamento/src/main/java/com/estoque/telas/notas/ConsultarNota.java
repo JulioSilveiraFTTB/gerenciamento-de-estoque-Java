@@ -207,22 +207,30 @@ public class ConsultarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        // cria um novo modelo de tabela usando a jTable inserida na tela
         DefaultTableModel dtmNota = (DefaultTableModel) jTableNota.getModel();
 
+        // cria um atributo código e atribui a ele o valor inserido no campo
         int codigo;
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
 
+        // se o código não for 0, entra no if
         if(codigo != 0) {
+            // try-catch para confirmar que o código é uma nota registrada na lista de notas
             try {
+                // recupera a nota de acordo com o código
                 notasFiscais.getNotaFiscal(codigo);
-                
+
+                // atribui os valores da nota nos atributos criados codigo, dataEmissao e a lista de itens
                 codigo = notasFiscais.getNotaFiscal(codigo).getCodigo();
                 LocalDate dataEmissao = notasFiscais.getNotaFiscal(codigo).getDataEmissao();
                 String dataFormatada = dtf.format(dataEmissao); 
                 ArrayList<Item> itens = notasFiscais.getNotaFiscal(codigo).getItens();
                 double total = notasFiscais.getTotal(codigo);
-                
+
+                // cria um objeto 'data' com os atributos recuperados da nota
                 Object [] data = {codigo, dataFormatada, itens, total};
+                // adiciona o objeto 'data' em uma linha da tabela
                 dtmNota.addRow(data);
             } catch (NotaFiscalInvalidaException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -249,6 +257,12 @@ public class ConsultarNota extends javax.swing.JFrame {
         DefaultTableModel dtmNota = (DefaultTableModel) jTableNota.getModel();
         dtmNota.setRowCount(0);
 
+        // mesma lógica dos outros métodos parecidos
+        // recupera a lista completa de notas e os atributos de cada uma
+        // atribuindo tais atributos para cada coluna da tabela
+        // e insere uma nota por linha
+
+        // try-catch para confirmar se a lista de notas está vazia ou se possui objetos
         try {
             for (int i = 0; i <= notasFiscais.size(); i++){
                 int codigo = notasFiscais.getNotas().get(i).getCodigo();

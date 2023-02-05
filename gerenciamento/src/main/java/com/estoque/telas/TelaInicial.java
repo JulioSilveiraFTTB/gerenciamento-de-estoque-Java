@@ -21,7 +21,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private final Point point = new Point();
             
     /**
-     * Creates new form TelaInicial
+     * Cria um novo form TelaInicial
      */  
     public TelaInicial() {
         initComponents();             
@@ -174,9 +174,11 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldSenhaActionPerformed
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
+        // string user e pass para fazer o login
         String user = jTextFieldLoginNovo.getText();
         String pass = jPasswordFieldSenha.getText();
-        
+
+        // if para confirmar que as strings 'user' e 'pass' recebem o valor correto para fazer o login e acessar o sistema
         if (user.equals("admin") && pass.equals("pass")) {
             new Menu().setVisible(true);
             this.setVisible(false);
