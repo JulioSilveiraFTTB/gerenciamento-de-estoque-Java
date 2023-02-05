@@ -89,7 +89,7 @@ public class CriarNota extends javax.swing.JFrame {
         jComboBoxProdutos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResourceAsStream("/com/estoque/telas/notas/icone.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
