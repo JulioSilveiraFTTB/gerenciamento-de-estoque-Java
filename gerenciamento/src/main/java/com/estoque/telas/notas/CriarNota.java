@@ -16,8 +16,6 @@ import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -83,6 +81,8 @@ public class CriarNota extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -91,11 +91,13 @@ public class CriarNota extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextFieldCodigo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Código");
         ;
-        jTextFieldData = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Data de emissão");
-        ;
         jButtonSalvar = new javax.swing.JButton();
         jComboBoxProdutos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jTextFieldData = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Data de emissão");
+        ;
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,10 +184,6 @@ public class CriarNota extends javax.swing.JFrame {
         });
         jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 200, 25));
 
-        jTextFieldData.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldData.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jPanel1.add(jTextFieldData, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 200, 25));
-
         jButtonSalvar.setBackground(new java.awt.Color(58, 65, 84));
         jButtonSalvar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,6 +217,10 @@ public class CriarNota extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 240, 90, 30));
+
+        jTextFieldData.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldData.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jPanel1.add(jTextFieldData, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 200, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -384,6 +386,7 @@ public class CriarNota extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxProdutos;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

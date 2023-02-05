@@ -45,7 +45,7 @@ public class Item implements Serializable {
      * @return
      */
     public double getValor() {
-        return valor = getProduto().getPreco();
+        return valor = getProduto().getPreco() * getProduto().getQuantidade();
     }
     
     /** 

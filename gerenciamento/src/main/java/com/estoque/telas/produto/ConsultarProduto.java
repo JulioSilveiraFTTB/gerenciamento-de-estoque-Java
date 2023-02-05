@@ -274,7 +274,7 @@ public class ConsultarProduto extends javax.swing.JFrame {
                 dtmProduto.addRow(data);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+           
         }
     }//GEN-LAST:event_jButtonListarTodosActionPerformed
 

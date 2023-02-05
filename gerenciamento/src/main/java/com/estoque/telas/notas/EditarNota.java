@@ -4,32 +4,45 @@
  */
 package com.estoque.telas.notas;
 
-import com.estoque.objetos.*;
+import com.estoque.excecoes.notas.NotaFiscalInvalidaException;
+import com.estoque.listas.LeitorDeListas;
 import com.estoque.listas.NotasFiscais;
-import com.estoque.telas.*;
-
-import static com.estoque.listas.LeitorDeListas.lerLista;
+import com.estoque.listas.Produtos;
+import com.estoque.objetos.Item;
+import com.estoque.objetos.NotaFiscal;
+import com.estoque.objetos.Produto;
+import com.estoque.telas.MenuNotas;
 import com.estoque.utils.MultiLineLabelUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author julio
  */
 public class EditarNota extends javax.swing.JFrame {
-    public NotaFiscal nf;
-    public NotasFiscais notasFiscais;
+    private NotaFiscal nf = this.nf;
+    private final NotasFiscais notasFiscais;
+    private Item item;
+    private Produto p;
+    private Produtos produtos;
     
     /**
-     * Creates new form EditarNota
-     * @param notasFiscais
+     * Creates new form TesteEditar
      */
     public EditarNota(NotasFiscais notasFiscais) {
-        this.notasFiscais = lerLista(notasFiscais);
+        this.notasFiscais = LeitorDeListas.lerLista(notasFiscais);
+        this.produtos = LeitorDeListas.lerLista(produtos);
         initComponents();
         jLabelItens.setVisible(false);
+        jComboBoxProdutos.setVisible(false);
+        jComboBoxProdutosAdd.setVisible(false);
+        jButtonRemover.setVisible(false);
+        jButtonAddItem.setVisible(false);
     }
 
     /**
@@ -43,16 +56,19 @@ public class EditarNota extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jButtonRetornarMenuProduto = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
+        jComboBoxProdutos = new javax.swing.JComboBox<>();
+        jButtonRemover = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jTextFieldCodigo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Código");
         ;
         jButtonEditar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jLabelItens = new javax.swing.JLabel();
+        jComboBoxProdutosAdd = new javax.swing.JComboBox<>();
+        jButtonAddItem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,41 +84,35 @@ public class EditarNota extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\julio\\Downloads\\icone.png")); // NOI18N
+
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EDITAR NOTA");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
-
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\julio\\Downloads\\icone.png")); // NOI18N
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel6)
-                .addGap(63, 63, 63)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel6)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 90));
@@ -141,6 +151,30 @@ public class EditarNota extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 250, 40));
 
+        jComboBoxProdutos.setBackground(new java.awt.Color(235, 235, 235));
+        jComboBoxProdutos.setForeground(new java.awt.Color(60, 63, 65));
+        jComboBoxProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBoxProdutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 200, 30));
+
+        jButtonRemover.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonRemover.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonRemover.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRemover.setText("Remover");
+        jButtonRemover.setBorder(null);
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 120, 30));
+
+        jLabel4.setBackground(new java.awt.Color(204, 0, 0));
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Informe o código da nota:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
+
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,15 +194,30 @@ public class EditarNota extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, 30));
-
-        jLabel4.setBackground(new java.awt.Color(204, 0, 0));
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Informe o código da nota:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
         jLabelItens.setUI(MultiLineLabelUI.labelUI);
-        jPanel1.add(jLabelItens, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 240, 60));
+        jPanel1.add(jLabelItens, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 230, 70));
+
+        jComboBoxProdutosAdd.setBackground(new java.awt.Color(235, 235, 235));
+        jComboBoxProdutosAdd.setForeground(new java.awt.Color(60, 63, 65));
+        jComboBoxProdutosAdd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProdutosAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxProdutosAddActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBoxProdutosAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 200, 30));
+
+        jButtonAddItem.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonAddItem.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonAddItem.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAddItem.setText("Adicionar");
+        jButtonAddItem.setBorder(null);
+        jButtonAddItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddItemActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonAddItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,22 +249,59 @@ public class EditarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        
-    }//GEN-LAST:event_jButtonSalvarActionPerformed
-
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        jLabelItens.setVisible(true);
-        jButtonEditar.setVisible(false);
-        jTextFieldCodigo.setVisible(false);
-        jLabel4.setVisible(false);
-        
+        double valorTotal = 0;
         int codigo;
         codigo = Integer.parseInt(jTextFieldCodigo.getText());
-        
-        if(codigo != 0) {
-            
+
+        // try-catch para confirmar que a nota fiscal do código informado existe
+        try {
+            // recupera o novo valorTotal da nota
+            valorTotal = notasFiscais.getTotal(codigo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-    }//GEN-LAST:event_jButtonEditarActionPerformed
+        // salva a lista de notas já com a nota atualizada
+        LeitorDeListas.gravarLista(notasFiscais);
+        JOptionPane.showMessageDialog(null, "Nota fiscal editada! \n" + "O valor total agora é: " + valorTotal);
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        double valor = 0;
+        double valorTotal = 0;
+        int codigo = Integer.parseInt(jTextFieldCodigo.getText());
+        ArrayList<Item> itens = null;
+
+        try {
+            itens = notasFiscais.getNotaFiscal(codigo).getItens();
+        } catch (NotaFiscalInvalidaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+        try {
+            String nome = jComboBoxProdutos.getItemAt(jComboBoxProdutos.getSelectedIndex());
+
+            for (int i = 0; i < produtos.size(); i++) {
+                if (produtos.getProdutos().get(i).getNome().equals(nome)) {
+                    p = produtos.get(nome);
+                    valor = produtos.getProdutos().get(i).getPreco() * produtos.getProdutos().get(i).getQuantidade();
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        valorTotal = valorTotal + valor;
+        item = new Item(p, valorTotal);
+
+        // notasFiscais.addItem(codigoNota, item);
+        try {
+            itens.remove(item);
+            JOptionPane.showMessageDialog(rootPane, "Item adicionado com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "O item não foi adicionado!");
+        }
+        
+        jLabelItens.setText(nf.getItens().toString());
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         //r TODO add your handling code here:
@@ -224,6 +310,103 @@ public class EditarNota extends javax.swing.JFrame {
     private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCodigoActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        jLabelItens.setVisible(true);
+        jButtonEditar.setVisible(false);
+        jTextFieldCodigo.setVisible(false);
+        jLabel4.setVisible(false);
+
+        DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
+        DefaultComboBoxModel dcbm1 = new DefaultComboBoxModel();
+        
+        int codigo;
+        codigo = Integer.parseInt(jTextFieldCodigo.getText());
+
+        try {
+            jLabelItens.setText(notasFiscais.getNotaFiscal(codigo).getItens().toString());
+        } catch (NotaFiscalInvalidaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            jLabelItens.setVisible(false);
+            jButtonEditar.setVisible(true);
+            jTextFieldCodigo.setVisible(true);
+            jTextFieldCodigo.setText("");
+            jLabel4.setVisible(true);
+            return;
+        }
+        
+        jComboBoxProdutos.setVisible(true);
+        jComboBoxProdutosAdd.setVisible(true);
+        jButtonRemover.setVisible(true);
+        jButtonAddItem.setVisible(true);
+
+        try {
+            for (int i = 0; i < produtos.size(); i++) {
+                dcbm1.addElement(produtos.getProdutos().get(i).getNome());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        jComboBoxProdutosAdd.setModel(dcbm1);
+            
+        if(codigo != 0) {
+            try {
+                ArrayList <Item> itens = notasFiscais.getNotaFiscal(codigo).getItens();
+                try {
+                    for (int i = 0; i < itens.size(); i++) {
+                        //for (int x = 0; x < produtos.size(); x++) { 
+                            dcbm.addElement(produtos.getProdutos().get(i).getNome());    
+                        //}
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            } catch (NotaFiscalInvalidaException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        }       
+        jComboBoxProdutos.setModel(dcbm);
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddItemActionPerformed
+        double valor = 0;
+        double valorTotal = 0;
+        int codigo = Integer.parseInt(jTextFieldCodigo.getText());
+        ArrayList<Item> itens = null;
+        try {
+            itens = notasFiscais.getNotaFiscal(codigo).getItens();
+        } catch (NotaFiscalInvalidaException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        try {
+            String nome = jComboBoxProdutosAdd.getItemAt(jComboBoxProdutos.getSelectedIndex());
+            
+            for (int i = 0; i < produtos.size(); i++) {
+                if (produtos.getProdutos().get(i).getNome().equals(nome)) {
+                    p = produtos.get(nome);
+                    valor = produtos.getProdutos().get(i).getPreco() * produtos.getProdutos().get(i).getQuantidade();
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        valorTotal = valorTotal + valor;
+        item = new Item(p, valorTotal);
+        
+        // notasFiscais.addItem(codigoNota, item);
+        try {
+            itens.add(item);
+            JOptionPane.showMessageDialog(rootPane, "Item adicionado com sucesso!");    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "O item não foi adicionado!");
+        }
+    }//GEN-LAST:event_jButtonAddItemActionPerformed
+
+    private void jComboBoxProdutosAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProdutosAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxProdutosAddActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -261,13 +444,16 @@ public class EditarNota extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddItem;
     private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonRetornarMenuProduto;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JComboBox<String> jComboBoxProdutos;
+    private javax.swing.JComboBox<String> jComboBoxProdutosAdd;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelItens;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -4,9 +4,7 @@
  */
 package com.estoque.telas.produto;
 
-import com.estoque.excecoes.produtos.PrecoInvalidoException;
 import com.estoque.excecoes.produtos.ProdutoNaoEncontradoException;
-import com.estoque.excecoes.produtos.QuantidadeInvalidaException;
 import com.estoque.objetos.Produto;
 import com.estoque.telas.*;
 import com.estoque.listas.*;
@@ -15,8 +13,6 @@ import static com.estoque.listas.LeitorDeListas.gravarLista;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,6 +31,11 @@ public class EditarProduto extends javax.swing.JFrame {
 
         // seta a visibilidade de vários itens da tela como false para que só apareçam em outro momento,
         // quando forem necessários
+        jLabelDescricao.setVisible(false);
+        jLabelPreco.setVisible(false);
+        jLabelNome1.setVisible(false);
+        jLabelQuantidade.setVisible(false);
+        jLabelTipoQuantidade.setVisible(false);
         jLabel3.setVisible(false);
         jTextFieldCodigoNovo.setVisible(false);
         jTextFieldNome.setVisible(false);
@@ -73,8 +74,13 @@ public class EditarProduto extends javax.swing.JFrame {
         jTextFieldDescricao = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Descrição");
         ;
         jComboBoxTipoQuantidade = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelTipoQuantidade = new javax.swing.JLabel();
         jTextFieldCodigoNovo = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabelNome1 = new javax.swing.JLabel();
+        jLabelPreco = new javax.swing.JLabel();
+        jLabelDescricao = new javax.swing.JLabel();
+        jLabelQuantidade = new javax.swing.JLabel();
 
         jButtonPesquisar.setBackground(new java.awt.Color(58, 65, 84));
         jButtonPesquisar.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -201,7 +207,7 @@ public class EditarProduto extends javax.swing.JFrame {
         jPanel1.add(jTextFieldQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 200, 25));
 
         jTextFieldDescricao.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jTextFieldDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 240, 40));
+        jPanel1.add(jTextFieldDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 240, 40));
 
         jComboBoxTipoQuantidade.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxTipoQuantidade.setEditable(true);
@@ -210,15 +216,50 @@ public class EditarProduto extends javax.swing.JFrame {
         jComboBoxTipoQuantidade.setToolTipText("");
         jPanel1.add(jComboBoxTipoQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 200, 25));
 
-        jLabel4.setBackground(new java.awt.Color(204, 0, 0));
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Informe o código do produto:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
+        jLabelTipoQuantidade.setBackground(new java.awt.Color(204, 0, 0));
+        jLabelTipoQuantidade.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabelTipoQuantidade.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelTipoQuantidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTipoQuantidade.setText("Tipo de Quantidade:");
+        jPanel1.add(jLabelTipoQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 200, 40));
 
         jTextFieldCodigoNovo.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jTextFieldCodigoNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 25));
+
+        jLabel5.setBackground(new java.awt.Color(204, 0, 0));
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Informe o código do produto:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
+
+        jLabelNome1.setBackground(new java.awt.Color(204, 0, 0));
+        jLabelNome1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabelNome1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelNome1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelNome1.setText("Nome do produto:");
+        jPanel1.add(jLabelNome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 180, 40));
+
+        jLabelPreco.setBackground(new java.awt.Color(204, 0, 0));
+        jLabelPreco.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabelPreco.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelPreco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPreco.setText("Preço:");
+        jPanel1.add(jLabelPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 190, 40));
+
+        jLabelDescricao.setBackground(new java.awt.Color(204, 0, 0));
+        jLabelDescricao.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabelDescricao.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelDescricao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelDescricao.setText("Descrição:");
+        jPanel1.add(jLabelDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 200, 40));
+
+        jLabelQuantidade.setBackground(new java.awt.Color(204, 0, 0));
+        jLabelQuantidade.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabelQuantidade.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelQuantidade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelQuantidade.setText("Quantidade:");
+        jPanel1.add(jLabelQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 190, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,13 +355,19 @@ public class EditarProduto extends javax.swing.JFrame {
         // atualiza a visibilidade de vários itens da tela
         jButtonEditar.setVisible(false);
         jTextFieldCodigo.setVisible(false);
-        jLabel4.setVisible(false);
+        jLabelTipoQuantidade.setVisible(false);
+        jLabel5.setVisible(false);
         jTextFieldNome.setVisible(true);
         jTextFieldPreco.setVisible(true);
         jTextFieldQuantidade.setVisible(true);
         jComboBoxTipoQuantidade.setVisible(true);
         jTextFieldDescricao.setVisible(true);
         jLabel3.setVisible(true);
+        jLabelDescricao.setVisible(true);
+        jLabelPreco.setVisible(true);
+        jLabelNome1.setVisible(true);
+        jLabelQuantidade.setVisible(true);
+        jLabelTipoQuantidade.setVisible(true);
 
         int codigo;
         // determina que o valor de código é o valor informado no campo jTextFieldCodigo
@@ -345,10 +392,10 @@ public class EditarProduto extends javax.swing.JFrame {
                 jTextFieldPreco.setText(Double.toString(preco));
                 jTextFieldQuantidade.setText(Double.toString(quantidade));
                 // if para recuperar o tipo de quantidade selecionado no ComboBox
-                if(tipoQuantidade == "KG") {
-                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");   
+                if("KG".equals(tipoQuantidade)) {
+                    jComboBoxTipoQuantidade.setSelectedItem("KG");   
                 } else {
-                    jComboBoxTipoQuantidade.setSelectedItem("KG");
+                    jComboBoxTipoQuantidade.setSelectedItem("Unidade");
                 }
                 jTextFieldDescricao.setText(descricao);
             } catch (ProdutoNaoEncontradoException ex) {
@@ -358,7 +405,7 @@ public class EditarProduto extends javax.swing.JFrame {
                 jButtonEditar.setVisible(true);
                 jTextFieldCodigo.setVisible(true);
                 jTextFieldCodigo.setText("");
-                jLabel4.setVisible(true);
+                jLabelTipoQuantidade.setVisible(true);
                 jTextFieldNome.setVisible(false);
                 jTextFieldPreco.setVisible(false);
                 jTextFieldQuantidade.setVisible(false);
@@ -413,7 +460,12 @@ public class EditarProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelDescricao;
+    private javax.swing.JLabel jLabelNome1;
+    private javax.swing.JLabel jLabelPreco;
+    private javax.swing.JLabel jLabelQuantidade;
+    private javax.swing.JLabel jLabelTipoQuantidade;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;

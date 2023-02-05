@@ -358,7 +358,7 @@ public class MenuNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarNFMouseExited
 
     private void jButtonEditarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarNFActionPerformed
-        new TesteEditar(this.notasFiscais).setVisible(true);
+        new EditarNota(this.notasFiscais).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonEditarNFActionPerformed
 
