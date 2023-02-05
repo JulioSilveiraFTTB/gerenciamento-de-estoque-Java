@@ -9,9 +9,11 @@ import com.estoque.listas.NotasFiscais;
 import com.estoque.telas.*;
 
 import static com.estoque.listas.LeitorDeListas.lerLista;
+import com.estoque.utils.MultiLineLabelUI;
 
 import javax.swing.*;
 import java.awt.*;
+
 /**
  *
  * @author julio
@@ -27,6 +29,7 @@ public class EditarNota extends javax.swing.JFrame {
     public EditarNota(NotasFiscais notasFiscais) {
         this.notasFiscais = lerLista(notasFiscais);
         initComponents();
+        jLabelItens.setVisible(false);
     }
 
     /**
@@ -44,17 +47,12 @@ public class EditarNota extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButtonRetornarMenuProduto = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
         jTextFieldCodigo = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Código");
         ;
         jButtonEditar = new javax.swing.JButton();
-        jTextFieldNome = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Nome do produto");
-        ;
-        jTextFieldPreco = new com.estoque.telas.icons.JTextFieldHint(new JTextField(), "empty", "Preço");
-        ;
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldCodigoNovo = new javax.swing.JTextField();
+        jLabelItens = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +74,8 @@ public class EditarNota extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EDITAR NOTA");
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/estoque/telas/notas/icone.png"))); // NOI18N
+
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\julio\\Downloads\\icone.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -87,9 +87,9 @@ public class EditarNota extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addGap(73, 73, 73)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,13 +129,6 @@ public class EditarNota extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonRetornarMenuProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 250, 40));
 
-        jLabel3.setBackground(new java.awt.Color(204, 0, 0));
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Atualize as informações da nota:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 600, 40));
-
         jButtonSalvar.setBackground(new java.awt.Color(58, 65, 84));
         jButtonSalvar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jButtonSalvar.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,6 +142,11 @@ public class EditarNota extends javax.swing.JFrame {
         jPanel1.add(jButtonSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 250, 40));
 
         jTextFieldCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 200, 25));
 
         jButtonEditar.setBackground(new java.awt.Color(58, 65, 84));
@@ -163,21 +161,14 @@ public class EditarNota extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, 30));
 
-        jTextFieldNome.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jTextFieldNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 25));
-
-        jTextFieldPreco.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jTextFieldPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 200, 25));
-
         jLabel4.setBackground(new java.awt.Color(204, 0, 0));
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Informe o código da nota:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 40));
-
-        jTextFieldCodigoNovo.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jTextFieldCodigoNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 200, 25));
+        jLabelItens.setUI(MultiLineLabelUI.labelUI);
+        jPanel1.add(jLabelItens, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 240, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,12 +204,26 @@ public class EditarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        jLabelItens.setVisible(true);
+        jButtonEditar.setVisible(false);
+        jTextFieldCodigo.setVisible(false);
+        jLabel4.setVisible(false);
         
+        int codigo;
+        codigo = Integer.parseInt(jTextFieldCodigo.getText());
+        
+        if(codigo != 0) {
+            
+        }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         //r TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -260,15 +265,12 @@ public class EditarNota extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRetornarMenuProduto;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelItens;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldCodigo;
-    private javax.swing.JTextField jTextFieldCodigoNovo;
-    private javax.swing.JTextField jTextFieldNome;
-    private javax.swing.JTextField jTextFieldPreco;
     // End of variables declaration//GEN-END:variables
 }

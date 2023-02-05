@@ -1,5 +1,6 @@
 package com.estoque.listas;
 
+import com.estoque.excecoes.notas.NotaFiscalInvalidaException;
 import com.estoque.interfaces.*;
 import com.estoque.objetos.*;
 
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public class NotasFiscais implements INotasFiscais, Serializable {
     private static final long serialVersionUID = 1L;
-    private final List<NotaFiscal> notasFiscais = new ArrayList<>();
+    private final ArrayList<NotaFiscal> notasFiscais = new ArrayList<>();
     
     private Produto p;
     private Produtos produtos;
@@ -25,26 +26,27 @@ public class NotasFiscais implements INotasFiscais, Serializable {
     }
 
     @Override
-    public void removeNotaFiscal(int codigo) {
+    public void removeNotaFiscal(int codigo) throws NotaFiscalInvalidaException {
         for(NotaFiscal nf : notasFiscais) {
             if(nf.getCodigo() == codigo) {
                 notasFiscais.remove(nf);
             }
-        }
+        } 
+        throw new NotaFiscalInvalidaException();
     }
 
     @Override
-    public NotaFiscal getNotaFiscal(int codigo) {
+    public NotaFiscal getNotaFiscal(int codigo) throws NotaFiscalInvalidaException {
         for(NotaFiscal nf : notasFiscais) {
             if(nf.getCodigo() == codigo) {
                 return nf;
             }
         }
-        return null;
+        throw new NotaFiscalInvalidaException();
     }
 
     @Override
-    public double getTotal(int codigo) throws Exception {
+    public double getTotal(int codigo) throws NotaFiscalInvalidaException {
         for (NotaFiscal notaFiscal : notasFiscais) {
             if (notaFiscal.getCodigo() == codigo) {
             double total = 0.0;
@@ -54,7 +56,7 @@ public class NotasFiscais implements INotasFiscais, Serializable {
                 return total;
             }
         }
-        throw new Exception("Não existe nota fiscal com o código informado");
+        throw new NotaFiscalInvalidaException();
     }
 
     @Override
@@ -79,5 +81,16 @@ public class NotasFiscais implements INotasFiscais, Serializable {
                     }
             }
         }
+    }
+    
+    public List<NotaFiscal> getNotas(){
+        return notasFiscais;
+    }
+    
+    public int size() throws Exception {
+        if(notasFiscais.isEmpty()) {
+            throw new Exception("Lista vazia!");
+        }
+        return this.notasFiscais.size();
     }
 }

@@ -343,7 +343,7 @@ public class MenuNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonConsultarNFMouseExited
 
     private void jButtonConsultarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarNFActionPerformed
-        new TesteConsultar(this.notasFiscais).setVisible(true);
+        new ConsultarNota(this.notasFiscais).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonConsultarNFActionPerformed
 
@@ -358,7 +358,7 @@ public class MenuNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditarNFMouseExited
 
     private void jButtonEditarNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarNFActionPerformed
-        new EditarNota(this.notasFiscais).setVisible(true);
+        new TesteEditar(this.notasFiscais).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonEditarNFActionPerformed
 

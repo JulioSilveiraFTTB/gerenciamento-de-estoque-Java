@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author julio
  */
-public class TesteConsultar extends javax.swing.JFrame {
+public class ConsultarNota extends javax.swing.JFrame {
     private NotaFiscal nf;
     private Produto p;
     private final NotasFiscais notasFiscais;
@@ -39,7 +39,7 @@ public class TesteConsultar extends javax.swing.JFrame {
      * Creates new form NewConsultarNota
      * @param notasFiscais
      */
-    public TesteConsultar(NotasFiscais notasFiscais) {
+    public ConsultarNota(NotasFiscais notasFiscais) {
         this.notasFiscais = lerLista(notasFiscais);
         initComponents();
     }
@@ -65,6 +65,7 @@ public class TesteConsultar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableNota = new javax.swing.JTable();
         jButtonRetornarMenuProduto = new javax.swing.JButton();
+        jButtonListarTodos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,7 +138,7 @@ public class TesteConsultar extends javax.swing.JFrame {
                 jButtonPesquisarActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 120, 30));
+        jPanel1.add(jButtonPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 120, 30));
 
         jTableNota.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTableNota.setModel(new javax.swing.table.DefaultTableModel(
@@ -175,6 +176,18 @@ public class TesteConsultar extends javax.swing.JFrame {
         });
         jPanel1.add(jButtonRetornarMenuProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 250, 40));
 
+        jButtonListarTodos.setBackground(new java.awt.Color(58, 65, 84));
+        jButtonListarTodos.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonListarTodos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonListarTodos.setText("Listar todos");
+        jButtonListarTodos.setBorder(null);
+        jButtonListarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarTodosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonListarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 120, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,7 +224,8 @@ public class TesteConsultar extends javax.swing.JFrame {
                 
                 Object [] data = {codigo, dataFormatada, itens, total};
                 dtmNota.addRow(data);
-            } catch (Exception e) {
+            } catch (NotaFiscalInvalidaException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
@@ -231,6 +245,26 @@ public class TesteConsultar extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButtonRetornarMenuProdutoActionPerformed
 
+    private void jButtonListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarTodosActionPerformed
+        DefaultTableModel dtmNota = (DefaultTableModel) jTableNota.getModel();
+        dtmNota.setRowCount(0);
+
+        try {
+            for (int i = 0; i <= notasFiscais.size(); i++){
+                int codigo = notasFiscais.getNotas().get(i).getCodigo();
+                LocalDate dataEmissao = notasFiscais.getNotas().get(i).getDataEmissao();
+                String dataFormatada = dtf.format(dataEmissao); 
+                ArrayList<Item> itens = notasFiscais.getNotas().get(i).getItens();
+                double total = notasFiscais.getTotal(codigo);
+                
+                Object [] data = {codigo, dataFormatada, itens, total};
+                dtmNota.addRow(data);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Não existe nenhuma nota fiscal registrada!");
+        }
+    }//GEN-LAST:event_jButtonListarTodosActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -248,25 +282,26 @@ public class TesteConsultar extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(TesteConsultar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ConsultarNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(TesteConsultar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ConsultarNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(TesteConsultar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ConsultarNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(TesteConsultar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(ConsultarNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new TesteConsultar().setVisible(true);
+//                new ConsultarNota().setVisible(true);
 //            }
 //        });
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonListarTodos;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRetornarMenuProduto;
     private javax.swing.JLabel jLabel2;

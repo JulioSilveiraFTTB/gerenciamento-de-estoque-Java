@@ -63,12 +63,6 @@ public class NotaFiscal implements Serializable {
     public void setItens(ArrayList<Item> itens) {
         this.itens = itens;
     }
-    
-    public void getItensPrecos() {
-        for (int i = 0; i < itens.size(); i++) {
-            
-        }
-    }
 
     /**
      * Retorna a string completa do produto
