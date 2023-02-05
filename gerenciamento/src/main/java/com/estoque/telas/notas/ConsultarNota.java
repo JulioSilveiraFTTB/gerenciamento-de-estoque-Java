@@ -261,7 +261,7 @@ public class ConsultarNota extends javax.swing.JFrame {
                 dtmNota.addRow(data);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Não existe nenhuma nota fiscal registrada!");
+            Logger.getLogger(ConsultarNota.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonListarTodosActionPerformed
 
